@@ -3,17 +3,15 @@
 var login = document.getElementById('login');
 var attempt = 3;
 
-function validate(){
+function validate(){    
     var un = document.getElementById('username').value;
     var pw = document.getElementById('password').value;
-    
-
     var valData = [["Company", "1234"],["Freelancer", "4321"]];
 //Loop Validation
     for (var i = 0; i < valData.length; i++) {
         if ((un == valData[i][0]) && (pw == valData[i][1])) {
             alert("Login was successful");
-            window.location.href="https://www.google.com/";
+            window.location.href="./marketplace.html";
             break;
         } else if (un == "" || pw== ""){
             alert("Username/Password required");
@@ -40,6 +38,16 @@ function validate(){
         x.type = "text";
     } else {
         x.type = "password";
+    }
+}
+// Reset Password
+function reset(){
+    var fp = document.getElementById('resetPW').value;
+    console.log(fp);
+    if (fp == ""){
+        alert('You need to enter your Email address!');
+    } else {
+        alert('A link to reset your Password has been sent');
     }
 }
 

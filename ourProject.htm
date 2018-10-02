@@ -9,21 +9,25 @@
 
 <h1>Amazing login function</h1>
 <form id="form_id" method="post" name="myform">
-
+<!--Username and Password Fields-->
 <input type="text" name="username" 
         placeholder="Enter Username" id="username" 
         maxlength=10/>
 <input type="password" name="password" 
         placeholder="Enter Password" id="password" 
         maxlength=10/>
+<!--Password Visibility Function-->
 <input type="checkbox" onclick="pwVisibility()">Show Password
 
-<input type="button" value="Login" name="login"  
-        id="login" onclick="validate()"/>
+<!--Login and Registration Buttons-->
+<input type="button" value="Login" name="login" id="login" onclick="validate()"/>
 <input type="button" value="Sign Up" name="register"  
         id="register"/>
-</form>
 
+</form>
+<!--Referencing to the Reset Password Site-->
+<a href="./forgotPassword.html">Forgot Password</a>
+<!--we still have to update the target-->
 <span id="loginResult"></span>
 
 
