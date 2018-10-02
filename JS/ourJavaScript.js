@@ -1,6 +1,6 @@
 
 
-var submit = document.getElementById('submit');
+var login = document.getElementById('login');
 var attempt = 3;
 
 function validate(){
@@ -8,23 +8,39 @@ function validate(){
     var pw = document.getElementById('password').value;
     
 
-    var unArray = ["markwalt", "jongossy", "jenndemp"];
-    var pwArray = ["mark1234", "flomaygo", "jenny1234"];
+    var valData = [["Company", "1234"],["Freelancer", "4321"]];
 //Loop Validation
-    for (var i = 0; i < unArray.length; i++) {
-        if ((un == unArray[i]) && (pw == pwArray[i])) {
+    for (var i = 0; i < valData.length; i++) {
+        if ((un == valData[i][0]) && (pw == valData[i][1])) {
             alert("Login was successful");
             window.location.href="https://www.google.com/";
             break;
         } else if (un == "" || pw== ""){
-            alert("Username/Password requiered");
+            alert("Username/Password required");
+            return false;
+        } else if (attempt ==0) {
+            alert("3 failed attempts! Please reset your credentials.");
+            username.disabled = true;
+            password.disabled = true;
+            login.disabled = true;
             return false;
         } else {
         alert("Invalid Username and/or Password");
+        attempt --;
         return true;
     }
     };
     
+    
+}
+ //Password visibility
+ function pwVisibility() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
 }
 
 
