@@ -1,11 +1,12 @@
 
 
-var submit = document.getElementById('submit');
+var login = document.getElementById('login');
 var attempt = 3;
 
-function validate(){
+function validate(){    
     var un = document.getElementById('username').value;
     var pw = document.getElementById('password').value;
+<<<<<<< HEAD
     
 
     var validationData = [["Company", "1234"],["Freelancer","4321"]];
@@ -14,18 +15,51 @@ function validate(){
 submitLogin.onclick = function(){
     for (var i = 0; i < validationData.length; i++) {
         if (validationData[i][0] == un && validationData[i][1] == pw) {
+=======
+    var valData = [["Company", "1234"],["Freelancer", "4321"]];
+//Loop Validation
+    for (var i = 0; i < valData.length; i++) {
+        if ((un == valData[i][0]) && (pw == valData[i][1])) {
+>>>>>>> 33685fda94e8ad364bb5b2e4ceb29dc17a4bc0c3
             alert("Login was successful");
-            window.location.href="https://www.google.com/";
+            window.location.href="./marketplace.html";
             break;
         } else if (un == "" || pw== ""){
-            alert("Username/Password requiered");
+            alert("Username/Password required");
+            return false;
+        } else if (attempt ==0) {
+            alert("3 failed attempts! Please reset your credentials.");
+            username.disabled = true;
+            password.disabled = true;
+            login.disabled = true;
             return false;
         } else {
         alert("Invalid Username and/or Password");
+        attempt --;
         return true;
     }
     };
     
+    
+}
+ //Password visibility
+ function pwVisibility() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+// Reset Password
+function reset(){
+    var fp = document.getElementById('resetPW').value;
+    console.log(fp);
+    if (fp == ""){
+        alert('You need to enter your Email address!');
+    } else {
+        alert('A link to reset your Password has been sent');
+    }
 }
 
 
