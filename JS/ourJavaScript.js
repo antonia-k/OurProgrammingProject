@@ -8,11 +8,12 @@ function validate(){
     var pw = document.getElementById('password').value;
     
 
-    var unArray = ["markwalt", "jongossy", "jenndemp"];
-    var pwArray = ["mark1234", "flomaygo", "jenny1234"];
+    var validationData = [["Company", "1234"],["Freelancer","4321"]];
+    
 //Loop Validation
-    for (var i = 0; i < unArray.length; i++) {
-        if ((un == unArray[i]) && (pw == pwArray[i])) {
+submitLogin.onclick = function(){
+    for (var i = 0; i < validationData.length; i++) {
+        if (validationData[i][0] == un && validationData[i][1] == pw) {
             alert("Login was successful");
             window.location.href="https://www.google.com/";
             break;
@@ -26,6 +27,9 @@ function validate(){
     };
     
 }
+
+
+
 
 
 
