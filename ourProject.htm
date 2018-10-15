@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <title>Login function</title>
     <script src="./JS/ourJavaScript.js"></script>
+    <link rel="stylesheet" href="./CSS/style.css">
 </head>
-<body>
+<body style="background-image:url(https://static.vecteezy.com/system/resources/thumbnails/000/116/060/small/free-vector-blue-watercolor-background.jpg);
+height:100%">
 
-<h1>Amazing login function</h1>
-<form id="form_id" method="post" name="myform">
+<h1 >Amazing login function</h1>
+<form class="column_center" id="form_id" method="post" name="myform">
 <!--Username and Password Fields-->
-<input type="text" name="username" 
+<label>Username:<input type="text" name="username" 
         placeholder="Enter Username" id="username" 
-        maxlength=10/>
-<input type="password" name="password" 
+        maxlength=10 /></label>
+<label>Password:</label><input type="password" name="password" 
         placeholder="Enter Password" id="password" 
-        maxlength=10/>
+        maxlength=10 ></label>
+</form>
 <!--Password Visibility Function-->
 <input type="checkbox" onclick="pwVisibility()">Show Password
 
@@ -24,7 +27,7 @@
 <input type="button" value="Sign Up" name="register"  
         id="register"/>
 
-</form>
+
 <!--Referencing to the Reset Password Site-->
 <a href="./forgotPassword.html">Forgot Password</a>
 <!--we still have to update the target-->
