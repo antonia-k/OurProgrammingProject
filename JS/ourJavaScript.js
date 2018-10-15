@@ -12,7 +12,12 @@ function validate(){
     for (var i = 0; i < valData.length; i++) {
         if ((valData[i][0]==un) && (valData[i][1])==pw) {
             alert("Login was successful");
-            window.location.href="./UserProfile.html";
+            //redirects to Userprofile
+            if (un =="Freelancer") {
+                window.location.href="./UserProfile.html";
+            }else if(un == "Company") {
+                window.location.href="http://www.google.com/";
+            };
             tempPos = i;
             break;
         } else if (un == "" || pw== ""){
