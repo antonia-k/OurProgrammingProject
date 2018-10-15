@@ -41,7 +41,6 @@
     el.appendChild(hiddenInput);
 
    
-
  //functions
 
     function addTag (text){
@@ -84,7 +83,6 @@
             tagsList.push(t.text);
         });
         hiddenInput.value = tagsList.join(',');
-
 
     }
 
