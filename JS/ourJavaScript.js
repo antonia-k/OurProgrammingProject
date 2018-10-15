@@ -12,7 +12,7 @@ function validate(){
     for (var i = 0; i < valData.length; i++) {
         if ((valData[i][0]==un) && (valData[i][1])==pw) {
             alert("Login was successful");
-            window.location.href="./HTML/UserProfile.html";
+            window.location.href="./UserProfile.html";
             tempPos = i;
             break;
         } else if (un == "" || pw== ""){

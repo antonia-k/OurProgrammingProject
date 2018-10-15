@@ -28,7 +28,7 @@
 .tags-input .tag .close::after {
     content: 'x';
     font-weight: bold;
-    display: : inline-block;
+    display: inline-block;
     transform: scale(1.4);
     margin-left: 0.75em;
 
