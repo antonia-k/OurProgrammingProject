@@ -11,11 +11,14 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<script src="./JS/userprofile.js"></script>
+<title>Input Tags</title>
 <link rel="stylesheet" href="./CSS/userprofile.css">
+
 
 </head>
 <body>
+        
+<!--
 <div class='panel panel-default'>
     <div class='panel-heading'> <h4> User Profile</h4></div>
     <div class='panel-body'>
@@ -24,12 +27,41 @@
                 <div class='col-sm-6'>
                     <div align ='center'> <img alt='User Pic'src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class='img-circle img-responsive' >
                     <input id='profile-image-upload' class='hidden' type='file'>
+                    <input id="profile-image-upload" type="file"
+                        name="profile_photo" placeholder="Photo" required="" capture>
+
                 <div style='color:#999;' >click here to change profile image</div> </div>
                 </div>
             </div>
         </div>
     </div>  
 </div>
+-->
+
+
+<!-- Other pic-->
+<div class='panel panel-default'>
+        <div class='panel-heading'> <h4> User Profile</h4></div>
+        <div class='panel-body'>
+            <div class='box box-info'>
+                <div class="box-body">
+                    <div class='col-sm-6'>
+                       
+                    <script src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"></script>
+                    <div id="profile-container">
+                     <image id="profileImage" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class='img-circle img-responsive' />
+                   <br> </div> <div align ='center'>
+                        <input id="imageUpload" type="file" 
+                     name="profile_photo" placeholder="Photo" required="" capture>
+                    <br>
+                    <div style='color:#999;' >click here to change profile image</div> 
+    </div>
+</div>
+</div>
+</div>  
+</div>
+
+
 
 <div class="col-sm-6">
     <h4 style="color:#00b1b1;" >Mark Miller</h4></span>
@@ -51,14 +83,30 @@
 
    <div class="clearfix"></div>
   <div class="bot-border"></div>
+    <br></br>
 
-  <div class="tags-input" data-name="tags-input">
-    <!-- <span class="tag">CSS<span class ="close"></span></span>
-     <span class="tag">Javascript<span class ="close"></span></span>
-     <span class="tag">HTML<span class ="close"></span></span>
-      The box to write in -->
-     
-     </div>
+  <p><b> Enter some tags and finish with comma (,):</b>
+
+    </p>
+    <p>
+     <div class="tags-input" data-name="tags-input">
+        <!-- <span class="tag">CSS<span class ="close"></span></span>
+         <span class="tag">Javascript<span class ="close"></span></span>
+         <span class="tag">HTML<span class ="close"></span></span>
+          The box to write in -->
+         
+         </div>
+
+     </p>
+     <br>
+     <br></br>
+    
+     <p><i>Search for your new job</i></p>
+     <div>
+
+         <a href="./marketplace.html" target="_blank"><img src="./Search.png"></a>
+        
+        </div>
     
       <script>
                 $(function() {
@@ -68,8 +116,7 @@
   });       
                 </script> 
 
-
-
+<script src="./JS/userprofile.js"></script>
     
 
 </body>
