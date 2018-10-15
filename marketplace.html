@@ -4,10 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="./JS/ourJavaScript.js"></script>
+    <title>Marketplace</title>
+    <script src="./JS/marketplace.js"></script>
 </head>
 <body>
-    
+<!--Header and Search Bar floating left-->
+    <div class="float-left" style="width:49%; float: left;">
+        <h1>Marketplace</h1>
+        <input type="text" id="jobInput" onkeyup="myFunction()" placeholder="Search for jobs..">
+        </div>
+<!--Table with jobs floating right -- Is it possible to add rows in the HTML table with JS? check: https://www.w3schools.com/js/js_htmldom_nodes.asp-->
+        <div class="float-right" style="width:49%; float: right;">
+        <table id="jobTable">
+                    <thead>
+                        <tr>
+                            <th><b>Job Name</b></th>
+                            <th><b>Job ID</b></th>
+                            <th><b>Job Description</b></th>
+                            <th><b>Required Skills</b></th>
+                            <th><b>Location</b></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Front-End Developer</td>
+                            <td>12345</td>
+                            <td>Developing Website for Horseracing</td>
+                            <td>JavaScript, HTML, CSS</td>
+                            <td>Aarhus</td>
+                        </tr>
+                        <tr>
+                            <td>Back-End Developer</td>
+                            <td>12346</td>
+                            <td>Developing Database for Horseracing</td>
+                            <td>Java, Ruby, Python</td>
+                            <td>Copenhagen</td>
+                        </tr>
+                        <tr>
+                            <td>Web Designer</td>
+                            <td>12347</td>
+                            <td>Designing a Pretty Website</td>
+                            <td>Photoshop</td>
+                            <td>Odense</td>
+                        </tr>
+                        <tr>
+                            <td>Back-End Developer</td>
+                            <td>12348</td>
+                            <td>Developing Database for Food Shopping</td>
+                            <td>Java, Ruby, Python</td>
+                            <td>Copenhagen</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
+                </table>
+               
+            </div>  
+
 </body>
 </html>
