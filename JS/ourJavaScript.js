@@ -11,7 +11,7 @@ function validate(){
     for (var i = 0; i < valData.length; i++) {
         if ((un == valData[i][0]) && (pw == valData[i][1])) {
             alert("Login was successful");
-            window.location.href="./marketplace.html";
+            window.location.href="./HTML/UserProfile.html";
             break;
         } else if (un == "" || pw== ""){
             alert("Username/Password required");
