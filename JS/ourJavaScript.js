@@ -6,23 +6,14 @@ var attempt = 3;
 function validate(){    
     var un = document.getElementById('username').value;
     var pw = document.getElementById('password').value;
-<<<<<<< HEAD
-    
-
-    var validationData = [["Company", "1234"],["Freelancer","4321"]];
-    
-//Loop Validation
-submitLogin.onclick = function(){
-    for (var i = 0; i < validationData.length; i++) {
-        if (validationData[i][0] == un && validationData[i][1] == pw) {
-=======
     var valData = [["Company", "1234"],["Freelancer", "4321"]];
+    var tempPos = -1;
 //Loop Validation
     for (var i = 0; i < valData.length; i++) {
-        if ((un == valData[i][0]) && (pw == valData[i][1])) {
->>>>>>> 33685fda94e8ad364bb5b2e4ceb29dc17a4bc0c3
+        if ((valData[i][0]==un) && (valData[i][1])==pw) {
             alert("Login was successful");
-            window.location.href="./marketplace.html";
+            window.location.href="./HTML/UserProfile.html";
+            tempPos = i;
             break;
         } else if (un == "" || pw== ""){
             alert("Username/Password required");
@@ -33,13 +24,13 @@ submitLogin.onclick = function(){
             password.disabled = true;
             login.disabled = true;
             return false;
-        } else {
+        } 
+    };
+    if(tempPos == -1){
         alert("Invalid Username and/or Password");
         attempt --;
         return true;
     }
-    };
-    
     
 }
  //Password visibility
