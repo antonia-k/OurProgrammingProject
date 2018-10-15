@@ -7,11 +7,13 @@ function validate(){
     var un = document.getElementById('username').value;
     var pw = document.getElementById('password').value;
     var valData = [["Company", "1234"],["Freelancer", "4321"]];
+    var tempPos = -1;
 //Loop Validation
     for (var i = 0; i < valData.length; i++) {
-        if ((un == valData[i][0]) && (pw == valData[i][1])) {
+        if ((valData[i][0]==un) && (valData[i][1])==pw) {
             alert("Login was successful");
             window.location.href="./HTML/UserProfile.html";
+            tempPos = i;
             break;
         } else if (un == "" || pw== ""){
             alert("Username/Password required");
@@ -22,13 +24,13 @@ function validate(){
             password.disabled = true;
             login.disabled = true;
             return false;
-        } else {
+        } 
+    };
+    if(tempPos == -1){
         alert("Invalid Username and/or Password");
         attempt --;
         return true;
     }
-    };
-    
     
 }
  //Password visibility
