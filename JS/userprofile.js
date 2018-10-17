@@ -1,4 +1,8 @@
-// name of hidden name 'tags-input'
+// check if user is logged in
+if (sessionStorage.getItem('username') ===null) {
+    window.location.href="./ourProject.htm"
+ };
+// name of hidden name 'tags-input' 
 
 
 //Change profile picture 
