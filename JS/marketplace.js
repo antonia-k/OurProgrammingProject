@@ -1,4 +1,4 @@
-function myFunction() {
+/*function myFunction() {
     // Declare variables
     var input, filter, table, tr, td, td2, i;
     input = document.getElementById("jobInput");
@@ -19,9 +19,15 @@ function myFunction() {
         }
       }
     }
-  }
+  }*/
+
+//Search function for the Job Cards
+function searchFunction(){
+
+}
 
 
+//Filter function for the location filters
+function filterFunction (){
 
-  /*td = tr[i].getElementsByTagName("td")[0];
-  td2 = tr[i].getElementsByTagName("td")[3];*/
+}
