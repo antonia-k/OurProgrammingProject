@@ -10,15 +10,20 @@ function fasterPreview( uploader ) {
     if ( uploader.files && uploader.files[0] ){
           $('#profileImage').attr('src', 
              window.URL.createObjectURL(uploader.files[0]) );
+
+             // Save new url to user...
     }
 }
 
 $("#imageUpload").change(function(){
     fasterPreview( this );
+    //assign upload to user
+    //save in localstorage 
 });
 
 
-
+// document.getElementById('profilePic').attr.src = user.image  
+// document.querySelector('#profe')
 
 
 //creating the input for tags-input
