@@ -5,62 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Marketplace</title>
-    <script src="./JS/marketplace.js"></script>
+    <link rel="stylesheet" type="text/css" href="./CSS/JobProfileCard.css">
 </head>
 <body>
 <!--Header and Search Bar floating left-->
     <div class="float-left" style="width:49%; float: left;">
         <h1>Marketplace</h1>
-        <input type="text" id="jobInput" onkeyup="myFunction()" placeholder="Search for jobs..">
+        <input type="text" id="jobInput" onkeyup="searchFunction()" placeholder="Search for jobs..">
         </div>
-<!--Table with jobs floating right -- Is it possible to add rows in the HTML table with JS? check: https://www.w3schools.com/js/js_htmldom_nodes.asp-->
-        <div class="float-right" style="width:49%; float: right;">
-        <table id="jobTable">
-                    <thead>
-                        <tr>
-                            <th><b>Job Name</b></th>
-                            <th><b>Job ID</b></th>
-                            <th><b>Job Description</b></th>
-                            <th><b>Required Skills</b></th>
-                            <th><b>Location</b></th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Front-End Developer</td>
-                            <td>12345</td>
-                            <td>Developing Website for Horseracing</td>
-                            <td>JavaScript, HTML, CSS</td>
-                            <td>Aarhus</td>
-                        </tr>
-                        <tr>
-                            <td>Back-End Developer</td>
-                            <td>12346</td>
-                            <td>Developing Database for Horseracing</td>
-                            <td>Java, Ruby, Python</td>
-                            <td>Copenhagen</td>
-                        </tr>
-                        <tr>
-                            <td>Web Designer</td>
-                            <td>12347</td>
-                            <td>Designing a Pretty Website</td>
-                            <td>Photoshop</td>
-                            <td>Odense</td>
-                        </tr>
-                        <tr>
-                            <td>Back-End Developer</td>
-                            <td>12348</td>
-                            <td>Developing Database for Food Shopping</td>
-                            <td>Java, Ruby, Python</td>
-                            <td>Copenhagen</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                    </tfoot>
-                </table>
-               
-            </div>  
+<!--Divs for the different Job Profile Cards-->
+<div class="card">
+        <h1>Front-End Developer at Orsted</h1>
+  <p class="jobDescription">Designing a Website for the sale of energy</p>
+  <p>CSS, HTML, JavaScript</p>
+  <p data-location-type="Copenhagen"></p>
+  <img src="https://upload.wikimedia.org/wikipedia/en/f/fe/%C3%98rsted_logo.svg" alt="orstedLogo" style="width:10%">
+
+  <p><button onclick="window.location.href='https://orsted.com/en/About-us'">Company Website</button></p>
+  <p><button onclick="window.location.href='https://orsted.com/en/About-us'">Contact</button></p>
+</div>
+
+<div class="card">
+        <h1>Back-End Developer at E.ON</h1>
+  <p class="jobDescription">Developing Database for Energy sources</p>
+  <p>Java, Ruby, Python</p>
+  <p data-location-type="Aarhus"></p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/EON_Logo.svg" alt="eonLogo" style="width:10%">
+
+  <p><button onclick="window.location.href='https://www.eon.dk/privat.html'">Company Website</button></p>
+  <p><button onclick="window.location.href='https://www.eon.dk/privat.html'">Contact</button></p>
+</div>
+
+<div class="card">
+        <h1>Web Designer for IBM</h1>
+  <p class="jobDescription">Designing a Pretty Website for IBM</p>
+  <p>Photoshop</p>
+  <p data-location-type="Odense"></p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="orstedLogo" style="width:10%">
+
+  <p><button onclick="window.location.href='https://www.ibm.com/dk-da/'">Company Website</button></p>
+  <p><button onclick="window.location.href='https://www.ibm.com/dk-da/'">Contact</button></p>
+</div>
+
+<div class="card">
+        <h1>Back-End Developer at REWE</h1>
+  <p class="jobDescription">Developing Database for Food Shopping</p>
+  <p>Java, Ruby, Python</p>
+  <p data-location-type="Copenhagen"></p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Logo_REWE.svg" alt="reweLogo" style="width:10%">
+
+  <p><button onclick="window.location.href='https://www.rewe.de/'">Company Website</button></p>
+  <p><button onclick="window.location.href='https://www.rewe.de/'">Contact</button></p>
+</div>
+
+<!--filtering the cities by data-location-type-->
+<div>
+    <input type="checkbox" onclick="filterFunction()">Aarhus
+    <input type="checkbox" onclick="filterFunction()">Copenhagen
+    <input type="checkbox" onclick="filterFunction()">Odense
+</div>
+
+<script src="./JS/marketplace.js"></script>
 
 </body>
 </html>
+

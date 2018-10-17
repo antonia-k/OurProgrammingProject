@@ -39,7 +39,7 @@
 -->
 
 
-<!-- Other pic-->
+<!-- Profile Picture -->
 <div class='panel panel-default'>
         <div class='panel-heading'> <h4> User Profile</h4></div>
         <div class='panel-body'>
@@ -47,30 +47,57 @@
                 <div class="box-body">
                     <div class='col-sm-6'>
                        
-                    <script src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"></script>
                     <div id="profile-container">
-                     <image id="profileImage" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class='img-circle img-responsive' />
-                   <br> </div> <div align ='center'>
+                     <img id="profileImage" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class='img-circle img-responsive' />
+                   <br> </div> <div style="text-align:center">
                         <input id="imageUpload" type="file" 
                      name="profile_photo" placeholder="Photo" required="" capture>
                     <br>
                     <div style='color:#999;' >click here to change profile image</div> 
-    </div>
+                 </div>
+            </div>
+        </div>
+    </div>  
 </div>
-</div>
-</div>  
-</div>
+
+
+
+
+<!-- Local storage with JSON -->
+
+<script>
+
+    let MyObj = {
+        name: "Mark Miller",
+        age: 56,
+        picture: "../images/mark.jpg",
+
+   };
+   
+   //Turn it into a string 
+   let MyObj_serialized = JSON.stringify(MyObj);
+
+   localStorage.setItem("MyObj", MyObj_serialized);
+
+
+   // Turn into an object 
+   let MyObj_deserialized = JSON.parse(localStorage.getItem("MyObj"));
+   console.log(MyObj_deserialized);
+
+   document.getElementById("profileName").innerText = MyObj.name;
+
+</script>
 
 
 
 <div class="col-sm-6">
-    <h4 style="color:#00b1b1;" >Mark Miller</h4></span>
+    <h4 id="profileName" style="color:#00b1b1;" ></h4>
       <span><p>Freelancer</p></span>            
     </div>
     <div class="clearfix"></div>
     <hr style="margin:5px 0 5px 0;">
 
-    <div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"> Huddedar</div>
+    <div class="col-sm-5 col-xs-6 tital" >Last Name:</div><div class="col-sm-7"> Huddedar</div>
     <div class="clearfix"></div>
   <div class="bot-border"></div>
   
@@ -83,9 +110,15 @@
 
    <div class="clearfix"></div>
   <div class="bot-border"></div>
-    <br></br>
+    <br>
 
-  <p><b> Enter some tags and finish with comma (,):</b>
+
+
+
+
+
+
+  <center><p><b> Enter some tags and finish with comma (,):</b>
 
     </p>
     <p>
@@ -97,7 +130,7 @@
          
          </div>
 
-     </p>
+     </p></center>
      <br>
      <br></br>
     
