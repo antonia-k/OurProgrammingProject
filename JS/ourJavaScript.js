@@ -3,19 +3,55 @@
 var login = document.getElementById('login');
 var attempt = 3;
 
+// Creating a class 
+// We create a user class, so we have an easy way to create users and further implement features at a later stage
+class User {
+
+    // The constructor for our class, which will allow us to create new objects of our class
+    constructor(firstname, lastname, dateOfBirth, username, password, profilePic) {
+      this.firstname = firstname;
+      this.lastname = lastname;
+      this.dateOfBirth = dateOfBirth;
+      this.username = username;
+      this.password = password;
+      this.profilePicture = profilePic;
+
+    }};
+
+// Initialize an empty array
+    var valData = [];
+
+// Fill it up with a few users
+valData.push(new User("Marina", "Mehling", "10.10.2010", "mame", "1010","..images/mark.jpg"));
+valData.push(new User("Stinne", "Andersson", "09.09.2009", "stan", "0909","..images/dog.png"));
+valData.push(new User("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","..images/Search.png"));
+
+/*if (typeof(Storage) !== "undefined") {
+    localStorage.setItem(constructor, valData);
+}*/
+//Turn it into a string 
+let valData_serialized = JSON.stringify(valData);
+
+localStorage.setItem("valData", valData_serialized);
+
+
+
 function validate(){    
     var un = document.getElementById('username').value;
     var pw = document.getElementById('password').value;
-    var valData = [["Company", "1234"],["Freelancer", "4321"]];
+    
     var tempPos = -1;
 //Loop Validation
     for (var i = 0; i < valData.length; i++) {
-        if ((valData[i][0]==un) && (valData[i][1])==pw) {
+        if ((valData[i].username==un) && (valData[i].password==pw)) {
+            if (typeof(Storage) !== "undefined") {
+                sessionStorage.setItem("username", un);
+            }
             alert("Login was successful");
             //redirects to Userprofile
-            if (un =="Freelancer") {
+            if (un =="mame") {
                 window.location.href="./UserProfile.html";
-            }else if(un == "Company") {
+            }else if(un == "stan") {
                 window.location.href="http://www.google.com/";
             };
             tempPos = i;
