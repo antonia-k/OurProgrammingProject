@@ -1,33 +1,61 @@
-/*function myFunction() {
-    // Declare variables
-    var input, filter, table, tr, td, td2, i;
-    input = document.getElementById("jobInput");
-          //we have to check what exactly the toUpperCase function does
-    filter = input.value.toUpperCase();
-    table = document.getElementById("jobTable");
-    tr = table.getElementsByTagName("tr");
-  
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      td2 = tr[i].getElementsByTagName("td")[3];
-      if (td) {
-        if ((td.innerHTML.toUpperCase().indexOf(filter) > -1)||(td2.innerHTML.toUpperCase().indexOf(filter) > -1)) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
+//Search function for the Job Cards
+function searchFunction(){
+  //Declare variables - getting values from the search box
+    var input = document.getElementById("jobInput");
+    var filter = input.value.toUpperCase();
+  //Declare variables - getting values from the div elements
+    var jobAds = document.getElementById("searchDivs");
+    var divElements = jobAds.getElementsByClassName("card");
+
+  //loop through the divs to search for the elements, and hide those that do not match the search query
+  for (var i=0; i<divElements.length; i++){
+    var qual = divElements[i].getElementsByClassName("qualifications"); 
+    var jobTitle = divElements[i].getElementsByClassName("jobTitle"); 
+    //wir haben index 0 bei der qual und dem jobTitle, weil wir dadurch ne Liste wiederbekommen, und das an erster Stelle steht, weil es nur ein Element hat
+    if(qual[0].innerHTML.toUpperCase().includes(filter) || jobTitle[0].innerHTML.toUpperCase().includes(filter)){
+      divElements[i].style.display = "";
+    }else{
+      divElements[i].style.display = "none";
+    }
+  }
+
+}
+
+function filterFunction(checkbox){
+  var jobAds = document.getElementById("searchDivs");
+  var divElements = jobAds.getElementsByClassName("card");
+    for(var i=0; i<divElements.length; i++){
+      //wir haben index 0 bei der qual und dem jobTitle, weil wir dadurch ne Liste wiederbekommen, und das an erster Stelle steht, weil es nur ein Element hat
+      if (divElements[i].getElementsByClassName("location")[0].getAttribute('data-location-type') == checkbox.getAttribute('data-location-type')){
+        if (checkbox.checked == false){
+          divElements[i].style.display = "none";
+        }else{
+          divElements[i].style.display = "";
         }
       }
     }
-  }*/
+  }
 
-//Search function for the Job Cards
-function searchFunction(){
-
-}
-
-
-//Filter function for the location filters
+/*//Filter function for the location filters
 function filterFunction (){
+  //Declare variables - getting values from the search box
+    var input = document.getElementById("jobInput");
+    var filter = input.value.toUpperCase();
+  //Declare variables - getting values from the div elements
+    var jobAds = document.getElementById("searchDivs");
+    var divElements = jobAds.getElementsByClassName("card");
+
+  //loop through the divs to search for the elements, and hide those that do not match the search query
+  for (var i=0; i<divElements.length; i++){
+    var qual = divElements[i].getElementsByClassName("qualifications"); 
+
+    if(!qual[0].innerHTML.toUpperCase().includes(filter)){
+      divElements[i].style.display = "none";
+    }else{
+      divElements[i].style.display = "";
+    } 
+  }
 
 }
+
+}*/
