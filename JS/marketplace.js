@@ -6,7 +6,6 @@ function searchFunction(){
   //Declare variables - getting values from the div elements
     var jobAds = document.getElementById("searchDivs");
     var divElements = jobAds.getElementsByClassName("card");
-
   //loop through the divs to search for the elements, and hide those that do not match the search query
   for (var i=0; i<divElements.length; i++){
     var qual = divElements[i].getElementsByClassName("qualifications"); 
@@ -39,3 +38,56 @@ function filterFunction(checkbox){
     }
   }
 
+
+  creating a constructor for the jobPostings so that they are not hard-coded in the HTML
+  class JobPosting{
+
+    constructor(title){
+        this.jobTitle = title;
+        this.jobDescription = description;
+        this.qualifications = qualifications;
+        this.location = location; 
+        //this.image = image;
+        this.linkToWebsite = linkToWebsite;
+        this.linkToContact = linkToContact;
+    }
+//creating an HTML from the JS objects
+    createHTML(){
+
+        var html = "<div class='card'><h1 class='jobtitle'>" + this.title + "</h1><p class='jobDescription'>" + this.jobDescription + "</p><p class='qualifications'>" + this.qualifications + "</p><p class='location' data-location-type=" + this.location + "></p><p><button onclick='window.location.href=`" + this.linkToWebsite + "`>Company Website</button></p><p><button onclick='window.location.href=`" + this.linkToContact "`>Contact</button></p></div>";
+
+        return html;
+    }
+
+
+}
+
+var postings = [new JobPosting("First"), new JobPosting("Second")];
+
+var content = "";
+
+for(i=0; i < postings.length; i++){
+    content += postings[i].createHTML;
+}
+
+document.getElementById("searchDivs").innerHTML = content;
+
+/*
+//Local storage with JSON 
+
+   var content= JSON.stringify(jobPostings);
+
+   localStorage.setItem("jobPosting", content);
+
+
+   // Turn into an object 
+   var content = JSON.parse(localStorage.getItem("jobPosting"));
+   console.log(content);
+
+   document.getElementById("JobTitle").innerText = content.jobTitle;
+
+function jobPost(){
+  document.getElementById("jobTitle")
+
+}
+*/

@@ -5,26 +5,6 @@ if (sessionStorage.getItem('username') ===null) {
 // name of hidden name 'tags-input' 
 
 
-//Change profile picture 
-$("#profileImage").click(function(e) {
-    $("#imageUpload").click();
-});
-
-function fasterPreview( uploader ) {
-    if ( uploader.files && uploader.files[0] ){
-          $('#profileImage').attr('src', 
-             window.URL.createObjectURL(uploader.files[0]) );
-
-             // Save new url to user...
-    }
-}
-
-$("#imageUpload").change(function(){
-    fasterPreview( this );
-    //assign upload to user
-    //save in localstorage 
-});
-
 
 // document.getElementById('profilePic').attr.src = user.image  
 // document.querySelector('#profe')
@@ -43,13 +23,14 @@ $("#imageUpload").change(function(){
     mainInput.setAttribute('type', 'text');
     mainInput.classList.add('main-input');
     // Creating the element, so you can write tags by splitting by (,) 
+    //try to find how to split by enter not comma
     mainInput.addEventListener('input', function() {
         var enteredTags = mainInput.value.split(',');
     //if the length of the entered tags is greater than 1, means we found a comma, if not it means that the user haven't finishedt the Tag yet 
         if (enteredTags.length > 1) {
             //filtering the tags, so it is not all white space or weird punctation 
             enteredTags.forEach(function (t) {
-                let filteredTag = filterTag(t);
+                var filteredTag = filterTag(t);
             //if filteredTag is longer than 0 then enter the filteredTag --> now go to functions and add a return in function FilterTag
                 if (filteredTag.length > 0)
                     addTag(filteredTag);
@@ -117,7 +98,7 @@ $("#imageUpload").change(function(){
 
     }
 
-    function filterTag (tag){
+    function filterTag (tag)
         //removing all punctuation except for the dash(-) and underscore. 
         // removed white spaces and replace with dash (-)
         return tag.replace(/[^\w -]/g,'').trim().replace(/[^\w -]/g,'-');
