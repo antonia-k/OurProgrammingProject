@@ -6,7 +6,8 @@ if (sessionStorage.getItem('username') ===null) {
 
 
 //Change profile picture 
-$("#profileImage").click(function(e) {
+
+/* $("#profileImage").click(function(e) {
     $("#imageUpload").click();
 });
 
@@ -24,7 +25,7 @@ $("#imageUpload").change(function(){
     //assign upload to user
     //save in localstorage 
 });
-
+*/
 
 // document.getElementById('profilePic').attr.src = user.image  
 // document.querySelector('#profe')
