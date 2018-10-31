@@ -5,12 +5,11 @@
 
 
   class JobPosting{
-
-    constructor(title,description,qualifications,location,linkToWebsite,linkToContact){
+    constructor(title,description,qualifications,jobLocation,linkToWebsite,linkToContact){
         this.jobTitle = title;
         this.jobDescription = description;
         this.qualifications = qualifications;
-        this.location = location; 
+        this.jobLocation = jobLocation; 
         //this.image = image;
         this.linkToWebsite = linkToWebsite;
         this.linkToContact = linkToContact;
@@ -31,7 +30,7 @@ if(jobs === null){
 
 
 // Define the buttons for submitting the Jobs 
-var submit = document.getElementById('registerJobPos');
+var submit = document.getElementById('registerJobPost');
 
 /*
 // Loop that goes through the User Data to idetify right or wrong Username/Password
@@ -53,14 +52,18 @@ for (let i = 0; i < jobs.length; i++) {
 }   
 */
 // On "Click" validate input and push new user into array users
-document.getElementById("registerJobPost").addEventListener("click", function() {
+submit.addEventListener("click", function() {
 
-    jobTitle = document.getElementById("jobTitle").value;
-    jobDescription = document.getElementById("jobDescription").value;
-    qualifications = document.getElementById("qualifications").value;
-    location = document.getElementById("location").value;
-    linkToWebsite = document.getElementById("linkToWebsite").value;
-    linkToContact = document.getElementById("linkToContact").value;
+    var jobTitle = document.getElementById("jobTitle").value;
+    var jobDescription = document.getElementById("jobDescription").value;
+    var qualifications = document.getElementById("qualifications").value;
+    var jobLocation = document.getElementById("jobLocation").value;
+    var linkToWebsite = document.getElementById("linkToWebsite").value;
+    var linkToContact = document.getElementById("linkToContact").value;
+
+    jobs.push(new JobPosting(jobTitle, jobDescription, qualifications, jobLocation, linkToWebsite, linkToContact));
+    console.log(jobs);
+    localStorage.setItem('jobs',JSON.stringify(jobs));
 });
     /*
 // Call validateJobtitle function   
@@ -81,14 +84,8 @@ document.getElementById("registerJobPost").addEventListener("click", function() 
 
     */
 
-    jobs.push(new JobPosting(jobTitle, jobDescription, qualifications, location, linkToWebsite, linkToContact));
-    console.log(jobs);
-    localStorage.setItem('jobs',JSON.stringify(jobs));
-
-
-
 // Redirecting when clicking on buttons 
-function goToRegister () {
-    window.location = "marketplace.html";
-  }
+//function goToRegister () {
+    //window.location = "./marketplace.html";
+ // }
   
