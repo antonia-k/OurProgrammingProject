@@ -3,7 +3,11 @@
   // The constructor for our class, which will allow us to create new objects of our class
     //creating a constructor for the jobPostings so that they are not hard-coded in the HTML
 
-/*
+
+
+
+
+/*    
   class JobPosting{
     constructor(title,description,qualifications,jobLocation,linkToWebsite,linkToContact){
         this.jobTitle = title;
@@ -27,14 +31,19 @@ if(jobs === null){
   jobs.push(new JobPosting("Web Designer for IBM", "Designing a Pretty Website for IBM", "Photoshop", "Odense", "https://www.ibm.com/dk-da/", "https://www.ibm.com/dk-da/"));
   jobs.push(new JobPosting("Back-End Developer at REWE", "Developing Database for Food Shopping", "Java, Ruby, Python", "Copenhagen", "https://www.rewe.de/", "https://www.rewe.de/"));
 }
- hier muss das ausgecodede zu ende sein
- */
 
-
-/*auscoden
 // Define the buttons for submitting the Jobs 
 var submit = document.getElementById('registerJobPost');
-eincoden*/
+
+*/
+
+
+
+
+
+
+
+
 
 /*
 // Loop that goes through the User Data to idetify right or wrong Username/Password
@@ -55,7 +64,17 @@ for (let i = 0; i < jobs.length; i++) {
     }
 }   
 */
-/* auscoden
+
+
+
+
+
+
+
+
+
+
+/*
 // On "Click" validate input and push new user into array users
 submit.addEventListener("click", function() {
 
@@ -70,8 +89,20 @@ submit.addEventListener("click", function() {
     console.log(jobs);
     localStorage.setItem('jobs',JSON.stringify(jobs));
 });
-eincoden*/
-    /*
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 // Call validateJobtitle function   
     let validateJobTitle = checkJobTitle(jobTitle);
 // Call validateJobDescription function

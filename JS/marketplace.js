@@ -1,3 +1,5 @@
+//localStorage.clear;
+
 //var jobs = JSON.parse(localStorage.getItem("jobs"));
 class JobPosting{
   constructor(title,description,qualifications,jobLocation,linkToWebsite,linkToContact){
@@ -21,7 +23,32 @@ if(jobs === null){
   jobs.push(new JobPosting("Back-End Developer at REWE", "Developing Database for Food Shopping", "Java, Ruby, Python", "Copenhagen", "https://www.rewe.de/", "https://www.rewe.de/"));
 }
 
+// Define the buttons for submitting the Jobs 
+var submit = document.getElementById('registerJobPost');
 
+// On "Click" validate input and push new user into array users
+if (submit == null){
+  console.log('no submit button on page')
+}
+//we must check if the pushing still works
+else {
+  submit.addEventListener("click", function() {
+
+  var jobTitle = document.getElementById("jobTitle").value;
+  var jobDescription = document.getElementById("jobDescription").value;
+  var qualifications = document.getElementById("qualifications").value;
+  var jobLocation = document.getElementById("jobLocation").value;
+  var linkToWebsite = document.getElementById("linkToWebsite").value;
+  var linkToContact = document.getElementById("linkToContact").value;
+
+  jobs.push(new JobPosting(jobTitle, jobDescription, qualifications, jobLocation, linkToWebsite, linkToContact));
+  console.log(jobs);
+  localStorage.setItem('jobs',JSON.stringify(jobs));
+    }
+  )
+}
+
+//links zu webseiten etc gehen nicht--> check why
 //creating an HTML from the JS objects
 function createHTML(job){
   return "<div class='card'>"+
@@ -34,13 +61,15 @@ function createHTML(job){
               "</div>";
 }
 
+//here is the error: cannot set .innerHTML property of null, make some form of if function to fix it, s.o., do we need to fix it at all??
+// liegt daran, dass dieses ELement auf der JobPosting seite nicht aufgerufen wird.. wie mach ich das so, dass es geht??
+
 var content = "";
 for(var i =0; i<jobs.length; i++){
     content += createHTML(jobs[i]);
 }
 
 document.getElementById('searchDivs').innerHTML = content;
-
 
 //local storage holen. das mit dem create html definieren mit loop und dann wird durch createHTML die funktion "gerufen", brauche noch window.loc.ref zum marketplace
 //createHTML();
