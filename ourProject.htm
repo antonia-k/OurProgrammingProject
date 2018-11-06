@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <style>
+        #caps {display:none;color:red}
+        </style>
     <title>Login function</title>
     <script src="./JS/ourJavaScript.js"></script>
     <link rel="stylesheet" href="./CSS/style.css">
+
 </head>
 <body style="background-image:url(https://static.vecteezy.com/system/resources/thumbnails/000/116/060/small/free-vector-blue-watercolor-background.jpg);
 height:100%">
@@ -18,9 +22,10 @@ height:100%">
                 placeholder="Enter Username" id="username" 
                 maxlength=10 /><br/>
         <label for="password">Password:</label><br/>
-        <input type="password" name="password" 
+        <input type="password" name="password"
                 placeholder="Enter Password" id="password" 
                 maxlength=10 >
+                <p id="caps">WARNING! Caps lock is ON.</p>
         </form>
         <!--Password Visibility Function-->
         <input type="checkbox" onclick="pwVisibility()">Show Password <br/>

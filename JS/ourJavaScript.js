@@ -50,7 +50,7 @@ function validate(){
                 sessionStorage.setItem("username", un);
             }
             alert("Login was successful");
-            //redirects to Userprofile --> funktioniert nicht, alles mögliche probiert 
+            //redirects to Userprofile by checking subclasses 
             if (valData[i] instanceof freelancer) {
                 window.location.href="./UserProfile.html";
             }else if (valData[i] instanceof companyUser) {
@@ -76,6 +76,32 @@ function validate(){
     }
     
 }
+//Detect Caps Lock in Password Input
+window.onload=function(){
+    //Get the input field
+    var input = document.getElementById("password");
+    // Get the warning text
+    var text = document.getElementById("caps");
+    //When the user presses any key on the keyboard, run the function
+    //without if error "cannot read property 'addEventListender' of null"
+    if (input){
+        input.addEventListener("keyup", function(event){
+            //If "caps lock" is presed, display warning text
+            if(event.getModifierState("CapsLock")){
+                text.style.display = "block";
+            } else {
+                text.style.display = "none"
+            };
+            //Cancel the default action, if needed
+            event.preventDefault();
+            //Number 13 is the "Enter" key on the keyboard
+            if (event.keyCode === 13) {
+                //Trigger the button element with a click
+                document.getElementById("login").click();
+            }
+    });
+}};
+
  //Password visibility
  function pwVisibility() {
     var x = document.getElementById("password");
