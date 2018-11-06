@@ -1,9 +1,13 @@
-
+//localStorage.clear;
 
   // The constructor for our class, which will allow us to create new objects of our class
     //creating a constructor for the jobPostings so that they are not hard-coded in the HTML
 
 
+
+
+
+/*    
   class JobPosting{
     constructor(title,description,qualifications,jobLocation,linkToWebsite,linkToContact){
         this.jobTitle = title;
@@ -24,13 +28,22 @@ if(jobs === null){
   jobs = [];
   jobs.push(new JobPosting("Front-End Developer at Orsted", "Designing a Website for the sale of energy", "CSS, HTML, JavaScript", "Copenhagen", "https://orsted.com/en/About-us", "https://orsted.com/en/About-us"));
   jobs.push(new JobPosting("Back-End Developer at E.ON", "Developing Database for Energy sources", "Java, Ruby, Python", "Aarhus", "https://www.eon.dk/privat.html", "https://www.eon.dk/privat.html"));
+  jobs.push(new JobPosting("Web Designer for IBM", "Designing a Pretty Website for IBM", "Photoshop", "Odense", "https://www.ibm.com/dk-da/", "https://www.ibm.com/dk-da/"));
+  jobs.push(new JobPosting("Back-End Developer at REWE", "Developing Database for Food Shopping", "Java, Ruby, Python", "Copenhagen", "https://www.rewe.de/", "https://www.rewe.de/"));
 }
-
-
-
 
 // Define the buttons for submitting the Jobs 
 var submit = document.getElementById('registerJobPost');
+
+*/
+
+
+
+
+
+
+
+
 
 /*
 // Loop that goes through the User Data to idetify right or wrong Username/Password
@@ -51,6 +64,17 @@ for (let i = 0; i < jobs.length; i++) {
     }
 }   
 */
+
+
+
+
+
+
+
+
+
+
+/*
 // On "Click" validate input and push new user into array users
 submit.addEventListener("click", function() {
 
@@ -65,7 +89,20 @@ submit.addEventListener("click", function() {
     console.log(jobs);
     localStorage.setItem('jobs',JSON.stringify(jobs));
 });
-    /*
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 // Call validateJobtitle function   
     let validateJobTitle = checkJobTitle(jobTitle);
 // Call validateJobDescription function
