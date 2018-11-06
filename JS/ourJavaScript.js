@@ -51,9 +51,9 @@ function validate(){
             }
             alert("Login was successful");
             //redirects to Userprofile --> funktioniert nicht, alles mögliche probiert 
-            if (valdata[i] instanceof freelancer) {
+            if (valData[i] instanceof freelancer) {
                 window.location.href="./UserProfile.html";
-            }else if (valdata[i] instanceof companyUser) {
+            }else if (valData[i] instanceof companyUser) {
                 window.location.href="https://www.google.com/";
             };
             tempPos = i;
