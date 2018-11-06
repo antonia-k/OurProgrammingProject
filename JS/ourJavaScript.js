@@ -8,33 +8,35 @@ var attempt = 3;
 class User {
 
     // The constructor for our class, which will allow us to create new objects of our class
-    constructor(firstname, lastname, dateOfBirth, username, password, profilePic) {
+    constructor(firstname, lastname, username, password, profilePic) {
       this.firstname = firstname;
       this.lastname = lastname;
-      this.dateOfBirth = dateOfBirth;
       this.username = username;
       this.password = password;
       this.profilePicture = profilePic;
 
     }};
-
+class freelancer extends User{
+    constructor(firstname, lastname, dateOfBirth, username, password, profilePic){
+        super(firstname, lastname, username, password, profilePic);
+    // dateOfBirth is specific for freelancer
+    this.dateOfBirth = dateOfBirth;
+}};
+class companyUser extends User{
+    constructor(firstname, lastname, company, username, password, profilePic){
+        super(firstname, lastname, username, password, profilePic)
+    this.company = company;
+}};
 // Initialize an empty array
     var valData = [];
 
 // Fill it up with a few users
-valData.push(new User("Marina", "Mehling", "10.10.2010", "mame", "1010","..images/mark.jpg"));
-valData.push(new User("Stinne", "Andersson", "09.09.2009", "stan", "0909","..images/dog.png"));
-valData.push(new User("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","..images/Search.png"));
+valData.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","..images/mark.jpg"));
+valData.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","..images/dog.png"));
+valData.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","..images/Search.png"));
 
-/*if (typeof(Storage) !== "undefined") {
-    localStorage.setItem(constructor, valData);
-}*/
-//Turn it into a string 
 let valData_serialized = JSON.stringify(valData);
-
-localStorage.setItem("valData", valData_serialized);
-
-
+localStorage.setItem("UserInfo", valData_serialized);
 
 function validate(){    
     var un = document.getElementById('username').value;
@@ -48,11 +50,11 @@ function validate(){
                 sessionStorage.setItem("username", un);
             }
             alert("Login was successful");
-            //redirects to Userprofile
-            if (un =="mame") {
+            //redirects to Userprofile --> funktioniert nicht, alles mögliche probiert 
+            if (valdata[i] instanceof freelancer) {
                 window.location.href="./UserProfile.html";
-            }else if(un == "stan") {
-                window.location.href="http://www.google.com/";
+            }else if (valdata[i] instanceof companyUser) {
+                window.location.href="https://www.google.com/";
             };
             tempPos = i;
             break;
@@ -94,7 +96,7 @@ function reset(){
     }
 }
 
-
+console.log(JSON.parse(localStorage.getItem("UserInfo")));
 
 
 
