@@ -17,27 +17,6 @@
 
 </head>
 <body>
-        
-<!--
-<div class='panel panel-default'>
-    <div class='panel-heading'> <h4> User Profile</h4></div>
-    <div class='panel-body'>
-        <div class='box box-info'>
-            <div class="box-body">
-                <div class='col-sm-6'>
-                    <div align ='center'> <img alt='User Pic'src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class='img-circle img-responsive' >
-                    <input id='profile-image-upload' class='hidden' type='file'>
-                    <input id="profile-image-upload" type="file"
-                        name="profile_photo" placeholder="Photo" required="" capture>
-
-                <div style='color:#999;' >click here to change profile image</div> </div>
-                </div>
-            </div>
-        </div>
-    </div>  
-</div>
--->
-
 
 <!-- Profile Picture -->
 <div class='panel panel-default'>
@@ -59,35 +38,7 @@
     </div>  
 </div>
 
-
-
-
-<!-- Local storage with JSON -->
-
-<script>
-
-    let MyObj = {
-        name: "Mark Miller",
-        age: 56,
-        picture: "../images/mark.jpg",
-
-   };
-   
-   //Turn it into a string 
-   let MyObj_serialized = JSON.stringify(MyObj);
-
-   localStorage.setItem("MyObj", MyObj_serialized);
-
-
-   // Turn into an object 
-   let MyObj_deserialized = JSON.parse(localStorage.getItem("MyObj"));
-   console.log(MyObj_deserialized);
-
-   document.getElementById("profileName").innerText = MyObj.name;
-
-</script>
-
-
+<!-- Individual characteristics -->
 
 <div class="col-sm-6">
     <h4 id="profileName" style="color:#00b1b1;" ></h4>
@@ -112,22 +63,20 @@
     <br>
 
 
-
-
-
-
+<!-- Hash tag -->
 
   <center><p><b> Enter some tags and finish with comma (,):</b>
 
     </p>
     <p>
-     <div class="tags-input" data-name="tags-input">
+     <div class="tags-input" data-name="tags-input"> </div>
+
         <!-- <span class="tag">CSS<span class ="close"></span></span>
          <span class="tag">Javascript<span class ="close"></span></span>
          <span class="tag">HTML<span class ="close"></span></span>
           The box to write in -->
          
-         </div>
+         
 
      </p></center>
      <br>

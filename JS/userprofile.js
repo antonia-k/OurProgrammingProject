@@ -119,11 +119,8 @@ $("#imageUpload").change(function(){
 
     }
 
-    function filterTag (tag)
+    function filterTag (tag) {
         //removing all punctuation except for the dash(-) and underscore. 
         // removed white spaces and replace with dash (-)
-        return tag.replace(/[^\w -]/g,'').trim().replace(/[^\w -]/g,'-');
-
-    }
-});
-
+        return tag.replace(/[^\w -]/g,'').trim().replace(/[^\w -]/g,'-');}
+        });
