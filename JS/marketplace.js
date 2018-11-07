@@ -56,12 +56,12 @@ function createHTML(job){
                 "<p class='jobDescription'>" + job.jobDescription + "</p>"+
                 "<p class='qualifications'>" + job.qualifications + "</p>"+
                 "<p class='location' data-location-type=" + job.location + "></p>"+
-                "<p><button onclick='window.location.href='" + job.linkToWebsite + ">Company Website</button></p>"+
-                "<p><button onclick='window.location.href='" + job.linkToContact + ">Contact</button></p>"+
+              // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
+               "<p><button onclick='window.location.href=`" + job.linkToWebsite + "`'>Company Website</button></p>"+
+                "<p><button onclick='window.location.href=`" + job.linkToContact + "`'>Contact</button></p>"+
               "</div>";
 }
-
-//here is the error: cannot set .innerHTML property of null, make some form of if function to fix it, s.o., do we need to fix it at all??
+//here is the error: cannot set.innerHTML property of null, make some form of if function to fix it, s.o., do we need to fix it at all??
 // liegt daran, dass dieses ELement auf der JobPosting seite nicht aufgerufen wird.. wie mach ich das so, dass es geht??
 
 var content = "";
@@ -73,12 +73,25 @@ document.getElementById('searchDivs').innerHTML = content;
 
 //local storage holen. das mit dem create html definieren mit loop und dann wird durch createHTML die funktion "gerufen", brauche noch window.loc.ref zum marketplace
 //createHTML();
-
+/*
 //Search function for the Job Cards
 function searchFunction(){
   //Declare variables - getting values from the search box
     var input = document.getElementById("jobInput");
     var filter = input.value.toUpperCase();
+    //call the jobs function previously defined to be parsing the JSON
+    var jobs = JSON.parse(localStorage.getItem("jobs"));
+    //loop through the jobs array and the different elements within 
+    for (var i=0; i<jobs.length; i++){
+      if(jobs[i][0] == input || jobs[i][2] == input){
+        jobs[i].style.display = "";
+      }else{
+        jobs[i].style.display = "none";
+    }
+  }
+}
+*/
+  /* muss wieder eingecoded werden evtl, das ist der Originalcode für die Suche hinter var filter definition 
   //Declare variables - getting values from the div elements
     var jobAds = document.getElementById("searchDivs");
     var divElements = jobAds.getElementsByClassName("card");
@@ -94,10 +107,10 @@ function searchFunction(){
     }
   }
 
-}
+}*/
 
 
-
+/*
 // filter function by location
 function filterFunction(checkbox){
   var jobAds = document.getElementById("searchDivs");
@@ -115,7 +128,7 @@ function filterFunction(checkbox){
       }
     }
   }
-
+*/
   
 
 /*

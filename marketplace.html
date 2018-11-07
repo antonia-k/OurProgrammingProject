@@ -6,14 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Marketplace</title>
     <link rel="stylesheet" type="text/css" href="./CSS/JobProfileCard.css">
+    
 </head>
 <body>
+        
 <!--Header and Search Bar floating left-->
     <div class="float-left" style="width:49%; float: left;">
         <h1>Marketplace</h1>
-        <input type="text" id="jobInput" onkeyup="searchFunction()" placeholder="Search for jobs..">
+        <input type="text" id="jobInput" onchange="searchFunction()" placeholder="Search for jobs..">
         </div>
-<!-- if we want to change our search we have to change from onkeyup to on change-->
+<!-- if we want to change our search we have to change from onkeyup to onchange-->
 
 <!--Divs for the different Job Profile Cards-->
 <div id="searchDivs" class="searchDivs">
@@ -71,9 +73,9 @@
     <input type="checkbox" onclick="filterFunction(this)" checked=true data-location-type="Odense">Odense
 </div>
 
-<!--<script src="./JS/Gregor.js"></script>-->
-<script src="./JS/marketplace.js"></script>
 
+<script src="./JS/marketplace.js"></script>
+<!--<script src="./JS/Gregor.js"></script>-->
 
 </body>
 </html>
