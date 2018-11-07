@@ -7,10 +7,13 @@ var attempt = 3;
 // We create a user class, so we have an easy way to create users and further implement features at a later stage
 class User {
     // The constructor for our class, which will allow us to create new objects of our class
+<<<<<<< HEAD
     constructor(firstname, lastname, dateOfBirth, username, password, image) {
+=======
+    constructor(firstname, lastname, username, password, profilePic) {
+>>>>>>> 98a3ba940ce82feb594caf61db5061089941fed5
       this.firstname = firstname;
       this.lastname = lastname;
-      this.dateOfBirth = dateOfBirth;
       this.username = username;
       this.password = password;
       this.image = image;
@@ -23,24 +26,38 @@ class User {
     }
 };
 
+<<<<<<< HEAD
 
+=======
+    }};
+class freelancer extends User{
+    constructor(firstname, lastname, dateOfBirth, username, password, profilePic){
+        super(firstname, lastname, username, password, profilePic);
+    // dateOfBirth is specific for freelancer
+    this.dateOfBirth = dateOfBirth;
+}};
+class companyUser extends User{
+    constructor(firstname, lastname, company, username, password, profilePic){
+        super(firstname, lastname, username, password, profilePic)
+    this.company = company;
+}};
+>>>>>>> 98a3ba940ce82feb594caf61db5061089941fed5
 // Initialize an empty array
     var valData = [];
 
 // Fill it up with a few users
+<<<<<<< HEAD
 valData.push(new User("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"));
 valData.push(new User("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"));
 valData.push(new User("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","./images/Search.png"));
+=======
+valData.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","..images/mark.jpg"));
+valData.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","..images/dog.png"));
+valData.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","..images/Search.png"));
+>>>>>>> 98a3ba940ce82feb594caf61db5061089941fed5
 
-/*if (typeof(Storage) !== "undefined") {
-    localStorage.setItem(constructor, valData);
-}*/
-//Turn it into a string 
 let valData_serialized = JSON.stringify(valData);
-
-localStorage.setItem("valData", valData_serialized);
-
-
+localStorage.setItem("UserInfo", valData_serialized);
 
 function validate(){    
     var un = document.getElementById('username').value;
@@ -54,11 +71,11 @@ function validate(){
                 sessionStorage.setItem("username", un);
             }
             alert("Login was successful");
-            //redirects to Userprofile
-            if (un =="mame") {
+            //redirects to Userprofile by checking subclasses 
+            if (valData[i] instanceof freelancer) {
                 window.location.href="./UserProfile.html";
-            }else if(un == "stan") {
-                window.location.href="http://www.google.com/";
+            }else if (valData[i] instanceof companyUser) {
+                window.location.href="https://www.google.com/";
             };
             tempPos = i;
             break;
@@ -80,6 +97,32 @@ function validate(){
     }
     
 }
+//Detect Caps Lock in Password Input
+window.onload=function(){
+    //Get the input field
+    var input = document.getElementById("password");
+    // Get the warning text
+    var text = document.getElementById("caps");
+    //When the user presses any key on the keyboard, run the function
+    //without if error "cannot read property 'addEventListender' of null"
+    if (input){
+        input.addEventListener("keyup", function(event){
+            //If "caps lock" is presed, display warning text
+            if(event.getModifierState("CapsLock")){
+                text.style.display = "block";
+            } else {
+                text.style.display = "none"
+            };
+            //Cancel the default action, if needed
+            event.preventDefault();
+            //Number 13 is the "Enter" key on the keyboard
+            if (event.keyCode === 13) {
+                //Trigger the button element with a click
+                document.getElementById("login").click();
+            }
+    });
+}};
+
  //Password visibility
  function pwVisibility() {
     var x = document.getElementById("password");
@@ -100,7 +143,7 @@ function reset(){
     }
 }
 
-
+console.log(JSON.parse(localStorage.getItem("UserInfo")));
 
 
 class lineItemCourse {
