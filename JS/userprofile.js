@@ -125,5 +125,5 @@ $("#imageUpload").change(function(){
         return tag.replace(/[^\w -]/g,'').trim().replace(/[^\w -]/g,'-');
 
     }
-});
+);
 
