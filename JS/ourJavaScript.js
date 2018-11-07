@@ -6,15 +6,29 @@ var attempt = 3;
 // Creating a class 
 // We create a user class, so we have an easy way to create users and further implement features at a later stage
 class User {
-
     // The constructor for our class, which will allow us to create new objects of our class
+<<<<<<< HEAD
+    constructor(firstname, lastname, dateOfBirth, username, password, image) {
+=======
     constructor(firstname, lastname, username, password, profilePic) {
+>>>>>>> 98a3ba940ce82feb594caf61db5061089941fed5
       this.firstname = firstname;
       this.lastname = lastname;
       this.username = username;
       this.password = password;
-      this.profilePicture = profilePic;
+      this.image = image;
+      this.status = "<button class='removeFromCart' name='add to cart' data-object='" + JSON.stringify(this) + "'>Remove Course</button>";
+    }
 
+
+    createHTML(){
+        return "<td> <img height='65px' src='" + this.firstname + "'></td><td>" + this.lastname + "</td><td>" + this.dateOfBirth + "</td><td>" + this.username + "</td><td>" + this.password + "</td><td>" + this.image + "</td><td>" + this.price + "</td>";
+    }
+};
+
+<<<<<<< HEAD
+
+=======
     }};
 class freelancer extends User{
     constructor(firstname, lastname, dateOfBirth, username, password, profilePic){
@@ -27,13 +41,20 @@ class companyUser extends User{
         super(firstname, lastname, username, password, profilePic)
     this.company = company;
 }};
+>>>>>>> 98a3ba940ce82feb594caf61db5061089941fed5
 // Initialize an empty array
     var valData = [];
 
 // Fill it up with a few users
+<<<<<<< HEAD
+valData.push(new User("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"));
+valData.push(new User("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"));
+valData.push(new User("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","./images/Search.png"));
+=======
 valData.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","..images/mark.jpg"));
 valData.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","..images/dog.png"));
 valData.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","..images/Search.png"));
+>>>>>>> 98a3ba940ce82feb594caf61db5061089941fed5
 
 let valData_serialized = JSON.stringify(valData);
 localStorage.setItem("UserInfo", valData_serialized);
@@ -125,5 +146,18 @@ function reset(){
 console.log(JSON.parse(localStorage.getItem("UserInfo")));
 
 
+class lineItemCourse {
+    constructor(image, title, description, price){
+        this.image = image;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.status = "<button class='removeFromCart' name='add to cart' data-object='" + JSON.stringify(this) + "'>Remove Course</button>";
+    }
 
 
+    
+    createHTML(){
+        return "<td> <img height='65px' src='" + this.image + "'></td><td>" + this.title + "</td><td>" + this.description + "</td><td>" + this.price + "</td>";
+    }
+}

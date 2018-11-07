@@ -119,11 +119,16 @@ $("#imageUpload").change(function(){
 
     }
 
-    function filterTag (tag)
+    function filterTag (tag) {
         //removing all punctuation except for the dash(-) and underscore. 
         // removed white spaces and replace with dash (-)
+<<<<<<< HEAD
+        return tag.replace(/[^\w -]/g,'').trim().replace(/[^\w -]/g,'-');}
+        });
+=======
         return tag.replace(/[^\w -]/g,'').trim().replace(/[^\w -]/g,'-');
 
     }
-});
+);
 
+>>>>>>> 98a3ba940ce82feb594caf61db5061089941fed5
