@@ -39,26 +39,22 @@ function createHTML(user){
     "<h4 id='profileName' style='color:#00b1b1;' ></h4>" +
       "<span><p>Freelancer</p></span>" +            
     "</div>" +
-    "<div class='clearfix'></div>" + 
-    "<hr style='margin:5px 0 5px 0;'>" +
-    "<div class='col-sm-5 col-xs-6 tital' >First Name:</div><div class='col-sm-7'>" + user.firstname + "</div>" +
-    "<div class='clearfix'></div>" +
-    "<div class='bot-border'></div>" +
-    "<div class='col-sm-5 col-xs-6 tital' >Last Name:</div><div class='col-sm-7'>" + user.lastname +"</div>" +
-    "<div class='clearfix'></div>" +
-    "<div class='bot-border'></div>" + 
-    "<div class='col-sm-5 col-xs-6 tital' >Date Of Birth:</div><div class='col-sm-7'>" + user.dateOfBirth + "</div>" +
-    "<div class='clearfix'></div>" + 
-    "<div class='col-sm-5 col-xs-6 tital' >Username:</div><div class='col-sm-7'>" + user.username + "</div>" +
-    "<div class='clearfix'></div>" + 
-    "<div class='col-sm-5 col-xs-6 tital' >Username:</div><div class='col-sm-7'>" + user.password + "</div>" +
-    "<div class='clearfix'></div>" + 
-    "<div class='col-sm-5 col-xs-6 tital' >Username:</div><div class='col-sm-7'>" + user.image + "</div>" +
-    "<div class='clearfix'></div>" + 
-    "<div class='bot-border'></div>"
-  }
+    
+    "<div align ='center'> <img alt='User Pic'src='https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg' id='profile-image1' width='300px'><br>" + 
+    "<input id='profile-image-upload' class='hidden' type='file'>" + 
+    "<div style='color:#999;'>click here to change profile image</div>" +
+    "<h4 style='color:#00b1b1;'>" + user.firstname + " " + user.lastname + "</h4></span>" + 
+    "<span><p>Freelancer</p></span>" +           
+    "<hr>" +
+    "<div>" + user.dateOfBirth + "</div>" + 
+    "<div>Email:</div><div align='center'>" + user.username + "/div>" + 
+    "<div align='center'>" + user.image + "</div>" 
+            
+}
 
-  
+
+
+
 //Call the createHTML function by a loop looking through the users added 
 var html = "";
 for (i=0; i < users.length; i++) {
@@ -94,7 +90,7 @@ function validate(){
             alert("Login was successful");
             //redirects to Userprofile
             if (un =="mame") {
-                window.location.href="./login.localstorage.html";
+                window.location.href="./UserProfile.html";
             }else if(un == "stan") {
                 window.location.href="http://www.google.com/";
             };

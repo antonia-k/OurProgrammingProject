@@ -4,31 +4,80 @@ if (sessionStorage.getItem('username') ===null) {
  };
 // name of hidden name 'tags-input' 
 
-
-//Change profile picture 
-
-/* $("#profileImage").click(function(e) {
-    $("#imageUpload").click();
-});
-
-function fasterPreview( uploader ) {
-    if ( uploader.files && uploader.files[0] ){
-          $('#profileImage').attr('src', 
-             window.URL.createObjectURL(uploader.files[0]) );
-
-             // Save new url to user...
+class User {
+    // The constructor for our class, which will allow us to create new objects of our class
+    constructor(firstname, lastname, username, password, image) {
+      this.firstname = firstname;
+      this.lastname = lastname;
+      this.username = username;
+      this.password = password;
+      this.image = image;
     }
+
+    
+    createHTML(){
+        return "<td> <img height='65px' src='" + this.firstname + "'></td><td>" + this.lastname + "</td><td>" + this.dateOfBirth + "</td><td>" + this.username + "</td><td>" + this.password + "</td><td>" + this.image + "</td>";
+    }
+};
+
+//sub-classes
+class freelancer extends User{
+    constructor(firstname, lastname, dateOfBirth, username, password, image){
+        super(firstname, lastname, username, password, image);
+    // dateOfBirth is specific for freelancer
+    this.dateOfBirth = dateOfBirth;
+}};
+class companyUser extends User{
+    constructor(firstname, lastname, company, username, password, image){
+        super(firstname, lastname, username, password, image)
+    this.company = company;
+}};
+
+
+
+var users = JSON.parse(localStorage.getItem("users"));
+
+if(users === null){
+  users = [];
+
+
+// Fill it up with a few users
+users.push(new User("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"));
+users.push(new User("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"));
+users.push(new User("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","./images/Search.png"));
+
+
+// Creating the html input 
+function createHTML(user){
+    return "<div class='col-sm-6' id='col-sm-6'></br>" +
+    "<h4 id='profileName' style='color:#00b1b1;' ></h4>" +
+      "<span><p>Freelancer</p></span>" +            
+    "</div>" +
+    "<div align ='center'> <img alt='User Pic'src='https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg' id='profile-image1' width='300px'><br>" + 
+    "<input id='profile-image-upload' class='hidden' type='file'>" + 
+    "<div style='color:#999;'>click here to change profile image</div>" +
+    "<h4 style='color:#00b1b1;'>" + user.firstname + " " + user.lastname + "</h4></span>" + 
+    "<span><p>Freelancer</p></span>" +           
+    "<hr>" +
+    "<div>" + user.dateOfBirth + "</div>" + 
+    "<div>Email:</div><div align='center'>" + user.username + "/div>" + 
+    "<div align='center'>" + user.image + "</div>" 
+            
 }
 
-$("#imageUpload").change(function(){
-    fasterPreview( this );
-    //assign upload to user
-    //save in localstorage 
-});
-*/
 
-// document.getElementById('profilePic').attr.src = user.image  
-// document.querySelector('#profe')
+//Call the createHTML function by a loop looking through the users added 
+var html = "";
+for (i=0; i < users.length; i++) {
+    html += users[i].createHTML();
+}
+//Display users at HTML 
+users = document.getElementById('col-sm-6').innerHTML = content;
+users.innerHTML = html;
+
+
+
+
 
 
 //creating the input for tags-input
@@ -122,13 +171,5 @@ $("#imageUpload").change(function(){
     function filterTag (tag) {
         //removing all punctuation except for the dash(-) and underscore. 
         // removed white spaces and replace with dash (-)
-<<<<<<< HEAD
         return tag.replace(/[^\w -]/g,'').trim().replace(/[^\w -]/g,'-');}
-        });
-=======
-        return tag.replace(/[^\w -]/g,'').trim().replace(/[^\w -]/g,'-');
-
-    }
-);
-
->>>>>>> 98a3ba940ce82feb594caf61db5061089941fed5
+}
