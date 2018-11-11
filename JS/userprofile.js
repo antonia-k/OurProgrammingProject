@@ -86,18 +86,17 @@ users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "anke", "080
 // 
 
 //Get username from loggedInUser out of the index.js file (in the logIn Loop)
-var loggedInUser = localStorage.getItem("loggedInUser")
+var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
+
 
 // Creating the html input 
 function createHTML(loggedInUser){
 
-    return "<div class='userprofile'>"+
-    "<h1 class='jobtitle'>" + loggedInUser.firstname + "</h1>"+
-    "<p class='jobDescription'>" + loggedInUser.lastname + "</p>"+
-    "<p class='qualifications'>" + loggedInUser.dateOfBirth + "</p>"+
-    "<p class='location' data-location-type=" + loggedInUser.username + "></p>"+
+    return "<div>"+
+    "<p id='firstname'> First name: " + loggedInUser.firstname + "<p>"+
+    "<p id='lastname'> Last name: " + loggedInUser.lastname + "</p>"+
+    "<p id='dateOfBirth'> Date of Birth: " + loggedInUser.dateOfBirth + "</p>"+
   // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
-   "<p><button onclick='window.location.href=`" + loggedInUser.image + "`'>Company Website</button></p>"+
   "</div>";
 }
 
@@ -125,7 +124,7 @@ var content = "";
 
 
 //Display users at HTML - getELementByClassName because we refer to the userprofile which is a class. 
-document.getElementsByClassName('userprofile').innerHTML = content;
+document.getElementById('userProfile').innerHTML = content;
 
 /*
 
