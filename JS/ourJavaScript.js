@@ -1,5 +1,4 @@
 
-
 var login = document.getElementById('login');
 var attempt = 3;
 
@@ -7,23 +6,22 @@ var attempt = 3;
 // We create a user class, so we have an easy way to create users and further implement features at a later stage
 class User {
     // The constructor for our class, which will allow us to create new objects of our class
-    constructor(firstname, lastname, username, password, image) {
+    constructor(firstname, lastname, dateOfBirth, username, password, image) {
       this.firstname = firstname;
       this.lastname = lastname;
+      this.dateOfBirth = dateOfBirth;
       this.username = username;
       this.password = password;
       this.image = image;
     }
 
-    createHTML(){
-        return "<td> <img height='65px' src='" + this.firstname + "'></td><td>" + this.lastname + "</td><td>" + this.dateOfBirth + "</td><td>" + this.username + "</td><td>" + this.password + "</td><td>" + this.image + "</td>";
-    }
+
 };
 
 //sub-classes
 class freelancer extends User{
     constructor(firstname, lastname, dateOfBirth, username, password, image){
-        super(firstname, lastname, username, password, image);
+        super(firstname, lastname, dateOfBirth, username, password, image);
     // dateOfBirth is specific for freelancer
     this.dateOfBirth = dateOfBirth;
 }};
@@ -34,56 +32,26 @@ class companyUser extends User{
 }};
 
 
+
+var users = JSON.parse(localStorage.getItem("users"));
+
+if(users === null){
+    
 // Initialize an empty array***
-var valData = [];
-
-
-//var valData = JSON.parse(localStorage.getItem("valData"));
-
-//if(valData === null){
-//valData = [];
-
+users = [];
 
 
 // Fill it up with a few users
-
-valData.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","..images/mark.jpg"));
-valData.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","..images/dog.png"));
-valData.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","..images/Search.png"));
-
-
-// Creating the html input 
-function createHTML(user){
-    return "<div class='col-sm-6' id='col-sm-6'></br>" +
-    "<h4 id='profileName' style='color:#00b1b1;' ></h4>" +
-      "<span><p>Freelancer</p></span>" +            
-    "</div>" +
-    "<div align ='center'> <img alt='User Pic'src='https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg' id='profile-image1' width='300px'><br>" + 
-    "<input id='profile-image-upload' class='hidden' type='file'>" + 
-    "<div style='color:#999;'>click here to change profile image</div>" +
-    "<h4 style='color:#00b1b1;'>" + user.firstname + " " + user.lastname + "</h4></span>" + 
-    "<span><p>Freelancer</p></span>" +           
-    "<hr>" +
-    "<div>" + user.dateOfBirth + "</div>" + 
-    "<div>Email:</div><div align='center'>" + user.username + "/div>" + 
-    "<div align='center'>" + user.image + "</div>" 
-            
+users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"));
+users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"));
+users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","./images/Search.png"));
 }
-
-
-//Call the createHTML function by a loop looking through the users added 
-var html = "";
-for (i=0; i < users.length; i++) {
-    html += users[i].createHTML();
-}
-//Display users at HTML 
-users = document.getElementById('col-sm-6').innerHTML = content;
-users.innerHTML = html;
+// 
 
 
 //store user information 
-let valData_serialized = JSON.stringify(valData);
-localStorage.setItem("UserInfo", valData_serialized);
+let users_serialized = JSON.stringify(users);
+localStorage.setItem("UserInfo", users_serialized);
 
 //Validation 
 function validate(){    
@@ -91,17 +59,18 @@ function validate(){
     var pw = document.getElementById('password').value;
     
     var tempPos = -1;
+
 //Loop Validation
-    for (var i = 0; i < valData.length; i++) {
-        if ((valData[i].username==un) && (valData[i].password==pw)) {
+    for (var i = 0; i < users.length; i++) {
+        if ((users[i].username==un) && (users[i].password==pw)) {
             if (typeof(Storage) !== "undefined") {
                 sessionStorage.setItem("username", un);
             }
             alert("Login was successful");
             //redirects to Userprofile by checking subclasses 
-            if (valData[i] instanceof freelancer) {
+            if (users[i] instanceof freelancer) {
                 window.location.href="./UserProfile.html";
-            }else if (valData[i] instanceof companyUser) {
+            }else if (users[i] instanceof companyUser) { //@Marina, will you take a look here, Anke 0808 can't log in :-) 
                 window.location.href="https://www.google.com/";
             };
             tempPos = i;
@@ -122,8 +91,14 @@ function validate(){
         attempt --;
         return true;
     }
-    
+
+//Save the information for the user logged in. 
+//Push username from logged in User in the local storage 
+localStorage.setItem("loggedInUser", JSON.stringify(users[i]));
+
 }
+
+
 //Detect Caps Lock in Password Input
 window.onload=function(){
     //Get the input field
@@ -171,4 +146,8 @@ function reset(){
 }
 
 console.log(JSON.parse(localStorage.getItem("UserInfo")));
+
+
+
+
 

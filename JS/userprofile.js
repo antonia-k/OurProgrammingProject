@@ -1,14 +1,15 @@
 // check if user is logged in
-if (sessionStorage.getItem('username') ===null) {
+/*if (sessionStorage.getItem('username') ===null) {
     window.location.href="./ourProject.htm"
  };
 // name of hidden name 'tags-input' 
 
-class User {
+//class User {
     // The constructor for our class, which will allow us to create new objects of our class
     constructor(firstname, lastname, username, password, image) {
       this.firstname = firstname;
       this.lastname = lastname;
+      this.dateOfBirth = dateOfBirth;
       this.username = username;
       this.password = password;
       this.image = image;
@@ -32,26 +33,78 @@ class companyUser extends User{
         super(firstname, lastname, username, password, image)
     this.company = company;
 }};
+*/
+    
+
+
+// Creating a class 
+// We create a user class, so we have an easy way to create users and further implement features at a later stage
+class User {
+    // The constructor for our class, which will allow us to create new objects of our class
+    constructor(firstname, lastname, dateOfBirth, username, password, image) {
+      this.firstname = firstname;
+      this.lastname = lastname;
+      this.dateOfBirth = dateOfBirth;
+      this.username = username;
+      this.password = password;
+      this.image = image;
+    }
+
+   //createHTML(){
+       //return "<td> <img height='65px' src='" + this.firstname + "'></td><td>" + this.lastname + "</td><td>" + this.dateOfBirth + "</td><td>" + this.username + "</td><td>" + this.password + "</td><td>" + this.image + "</td>";
+
+};
+
+//sub-classes
+class freelancer extends User{
+    constructor(firstname, lastname, dateOfBirth, username, password, image){
+        super(firstname, lastname, dateOfBirth, username, password, image);
+    // dateOfBirth is specific for freelancer
+    this.dateOfBirth = dateOfBirth;
+}};
+class companyUser extends User{
+    constructor(firstname, lastname, company, username, password, image){
+        super(firstname, lastname, username, password, image)
+    this.company = company;
+}};
 
 
 
 var users = JSON.parse(localStorage.getItem("users"));
 
 if(users === null){
-  users = [];
+    
+// Initialize an empty array***
+users = [];
 
 
 // Fill it up with a few users
-users.push(new User("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"));
-users.push(new User("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"));
-users.push(new User("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","./images/Search.png"));
+users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"));
+users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"));
+users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","./images/Search.png"));
+}
+// 
 
+//Get username from loggedInUser out of the index.js file (in the logIn Loop)
+var loggedInUser = localStorage.getItem("loggedInUser")
 
 // Creating the html input 
-function createHTML(user){
-    return "<div class='col-sm-6' id='col-sm-6'></br>" +
-    "<h4 id='profileName' style='color:#00b1b1;' ></h4>" +
-      "<span><p>Freelancer</p></span>" +            
+function createHTML(loggedInUser){
+
+    return "<div class='userprofile'>"+
+    "<h1 class='jobtitle'>" + loggedInUser.firstname + "</h1>"+
+    "<p class='jobDescription'>" + loggedInUser.lastname + "</p>"+
+    "<p class='qualifications'>" + loggedInUser.dateOfBirth + "</p>"+
+    "<p class='location' data-location-type=" + loggedInUser.username + "></p>"+
+  // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
+   "<p><button onclick='window.location.href=`" + loggedInUser.image + "`'>Company Website</button></p>"+
+  "</div>";
+}
+
+/*
+    return "<div class='userprofile' id='userprofile'></br>" +
+    "<h4 id='profileName' style='color:#00b1b1;'></h4>" +
+    "<span><p>Freelancer</p></span>" +            
     "</div>" +
     "<div align ='center'> <img alt='User Pic'src='https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg' id='profile-image1' width='300px'><br>" + 
     "<input id='profile-image-upload' class='hidden' type='file'>" + 
@@ -61,24 +114,20 @@ function createHTML(user){
     "<hr>" +
     "<div>" + user.dateOfBirth + "</div>" + 
     "<div>Email:</div><div align='center'>" + user.username + "/div>" + 
-    "<div align='center'>" + user.image + "</div>" 
-            
+    "<div align='center'> <img height='65px' src='" + user.image + "'></div>";            
 }
-
+*/
 
 //Call the createHTML function by a loop looking through the users added 
-var html = "";
-for (i=0; i < users.length; i++) {
-    html += users[i].createHTML();
-}
-//Display users at HTML 
-users = document.getElementById('col-sm-6').innerHTML = content;
-users.innerHTML = html;
+var content = "";
+//for (var i=0; i <loggedInUser.length; i++) {
+    content += createHTML(loggedInUser);
 
 
+//Display users at HTML - getELementByClassName because we refer to the userprofile which is a class. 
+document.getElementsByClassName('userprofile').innerHTML = content;
 
-
-
+/*
 
 //creating the input for tags-input
 []. forEach.call(document.getElementsByClassName('tags-input'), function (el) {
@@ -121,7 +170,8 @@ users.innerHTML = html;
     el.appendChild(mainInput);
     el.appendChild(hiddenInput);
 
-   
+
+
  //functions
 
     function addTag (text){
@@ -149,13 +199,14 @@ users.innerHTML = html;
         el.insertBefore(tag.element, mainInput);
         refreshTags();
     }
+    
 
     function removeTag (index) {
         var tag = tags[index];
         tags.splice(index, 1);
         el.removeChild(tag.element);
         refreshTags();
-    }
+    } 
 
     //because the hidden tag is going to have the value of all of our tags (fill in the hidden input)
     function refreshTags () {
@@ -168,8 +219,7 @@ users.innerHTML = html;
 
     }
 
-    function filterTag (tag) {
+    function filterTag (tag){
         //removing all punctuation except for the dash(-) and underscore. 
         // removed white spaces and replace with dash (-)
-        return tag.replace(/[^\w -]/g,'').trim().replace(/[^\w -]/g,'-');}
-}
+    return tag.replace(/[^\w -]/g,'').trim().replace(/[^\w -]/g,'-')}; */  
