@@ -50,7 +50,6 @@ else {
   )
 }
 
-//links zu webseiten etc gehen nicht--> check why
 //creating an HTML from the JS objects
 function createHTML(job){
   return "<div class='card'>"+
@@ -84,28 +83,27 @@ function searchFunction(){
     //var filter = input.value.toUpperCase(); das habe ich oben inkludiert, ist das richtig??
     //call the jobs function previously defined to be parsing the JSON
     var jobs = JSON.parse(localStorage.getItem("jobs"));
+    content = "";
     //loop through the jobs array and the different elements within 
     //i have an array of objects and not an array of arrays
     for (var i=0; i<jobs.length; i++){
     //das Extrahieren der inputs geht, es wird das richtige extrahiert, wieso erkennt er das nicht durch den input? liegt das am toUpperCase?, aber er erkennt das nicht und geht immer nur direkt in den ganzen array, nicht das einzelne Element bzw. die property, wieso?
     //cannot read undefined of undefined or cannot read undefined of 1 ist der fehler, wie mach ich das mit dem extrahieren, davor hatte ich == input
-      if(jobs[i].title.toUpperCase().includes(input) || jobs[i].qualifications.toUpperCase().includes(input)){
-        content = "";
-        for(var i =0; i<jobs.length; i++){
+      if(jobs[i].jobTitle.toUpperCase().includes(input) || jobs[i].qualifications.toUpperCase().includes(input)){
+        //maybe use the .foreach method to use only those that are actually there
+        //content = "";
+        //for(var i =0; i<jobs.length; i++){
         content += createHTML(jobs[i]);
         }
-        document.getElementById('searchDivs').innerHTML = content;
-      }else{
+        //PROBLEM: ER MACHT JETZT ALLES MIT DEM i!!!! also baut er die gesamte HTML, das ist das problem
+        //document.getElementById('searchDivs').innerHTML = content;
+      }//else{
 //this works, i.e. if it does not contain the element, it will hide it, now I just have to figure out how exactly to look for stuff within the object and then display it 
-      content = "";}
+      //content = "";}
+      //console.log('no valid search parameters');
+      document.getElementById('searchDivs').innerHTML = content;
+
   }
-//das hier muss bleiben, damit der content als leer angezeigt wird, dementsprechend muss es auch oben bleiben, ich glaube das problem liegt darin, dass er nicht die elemente aus meinen Objekten richtig erkennt
-  document.getElementById('searchDivs').innerHTML = content;
-
-}
-//anderes Problem: wenn ich die Taste backspace, dann taucht nicht wieder das auf, was ich vorher hatte, aslo, wenn ich buchstaben lösche, werden nicht wieder die anderen elemente angezeigt
-
-
 
   /* muss wieder eingecoded werden evtl, das ist der Originalcode für die Suche hinter var filter definition 
   //Declare variables - getting values from the div elements
@@ -125,9 +123,27 @@ function searchFunction(){
 
 }*/
 
-
-
 // filter function by location
+function filterFunction(checkbox){
+  //var jobAds = document.getElementById("searchDivs");
+  //var divElements = jobAds.getElementsByClassName("card");
+  var jobs = JSON.parse(localStorage.getItem("jobs"));
+  //loop through the divs
+  content = "";
+    for(var i=0; i<jobs.length; i++){
+      //wir haben index 0 bei der divElements und der location, weil wir dadurch eine Liste wiederbekommen, und das an erster Stelle steht, weil es nur ein Element hat
+      if (jobs[i].location == checkbox.getAttribute(jobs[i].location)){
+        //if all boxes unchecked
+        if (checkbox.checked == true){
+          content += createHTML(jobs[i]);
+          }
+      document.getElementById('searchDivs').innerHTML = content;
+
+    }
+  }
+}
+
+ /*// filter function by location
 function filterFunction(checkbox){
   var jobAds = document.getElementById("searchDivs");
   var divElements = jobAds.getElementsByClassName("card");
@@ -145,10 +161,8 @@ function filterFunction(checkbox){
       document.getElementById('searchDivs').innerHTML = content;
 
     }
-  }
-
-  
-
+  } 
+*/
 /*
 //creating an HTML from the JS objects
     function createHTML(){
