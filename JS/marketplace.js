@@ -127,14 +127,17 @@ function filterFunction(checkbox){
   //var divElements = jobAds.getElementsByClassName("card");
   var jobs = JSON.parse(localStorage.getItem("jobs"));
   //loop through the divs
-  content = "";
     for(var i=0; i<jobs.length; i++){
       //wir haben index 0 bei der divElements und der location, weil wir dadurch eine Liste wiederbekommen, und das an erster Stelle steht, weil es nur ein Element hat
       if (jobs[i].location == checkbox.getAttribute(jobs[i].location)){
-        //if all boxes unchecked
-        if (checkbox.checked == true){
-          content += createHTML(jobs[i]);
+        //if all boxes unchecked, this is easier because then all are not displayed
+        if (checkbox.checked == false){
+          // we have to tell it to NOT display the unchecked ones HERE IS THE ERROR!!!!! 
+          content -= createHTML(jobs[i]);
           }
+        else{
+          content += createHTML(jobs[i]);
+        }
       document.getElementById('searchDivs').innerHTML = content;
 
     }
