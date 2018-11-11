@@ -32,8 +32,37 @@ var submit = document.getElementById('registerJobPost');
 if (submit == null){
   console.log('no submit button on page')
 }
+
+function emptyJobPosting (){
+  var emptyJobTitle = document.getElementById("jobTitle").value;
+  var emptyJobDescription = document.getElementById("jobDescription").value;
+  var emptyQualifications = document.getElementById("qualifications").value;
+  var emptyLocation = document.getElementById("jobLocation").value;
+  var emptyWebsite = document.getElementById("linkToWebsite").value;
+  var emptyContact = document.getElementById("linkToContact").value;
+ 
+  //if not everything is filled out it should not redirect and not save local storage 
+  if (emptyJobTitle == "" || emptyJobDescription == ""|| emptyQualifications == ""|| emptyLocation == ""|| emptyWebsite == ""|| emptyContact == ""){
+      alert("Please fill out all fields");
+
+  }
+  else {
+    var jobTitle = document.getElementById("jobTitle").value;
+    var jobDescription = document.getElementById("jobDescription").value;
+    var qualifications = document.getElementById("qualifications").value;
+    var jobLocation = document.getElementById("jobLocation").value;
+    var linkToWebsite = document.getElementById("linkToWebsite").value;
+    var linkToContact = document.getElementById("linkToContact").value;
+  
+    jobs.push(new JobPosting(jobTitle, jobDescription, qualifications, jobLocation, linkToWebsite, linkToContact));
+    console.log(jobs);
+    localStorage.setItem('jobs',JSON.stringify(jobs));
+  
+  window.location.href="./marketplace.html";
+};
+}
 //we must check if the pushing still works
-else {
+/*else {
   submit.addEventListener("click", function() {
 
   var jobTitle = document.getElementById("jobTitle").value;
@@ -49,6 +78,7 @@ else {
     }
   )
 }
+*/
 
 //creating an HTML from the JS objects
 function createHTML(job){
@@ -131,7 +161,7 @@ function filterFunction(checkbox){
   //loop through the divs
     for(var i=0; i<jobs.length; i++){
       //wir haben index 0 bei der divElements und der location, weil wir dadurch eine Liste wiederbekommen, und das an erster Stelle steht, weil es nur ein Element hat
-      if (jobs[i].location == checkbox.getAttribute(jobs[i].location)){
+      if (jobs[i].location == checkbox.getAttribute("data-location-type")){
         //if all boxes unchecked, this is easier because then all are not displayed
         if (checkbox.checked == false){
           // we have to tell it to NOT display the unchecked ones HERE IS THE ERROR!!!!! 

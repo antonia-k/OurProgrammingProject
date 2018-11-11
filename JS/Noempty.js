@@ -1,5 +1,5 @@
  
- 
+ /*
     function emptyJobPosting (){
 
 
@@ -23,8 +23,10 @@
 
     }
     else {
+    
+    
     window.location.href="./marketplace.html";
 };
  }
 
-
+*/
