@@ -1,4 +1,6 @@
-//localStorage.clear;
+
+
+
 
 //var jobs = JSON.parse(localStorage.getItem("jobs"));
 class JobPosting{
