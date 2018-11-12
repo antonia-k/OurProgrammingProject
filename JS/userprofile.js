@@ -57,7 +57,7 @@ class User {
 
 //sub-classes
 class freelancer extends User{
-    constructor(firstname, lastname, dateOfBirth, username, password, image){
+    constructor(firstname, lastname, dateOfBirth, username, password, image, ){
         super(firstname, lastname, dateOfBirth, username, password, image);
     // dateOfBirth is specific for freelancer
     this.dateOfBirth = dateOfBirth;
@@ -79,11 +79,13 @@ users = [];
 
 
 // Fill it up with a few users
-users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"));
-users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"));
+users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/Dame.jpg"));
+users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/mark.jpg"));
 users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","./images/Search.png"));
 }
 // 
+
+
 
 //Get username from loggedInUser out of the index.js file (in the logIn Loop)
 var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
@@ -96,9 +98,13 @@ function createHTML(loggedInUser){
     "<p id='firstname'> First name: " + loggedInUser.firstname + "<p>"+
     "<p id='lastname'> Last name: " + loggedInUser.lastname + "</p>"+
     "<p id='dateOfBirth'> Date of Birth: " + loggedInUser.dateOfBirth + "</p>"+
+    "<p id='image'> " + "<img src=" + loggedInUser.image + " />" + "</p>" +
   // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
   "</div>";
 }
+
+
+
 
 /*
     return "<div class='userprofile' id='userprofile'></br>" +
@@ -125,6 +131,9 @@ var content = "";
 
 //Display users at HTML - getELementByClassName because we refer to the userprofile which is a class. 
 document.getElementById('userProfile').innerHTML = content;
+
+
+
 
 /*
 
@@ -221,4 +230,7 @@ document.getElementById('userProfile').innerHTML = content;
     function filterTag (tag){
         //removing all punctuation except for the dash(-) and underscore. 
         // removed white spaces and replace with dash (-)
-    return tag.replace(/[^\w -]/g,'').trim().replace(/[^\w -]/g,'-')}; */  
+    return tag.replace(/[^\w -]/g,'').trim().replace(/[^\w -]/g,'-');
+    }
+});
+*/
