@@ -58,17 +58,21 @@ class User {
 class freelancer extends User{
     constructor(firstname, lastname, username, dateOfBirth, password, image, qualifications, description){
         super(firstname, lastname, username, password, image);
-    // dateOfBirth is specific for freelancer
-    this.dateOfBirth = dateOfBirth;
-    this.qualifications = qualifications;
-    this.description = description;
-    
-}};
+        // dateOfBirth is specific for freelancer
+        this.dateOfBirth = dateOfBirth;
+        this.qualifications = qualifications;
+        this.description = description;
+        this.objectType = "freelancer";
+    }
+}
+
 class companyUser extends User{
     constructor(firstname, lastname, company, username, password, image){
         super(firstname, lastname, username, password, image)
-    this.company = company;
-}};
+        this.company = company;
+        this.objectType = "companyUser";
+    }
+}
 
 
 
@@ -81,9 +85,9 @@ users = [];
 
 
 // Fill it up with a few users
-users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/Dame.jpg"));
-users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/mark.jpg"));
-users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","./images/Search.png"));
+users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/Dame.jpg"," "," "));
+users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/mark.jpg"," "," "));
+users.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","./images/Search.png"));
 }
 // 
 
@@ -101,6 +105,8 @@ function createHTML(loggedInUser){
     "<p id='lastname'> Last name: " + loggedInUser.lastname + "</p>"+
     "<p id='dateOfBirth'> Date of Birth: " + loggedInUser.dateOfBirth + "</p>"+
     "<p id='image'> " + "<img src=" + loggedInUser.image + " />" + "</p>" +
+    "<p id='qualifications'> Qualifications: " + loggedInUser.qualifications + "</p>"+
+    "<p id='description'> Description: " + loggedInUser.description + "</p>"+
   // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
   "</div>";
 }

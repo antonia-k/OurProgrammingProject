@@ -6,52 +6,75 @@ var attempt = 3;
 // We create a user class, so we have an easy way to create users and further implement features at a later stage
 class User {
     // The constructor for our class, which will allow us to create new objects of our class
-    constructor(firstname, lastname, dateOfBirth, username, password, image) {
+    constructor(firstname, lastname, username, password, image) {
       this.firstname = firstname;
       this.lastname = lastname;
-      this.dateOfBirth = dateOfBirth;
       this.username = username;
       this.password = password;
       this.image = image;
+    
     }
-
-
-};
+}
 
 //sub-classes - need to be specific, vary from superclass
 class freelancer extends User{
-    constructor(firstname, lastname, dateOfBirth, username, password, image){
-        super(firstname, lastname, dateOfBirth, username, password, image);
-    // dateOfBirth is specific for freelancer
-    //this.dateOfBirth = dateOfBirth;
-}};
-class companyUser extends User{
-    constructor(firstname, lastname, dateOfBirth, company, username, password, image){
-        super(firstname, lastname, dateOfBirth, username, password, image)
-    this.company = company;
-}};
-
-
-
-var users = JSON.parse(localStorage.getItem("users"));
-
-if(users === null){
-    
-// Initialize an empty array***
-users = [];
-
-
-// Fill it up with a few users
-users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"));
-users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"));
-users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "Goodiebox", "anke", "0808","./images/Search.png"));
+    constructor(firstname, lastname, dateOfBirth, username, password, image, qualifications, description){
+        super(firstname, lastname, username, password, image);
+        // dateOfBirth is specific for freelancer
+        this.dateOfBirth = dateOfBirth;
+        this.qualifications = qualifications;
+        this.description = description;
+        // we must "hardcode" freelancer and company type, otherwise the extracting from local storage will overwrite the objecttype with the default value "object"
+        this.objectType = "freelancer";
+    }
 }
-// 
+
+class companyUser extends User{
+    constructor(firstname, lastname, company, username, password, image){
+        super(firstname, lastname, username, password, image)
+        this.company = company;
+        this.objectType = "companyUser";
+    }
+}
 
 
-//store user information 
-let users_serialized = JSON.stringify(users);
-localStorage.setItem("UserInfo", users_serialized);
+
+var users = null;
+
+function getUsers(list){
+    // hier habe ich das, was ich aus dem local Storage hole als "list" definiert, "list" ist mein Array an Objekten, das ich aus dem localStorage geholt habe
+    var retList = [];
+    for(var i=0; i<list.length; i++){
+        if(list[i].objectType === "freelancer"){
+            retList.push(new freelancer(list[i].firstname, list[i].lastname, list[i].dateOfBirth, list[i].username, list[i].password, list[i].image, list[i].qualifications, list[i].description));
+        }
+        else{
+            retList.push(new companyUser(list[i].firstname, list[i].lastname, list[i].company, list[i].username, list[i].password, list[i].image));
+        }
+    }
+    return retList;
+}
+
+
+if(localStorage.getItem("UserInfo") === null){    
+    // Initialize an empty array
+    users = [];
+
+    // Fill it up with a few users
+    users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"," "," "));
+    users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"," "," "));
+    users.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","./images/Search.png"));
+
+    //store user information 
+    let users_serialized = JSON.stringify(users);
+    localStorage.setItem("UserInfo", users_serialized);
+}else{
+    users = getUsers(JSON.parse(localStorage.getItem("UserInfo")));
+}
+
+
+// das wieder rausholen mit dem parse und dann das mit dem typeof definieren
+
 
 //Validation 
 function validate(){    
@@ -68,6 +91,7 @@ function validate(){
             }
             alert("Login was successful");
             //redirects to Userprofile by checking subclasses 
+            // is no longer instanceof sondern type, weil wir das sonst mit dem ändern nicht machen können, es ist jetzt statisch abgespeichert was der type ist, weil der type sonst überschrieben wird, deshaöb können wir keine instanceof macehn
             if (users[i] instanceof freelancer) {
                 window.location.href="./UserProfile.html";
             }else if (users[i] instanceof companyUser) { //@Marina, will you take a look here, Anke 0808 can't log in :-) 
@@ -89,12 +113,12 @@ function validate(){
     if(tempPos == -1){
         alert("Invalid Username and/or Password");
         attempt --;
-        return true;
+        return false;
     }
 
 //Save the information for the user logged in. 
 //Push username from logged in User in the local storage 
-localStorage.setItem("loggedInUser", JSON.stringify(users[i]));
+localStorage.setItem("loggedInUser", JSON.stringify(users[tempPos]));
 
 }
 

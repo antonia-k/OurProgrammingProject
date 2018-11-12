@@ -49,7 +49,6 @@ function createHTML(loggedInUser){
     return "<div>"+
     "<p id='firstname'> First name: " + loggedInUser.firstname + "<p>"+
     "<p id='lastname'> Last name: " + loggedInUser.lastname + "</p>"+
-    "<p id='dateOfBirth'> Date of Birth: " + loggedInUser.dateOfBirth + "</p>"+
     "<p id='company'> Company: " + loggedInUser.company + "</p>"+
     "<p id='image'> " + "<img src=" + loggedInUser.image + "/>" + "</p>"+
 
