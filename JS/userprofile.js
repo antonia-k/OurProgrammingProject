@@ -41,10 +41,9 @@ class companyUser extends User{
 // We create a user class, so we have an easy way to create users and further implement features at a later stage
 class User {
     // The constructor for our class, which will allow us to create new objects of our class
-    constructor(firstname, lastname, dateOfBirth, username, password, image) {
+    constructor(firstname, lastname, username, password, image) {
       this.firstname = firstname;
       this.lastname = lastname;
-      this.dateOfBirth = dateOfBirth;
       this.username = username;
       this.password = password;
       this.image = image;
@@ -57,10 +56,13 @@ class User {
 
 //sub-classes
 class freelancer extends User{
-    constructor(firstname, lastname, dateOfBirth, username, password, image, ){
-        super(firstname, lastname, dateOfBirth, username, password, image);
+    constructor(firstname, lastname, username, dateOfBirth, password, image, qualifications, description){
+        super(firstname, lastname, username, password, image);
     // dateOfBirth is specific for freelancer
     this.dateOfBirth = dateOfBirth;
+    this.qualifications = qualifications;
+    this.description = description;
+    
 }};
 class companyUser extends User{
     constructor(firstname, lastname, company, username, password, image){
