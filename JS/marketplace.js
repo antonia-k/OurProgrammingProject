@@ -82,11 +82,10 @@ function emptyJobPosting (){
 
 //creating an HTML from the JS objects
 function createHTML(job){
-  return "<div class='card'>"+
+  return "<div class='card' data-location-type=" + job.jobLocation + ">"+
                 "<h1 class='jobtitle'>" + job.jobTitle + "</h1>"+
                 "<p class='jobDescription'>" + job.jobDescription + "</p>"+
                 "<p class='qualifications'>" + job.qualifications + "</p>"+
-                "<p class='location' data-location-type=" + job.location + "></p>"+
               // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
                "<p><button onclick='window.location.href=`" + job.linkToWebsite + "`'>Company Website</button></p>"+
                 "<p><button onclick='window.location.href=`" + job.linkToContact + "`'>Contact</button></p>"+
@@ -112,7 +111,6 @@ function searchFunction(){
     //der input funktioniert, wenn ich etwas eingebe, wird es als capital letter extrahiert, muss ich das auch unten einfügen? wrs bei der if funktion in irgendeiner form!
     //var filter = input.value.toUpperCase(); das habe ich oben inkludiert, ist das richtig??
     //call the jobs function previously defined to be parsing the JSON
-    var jobs = JSON.parse(localStorage.getItem("jobs"));
     content = "";
     //loop through the jobs array and the different elements within 
     //i have an array of objects and not an array of arrays
@@ -155,23 +153,22 @@ function searchFunction(){
 
 // filter function by location
 function filterFunction(checkbox){
-  //var jobAds = document.getElementById("searchDivs");
-  //var divElements = jobAds.getElementsByClassName("card");
-  var jobs = JSON.parse(localStorage.getItem("jobs"));
+  console.log(checkbox);
+  var jobAds = document.getElementById("searchDivs");
+  var divElements = jobAds.getElementsByClassName("card");
+  //var jobs = JSON.parse(localStorage.getItem("jobs"));
   //loop through the divs
-    for(var i=0; i<jobs.length; i++){
+    for(var i=0; i<divElements.length; i++){
       //wir haben index 0 bei der divElements und der location, weil wir dadurch eine Liste wiederbekommen, und das an erster Stelle steht, weil es nur ein Element hat
-      if (jobs[i].location == checkbox.getAttribute("data-location-type")){
+      if (divElements[i].getAttribute("data-location-type") == checkbox.getAttribute("data-location-type")){
         //if all boxes unchecked, this is easier because then all are not displayed
         if (checkbox.checked == false){
           // we have to tell it to NOT display the unchecked ones HERE IS THE ERROR!!!!! 
-          content -= createHTML(jobs[i]);
+          divElements[i].style.display = "none";
           }
         else{
-          content += createHTML(jobs[i]);
+          divElements[i].style.display = "";
         }
-      document.getElementById('searchDivs').innerHTML = content;
-
     }
   }
 }
