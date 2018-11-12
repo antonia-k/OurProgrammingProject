@@ -1,6 +1,6 @@
 
 
-var login = document.getElementById('login');
+//var login = document.getElementById('login');
 var attempt = 3;
 
 // Creating a class 
