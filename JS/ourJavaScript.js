@@ -1,5 +1,5 @@
 
-var login = document.getElementById('login');
+//var login = document.getElementById('login');
 var attempt = 3;
 
 // Creating a class 
@@ -18,16 +18,16 @@ class User {
 
 };
 
-//sub-classes
+//sub-classes - need to be specific, vary from superclass
 class freelancer extends User{
     constructor(firstname, lastname, dateOfBirth, username, password, image){
         super(firstname, lastname, dateOfBirth, username, password, image);
     // dateOfBirth is specific for freelancer
-    this.dateOfBirth = dateOfBirth;
+    //this.dateOfBirth = dateOfBirth;
 }};
 class companyUser extends User{
-    constructor(firstname, lastname, company, username, password, image){
-        super(firstname, lastname, username, password, image)
+    constructor(firstname, lastname, dateOfBirth, company, username, password, image){
+        super(firstname, lastname, dateOfBirth, username, password, image)
     this.company = company;
 }};
 
@@ -44,7 +44,7 @@ users = [];
 // Fill it up with a few users
 users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"));
 users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"));
-users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","./images/Search.png"));
+users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "Goodiebox", "anke", "0808","./images/Search.png"));
 }
 // 
 
@@ -71,7 +71,7 @@ function validate(){
             if (users[i] instanceof freelancer) {
                 window.location.href="./UserProfile.html";
             }else if (users[i] instanceof companyUser) { //@Marina, will you take a look here, Anke 0808 can't log in :-) 
-                window.location.href="https://www.google.com/";
+                window.location.href="./companyProfile.html";
             };
             tempPos = i;
             break;
