@@ -1,35 +1,132 @@
 // check if user is logged in
-if (sessionStorage.getItem('username') ===null) {
+/*if (sessionStorage.getItem('username') ===null) {
     window.location.href="./ourProject.htm"
  };
 // name of hidden name 'tags-input' 
 
-
-//Change profile picture 
-
-/* $("#profileImage").click(function(e) {
-    $("#imageUpload").click();
-});
-
-function fasterPreview( uploader ) {
-    if ( uploader.files && uploader.files[0] ){
-          $('#profileImage').attr('src', 
-             window.URL.createObjectURL(uploader.files[0]) );
-
-             // Save new url to user...
+//class User {
+    // The constructor for our class, which will allow us to create new objects of our class
+    constructor(firstname, lastname, username, password, image) {
+      this.firstname = firstname;
+      this.lastname = lastname;
+      this.dateOfBirth = dateOfBirth;
+      this.username = username;
+      this.password = password;
+      this.image = image;
     }
+
+    
+    createHTML(){
+        return "<td> <img height='65px' src='" + this.firstname + "'></td><td>" + this.lastname + "</td><td>" + this.dateOfBirth + "</td><td>" + this.username + "</td><td>" + this.password + "</td><td>" + this.image + "</td>";
+    }
+};
+
+//sub-classes
+class freelancer extends User{
+    constructor(firstname, lastname, dateOfBirth, username, password, image){
+        super(firstname, lastname, username, password, image);
+    // dateOfBirth is specific for freelancer
+    this.dateOfBirth = dateOfBirth;
+}};
+class companyUser extends User{
+    constructor(firstname, lastname, company, username, password, image){
+        super(firstname, lastname, username, password, image)
+    this.company = company;
+}};
+*/
+    
+
+
+// Creating a class 
+// We create a user class, so we have an easy way to create users and further implement features at a later stage
+class User {
+    // The constructor for our class, which will allow us to create new objects of our class
+    constructor(firstname, lastname, dateOfBirth, username, password, image) {
+      this.firstname = firstname;
+      this.lastname = lastname;
+      this.dateOfBirth = dateOfBirth;
+      this.username = username;
+      this.password = password;
+      this.image = image;
+    }
+
+   //createHTML(){
+       //return "<td> <img height='65px' src='" + this.firstname + "'></td><td>" + this.lastname + "</td><td>" + this.dateOfBirth + "</td><td>" + this.username + "</td><td>" + this.password + "</td><td>" + this.image + "</td>";
+
+};
+
+//sub-classes
+class freelancer extends User{
+    constructor(firstname, lastname, dateOfBirth, username, password, image){
+        super(firstname, lastname, dateOfBirth, username, password, image);
+    // dateOfBirth is specific for freelancer
+    this.dateOfBirth = dateOfBirth;
+}};
+class companyUser extends User{
+    constructor(firstname, lastname, company, username, password, image){
+        super(firstname, lastname, username, password, image)
+    this.company = company;
+}};
+
+
+
+var users = JSON.parse(localStorage.getItem("users"));
+
+if(users === null){
+    
+// Initialize an empty array***
+users = [];
+
+
+// Fill it up with a few users
+users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"));
+users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"));
+users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","./images/Search.png"));
+}
+// 
+
+//Get username from loggedInUser out of the index.js file (in the logIn Loop)
+var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
+
+
+// Creating the html input 
+function createHTML(loggedInUser){
+
+    return "<div>"+
+    "<p id='firstname'> First name: " + loggedInUser.firstname + "<p>"+
+    "<p id='lastname'> Last name: " + loggedInUser.lastname + "</p>"+
+    "<p id='dateOfBirth'> Date of Birth: " + loggedInUser.dateOfBirth + "</p>"+
+  // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
+  "</div>";
 }
 
-$("#imageUpload").change(function(){
-    fasterPreview( this );
-    //assign upload to user
-    //save in localstorage 
-});
+/*
+    return "<div class='userprofile' id='userprofile'></br>" +
+    "<h4 id='profileName' style='color:#00b1b1;'></h4>" +
+    "<span><p>Freelancer</p></span>" +            
+    "</div>" +
+    "<div align ='center'> <img alt='User Pic'src='https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg' id='profile-image1' width='300px'><br>" + 
+    "<input id='profile-image-upload' class='hidden' type='file'>" + 
+    "<div style='color:#999;'>click here to change profile image</div>" +
+    "<h4 style='color:#00b1b1;'>" + user.firstname + " " + user.lastname + "</h4></span>" + 
+    "<span><p>Freelancer</p></span>" +           
+    "<hr>" +
+    "<div>" + user.dateOfBirth + "</div>" + 
+    "<div>Email:</div><div align='center'>" + user.username + "/div>" + 
+    "<div align='center'> <img height='65px' src='" + user.image + "'></div>";            
+}
 */
 
-// document.getElementById('profilePic').attr.src = user.image  
-// document.querySelector('#profe')
+//Call the createHTML function by a loop looking through the users added 
+var content = "";
+//for (var i=0; i <loggedInUser.length; i++) {
+    content += createHTML(loggedInUser);
 
+
+//Display users at HTML - getELementByClassName because we refer to the userprofile which is a class. 
+document.getElementById('userProfile').innerHTML = content;
+
+/*
 
 //creating the input for tags-input
 []. forEach.call(document.getElementsByClassName('tags-input'), function (el) {
@@ -72,7 +169,8 @@ $("#imageUpload").change(function(){
     el.appendChild(mainInput);
     el.appendChild(hiddenInput);
 
-   
+
+
  //functions
 
     function addTag (text){
@@ -100,13 +198,14 @@ $("#imageUpload").change(function(){
         el.insertBefore(tag.element, mainInput);
         refreshTags();
     }
+    
 
     function removeTag (index) {
         var tag = tags[index];
         tags.splice(index, 1);
         el.removeChild(tag.element);
         refreshTags();
-    }
+    } 
 
     //because the hidden tag is going to have the value of all of our tags (fill in the hidden input)
     function refreshTags () {
@@ -119,11 +218,7 @@ $("#imageUpload").change(function(){
 
     }
 
-    function filterTag (tag)
+    function filterTag (tag){
         //removing all punctuation except for the dash(-) and underscore. 
         // removed white spaces and replace with dash (-)
-        return tag.replace(/[^\w -]/g,'').trim().replace(/[^\w -]/g,'-');
-
-    }
-);
-
+    return tag.replace(/[^\w -]/g,'').trim().replace(/[^\w -]/g,'-')}; */  

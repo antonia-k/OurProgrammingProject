@@ -1,60 +1,77 @@
 
-
 //var login = document.getElementById('login');
 var attempt = 3;
 
 // Creating a class 
 // We create a user class, so we have an easy way to create users and further implement features at a later stage
 class User {
-
     // The constructor for our class, which will allow us to create new objects of our class
-    constructor(firstname, lastname, username, password, profilePic) {
+    constructor(firstname, lastname, dateOfBirth, username, password, image) {
       this.firstname = firstname;
       this.lastname = lastname;
+      this.dateOfBirth = dateOfBirth;
       this.username = username;
       this.password = password;
-      this.profilePicture = profilePic;
+      this.image = image;
+    }
 
-    }};
+
+};
+
+//sub-classes - need to be specific, vary from superclass
 class freelancer extends User{
-    constructor(firstname, lastname, dateOfBirth, username, password, profilePic){
-        super(firstname, lastname, username, password, profilePic);
+    constructor(firstname, lastname, dateOfBirth, username, password, image){
+        super(firstname, lastname, dateOfBirth, username, password, image);
     // dateOfBirth is specific for freelancer
-    this.dateOfBirth = dateOfBirth;
+    //this.dateOfBirth = dateOfBirth;
 }};
 class companyUser extends User{
-    constructor(firstname, lastname, company, username, password, profilePic){
-        super(firstname, lastname, username, password, profilePic)
+    constructor(firstname, lastname, dateOfBirth, company, username, password, image){
+        super(firstname, lastname, dateOfBirth, username, password, image)
     this.company = company;
 }};
-// Initialize an empty array
-    var valData = [];
+
+
+
+var users = JSON.parse(localStorage.getItem("users"));
+
+if(users === null){
+    
+// Initialize an empty array***
+users = [];
+
 
 // Fill it up with a few users
-valData.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","..images/mark.jpg"));
-valData.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","..images/dog.png"));
-valData.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","..images/Search.png"));
+users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"));
+users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"));
+users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "Goodiebox", "anke", "0808","./images/Search.png"));
+}
+// 
 
-let valData_serialized = JSON.stringify(valData);
-localStorage.setItem("UserInfo", valData_serialized);
 
+//store user information 
+let users_serialized = JSON.stringify(users);
+localStorage.setItem("UserInfo", users_serialized);
+
+//Validation 
 function validate(){    
     var un = document.getElementById('username').value;
     var pw = document.getElementById('password').value;
     
     var tempPos = -1;
+
 //Loop Validation
-    for (var i = 0; i < valData.length; i++) {
-        if ((valData[i].username==un) && (valData[i].password==pw)) {
+    for (var i = 0; i < users.length; i++) {
+        if ((users[i].username==un) && (users[i].password==pw)) {
             if (typeof(Storage) !== "undefined") {
                 sessionStorage.setItem("username", un);
             }
             alert("Login was successful");
             //redirects to Userprofile by checking subclasses 
-            if (valData[i] instanceof freelancer) {
+            if (users[i] instanceof freelancer) {
                 window.location.href="./UserProfile.html";
-            }else if (valData[i] instanceof companyUser) {
-                window.location.href="https://www.google.com/";
+            }else if (users[i] instanceof companyUser) { //@Marina, will you take a look here, Anke 0808 can't log in :-) 
+                window.location.href="./companyProfile.html";
             };
             tempPos = i;
             break;
@@ -74,8 +91,14 @@ function validate(){
         attempt --;
         return true;
     }
-    
+
+//Save the information for the user logged in. 
+//Push username from logged in User in the local storage 
+localStorage.setItem("loggedInUser", JSON.stringify(users[i]));
+
 }
+
+
 //Detect Caps Lock in Password Input
 window.onload=function(){
     //Get the input field
@@ -123,6 +146,7 @@ function reset(){
 }
 
 console.log(JSON.parse(localStorage.getItem("UserInfo")));
+
 
 
 

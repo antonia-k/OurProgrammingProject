@@ -1,4 +1,6 @@
-//localStorage.clear;
+
+
+
 
 //var jobs = JSON.parse(localStorage.getItem("jobs"));
 class JobPosting{
@@ -30,8 +32,37 @@ var submit = document.getElementById('registerJobPost');
 if (submit == null){
   console.log('no submit button on page')
 }
+
+function emptyJobPosting (){
+  var emptyJobTitle = document.getElementById("jobTitle").value;
+  var emptyJobDescription = document.getElementById("jobDescription").value;
+  var emptyQualifications = document.getElementById("qualifications").value;
+  var emptyLocation = document.getElementById("jobLocation").value;
+  var emptyWebsite = document.getElementById("linkToWebsite").value;
+  var emptyContact = document.getElementById("linkToContact").value;
+ 
+  //if not everything is filled out it should not redirect and not save local storage 
+  if (emptyJobTitle == "" || emptyJobDescription == ""|| emptyQualifications == ""|| emptyLocation == ""|| emptyWebsite == ""|| emptyContact == ""){
+      alert("Please fill out all fields");
+
+  }
+  else {
+    var jobTitle = document.getElementById("jobTitle").value;
+    var jobDescription = document.getElementById("jobDescription").value;
+    var qualifications = document.getElementById("qualifications").value;
+    var jobLocation = document.getElementById("jobLocation").value;
+    var linkToWebsite = document.getElementById("linkToWebsite").value;
+    var linkToContact = document.getElementById("linkToContact").value;
+  
+    jobs.push(new JobPosting(jobTitle, jobDescription, qualifications, jobLocation, linkToWebsite, linkToContact));
+    console.log(jobs);
+    localStorage.setItem('jobs',JSON.stringify(jobs));
+  
+  window.location.href="./marketplace.html";
+};
+}
 //we must check if the pushing still works
-else {
+/*else {
   submit.addEventListener("click", function() {
 
   var jobTitle = document.getElementById("jobTitle").value;
@@ -47,8 +78,8 @@ else {
     }
   )
 }
+*/
 
-//links zu webseiten etc gehen nicht--> check why
 //creating an HTML from the JS objects
 function createHTML(job){
   return "<div class='card'>"+
@@ -56,12 +87,12 @@ function createHTML(job){
                 "<p class='jobDescription'>" + job.jobDescription + "</p>"+
                 "<p class='qualifications'>" + job.qualifications + "</p>"+
                 "<p class='location' data-location-type=" + job.location + "></p>"+
-                "<p><button onclick='window.location.href='" + job.linkToWebsite + ">Company Website</button></p>"+
-                "<p><button onclick='window.location.href='" + job.linkToContact + ">Contact</button></p>"+
+              // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
+               "<p><button onclick='window.location.href=`" + job.linkToWebsite + "`'>Company Website</button></p>"+
+                "<p><button onclick='window.location.href=`" + job.linkToContact + "`'>Contact</button></p>"+
               "</div>";
 }
-
-//here is the error: cannot set .innerHTML property of null, make some form of if function to fix it, s.o., do we need to fix it at all??
+//here is the error: cannot set.innerHTML property of null, make some form of if function to fix it, s.o., do we need to fix it at all??
 // liegt daran, dass dieses ELement auf der JobPosting seite nicht aufgerufen wird.. wie mach ich das so, dass es geht??
 
 var content = "";
@@ -77,8 +108,34 @@ document.getElementById('searchDivs').innerHTML = content;
 //Search function for the Job Cards
 function searchFunction(){
   //Declare variables - getting values from the search box
-    var input = document.getElementById("jobInput");
-    var filter = input.value.toUpperCase();
+    var input = document.getElementById("jobInput").value.toUpperCase();
+    //der input funktioniert, wenn ich etwas eingebe, wird es als capital letter extrahiert, muss ich das auch unten einfügen? wrs bei der if funktion in irgendeiner form!
+    //var filter = input.value.toUpperCase(); das habe ich oben inkludiert, ist das richtig??
+    //call the jobs function previously defined to be parsing the JSON
+    var jobs = JSON.parse(localStorage.getItem("jobs"));
+    content = "";
+    //loop through the jobs array and the different elements within 
+    //i have an array of objects and not an array of arrays
+    for (var i=0; i<jobs.length; i++){
+    //das Extrahieren der inputs geht, es wird das richtige extrahiert, wieso erkennt er das nicht durch den input? liegt das am toUpperCase?, aber er erkennt das nicht und geht immer nur direkt in den ganzen array, nicht das einzelne Element bzw. die property, wieso?
+    //cannot read undefined of undefined or cannot read undefined of 1 ist der fehler, wie mach ich das mit dem extrahieren, davor hatte ich == input
+      if(jobs[i].jobTitle.toUpperCase().includes(input) || jobs[i].qualifications.toUpperCase().includes(input)){
+        //maybe use the .foreach method to use only those that are actually there
+        //content = "";
+        //for(var i =0; i<jobs.length; i++){
+        content += createHTML(jobs[i]);
+        }
+        //PROBLEM: ER MACHT JETZT ALLES MIT DEM i!!!! also baut er die gesamte HTML, das ist das problem
+        //document.getElementById('searchDivs').innerHTML = content;
+      }//else{
+//this works, i.e. if it does not contain the element, it will hide it, now I just have to figure out how exactly to look for stuff within the object and then display it 
+      //content = "";}
+      //console.log('no valid search parameters');
+      document.getElementById('searchDivs').innerHTML = content;
+
+  }
+
+  /* muss wieder eingecoded werden evtl, das ist der Originalcode für die Suche hinter var filter definition 
   //Declare variables - getting values from the div elements
     var jobAds = document.getElementById("searchDivs");
     var divElements = jobAds.getElementsByClassName("card");
@@ -94,11 +151,32 @@ function searchFunction(){
     }
   }
 
-}
-
-
+}*/
 
 // filter function by location
+function filterFunction(checkbox){
+  //var jobAds = document.getElementById("searchDivs");
+  //var divElements = jobAds.getElementsByClassName("card");
+  var jobs = JSON.parse(localStorage.getItem("jobs"));
+  //loop through the divs
+    for(var i=0; i<jobs.length; i++){
+      //wir haben index 0 bei der divElements und der location, weil wir dadurch eine Liste wiederbekommen, und das an erster Stelle steht, weil es nur ein Element hat
+      if (jobs[i].location == checkbox.getAttribute("data-location-type")){
+        //if all boxes unchecked, this is easier because then all are not displayed
+        if (checkbox.checked == false){
+          // we have to tell it to NOT display the unchecked ones HERE IS THE ERROR!!!!! 
+          content -= createHTML(jobs[i]);
+          }
+        else{
+          content += createHTML(jobs[i]);
+        }
+      document.getElementById('searchDivs').innerHTML = content;
+
+    }
+  }
+}
+
+ /*// filter function by location
 function filterFunction(checkbox){
   var jobAds = document.getElementById("searchDivs");
   var divElements = jobAds.getElementsByClassName("card");
@@ -113,11 +191,11 @@ function filterFunction(checkbox){
           divElements[i].style.display = "";
         }
       }
+      document.getElementById('searchDivs').innerHTML = content;
+
     }
-  }
-
-  
-
+  } 
+*/
 /*
 //creating an HTML from the JS objects
     function createHTML(){
