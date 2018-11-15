@@ -63,6 +63,7 @@ class freelancer extends User{
         this.qualifications = qualifications;
         this.description = description;
         this.objectType = "freelancer";
+        
     }
 }
 
@@ -77,6 +78,8 @@ class companyUser extends User{
 
 
 var users = JSON.parse(localStorage.getItem("users"));
+
+var favourites = [];
 
 if(users === null){
     

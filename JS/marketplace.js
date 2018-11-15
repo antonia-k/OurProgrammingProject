@@ -89,6 +89,7 @@ function createHTML(job){
               // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
                "<p><button onclick='window.location.href=`" + job.linkToWebsite + "`'>Company Website</button></p>"+
                 "<p><button onclick='window.location.href=`" + job.linkToContact + "`'>Contact</button></p>"+
+                "<p><button onclick='addToFavourites()'>Add to Favourites</button></p>"
               "</div>";
 }
 //here is the error: cannot set.innerHTML property of null, make some form of if function to fix it, s.o., do we need to fix it at all??

@@ -18,7 +18,7 @@ class User {
 
 //sub-classes - need to be specific, vary from superclass
 class freelancer extends User{
-    constructor(firstname, lastname, dateOfBirth, username, password, image, qualifications, description){
+    constructor(firstname, lastname, dateOfBirth, username, password, image, qualifications, description, favourites){
         super(firstname, lastname, username, password, image);
         // dateOfBirth is specific for freelancer
         this.dateOfBirth = dateOfBirth;
@@ -26,6 +26,7 @@ class freelancer extends User{
         this.description = description;
         // we must "hardcode" freelancer and company type, otherwise the extracting from local storage will overwrite the objecttype with the default value "object"
         this.objectType = "freelancer";
+        this.favourites = favourites;
     }
 }
 
@@ -46,7 +47,7 @@ function getUsers(list){
     var retList = [];
     for(var i=0; i<list.length; i++){
         if(list[i].objectType === "freelancer"){
-            retList.push(new freelancer(list[i].firstname, list[i].lastname, list[i].dateOfBirth, list[i].username, list[i].password, list[i].image, list[i].qualifications, list[i].description));
+            retList.push(new freelancer(list[i].firstname, list[i].lastname, list[i].dateOfBirth, list[i].username, list[i].password, list[i].image, list[i].qualifications, list[i].description, list[i].favourites));
         }
         else{
             retList.push(new companyUser(list[i].firstname, list[i].lastname, list[i].company, list[i].username, list[i].password, list[i].image));
@@ -61,8 +62,8 @@ if(localStorage.getItem("UserInfo") === null){
     users = [];
 
     // Fill it up with a few users
-    users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"," "," "));
-    users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"," "," "));
+    users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"," "," ", ["banana","unicorn"]));
+    users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"," "," ",["banana","unicorn"]));
     users.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","./images/Search.png"));
 
     //store user information 
