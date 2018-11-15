@@ -47,6 +47,8 @@ class User {
       this.username = username;
       this.password = password;
       this.image = image;
+    
+
     }
 
    //createHTML(){
@@ -56,12 +58,13 @@ class User {
 
 //sub-classes
 class freelancer extends User{
-    constructor(firstname, lastname, username, dateOfBirth, password, image, qualifications, description){
-        super(firstname, lastname, username, password, image);
+    constructor(firstname, lastname, username, dateOfBirth, password, image, qualifications, description, item){
+        super(firstname, lastname, username, password, image, item);
     // dateOfBirth is specific for freelancer
     this.dateOfBirth = dateOfBirth;
     this.qualifications = qualifications;
     this.description = description;
+    this.item = item;
     
 }};
 class companyUser extends User{
@@ -81,7 +84,7 @@ users = [];
 
 
 // Fill it up with a few users
-users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/Dame.jpg"));
+users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/Dame.jpg",));
 users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/mark.jpg"));
 users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","./images/Search.png"));
 }
@@ -133,6 +136,45 @@ var content = "";
 
 //Display users at HTML - getELementByClassName because we refer to the userprofile which is a class. 
 document.getElementById('userProfile').innerHTML = content;
+
+
+
+
+//Add Qualification tap 
+const form = document.querySelector('form');
+const ul = document.querySelector('ul');
+const button = document.querySelector('button');
+const input = document.getElementById('item');
+let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+
+localStorage.setItem('items', JSON.stringify(itemsArray));
+const data = JSON.parse(localStorage.getItem('items'));
+
+const liMaker = (text) => {
+  const li = document.createElement('li');
+  li.textContent = text;
+  ul.appendChild(li);
+}
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  itemsArray.push(input.value);
+  localStorage.setItem('items', JSON.stringify(itemsArray));
+  liMaker(input.value);
+  input.value = "";
+});
+
+data.forEach(item => {
+  liMaker(item);
+});
+
+button.addEventListener('click', function () {
+  localStorage.clear();
+  while (ul.firstChild) {
+    ul.removeChild(ul.firstChild);
+  }
+});
 
 
 
