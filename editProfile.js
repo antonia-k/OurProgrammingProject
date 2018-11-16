@@ -18,7 +18,7 @@ function saveChanges() {
 
 //store updated users array in local storage, make sure keyName is always String!
     //keyName --> you need it to recall it later!
-    localStorage.setItem("UserInfo", JSON.stringify(users));
+    localStorage.setItem("users", JSON.stringify(users));
 
     //store updated loggedInUser object in local storage, make sure keyName is always String! 
     //keyName --> you need it to recall it later!

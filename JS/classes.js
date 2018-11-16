@@ -24,7 +24,7 @@ class Freelancer extends User{
         this.objectType = "Freelancer";
         this.favourites = [];
     }
-}
+};
 
 class CompanyUser extends User{
     constructor(firstname, lastname, username, password, company, image){
@@ -45,3 +45,4 @@ class JobPosting{
         this.linkToContact = linkToContact;
     }
   } 
+
