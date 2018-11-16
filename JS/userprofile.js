@@ -48,6 +48,10 @@ class User {
       this.password = password;
       this.image = image;
     
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1a891a395677503526e6f8cb23e5b8f81e97adb1
     }
     //createHTML(){
        //return "<td> <img height='65px' src='" + this.firstname + "'></td><td>" + this.lastname + "</td><td>" + this.dateOfBirth + "</td><td>" + this.username + "</td><td>" + this.password + "</td><td>" + this.image + "</td>";
@@ -57,7 +61,22 @@ class User {
 
 //sub-classes
 class freelancer extends User{
+<<<<<<< HEAD
     constructor(firstname, lastname, username, password, dateOfBirth, image, qualifications, description){
+=======
+<<<<<<< HEAD
+    constructor(firstname, lastname, username, dateOfBirth, password, image, qualifications, description, item){
+        super(firstname, lastname, username, password, image, item);
+    // dateOfBirth is specific for freelancer
+    this.dateOfBirth = dateOfBirth;
+    this.qualifications = qualifications;
+    this.description = description;
+    this.item = item;
+    
+}};
+=======
+    constructor(firstname, lastname, username, dateOfBirth, password, image, qualifications, description){
+>>>>>>> 1a891a395677503526e6f8cb23e5b8f81e97adb1
         super(firstname, lastname, username, password, image);
         // dateOfBirth is specific for freelancer
         this.dateOfBirth = dateOfBirth,
@@ -68,6 +87,7 @@ class freelancer extends User{
     }
 }
 
+>>>>>>> 6e5f9939afb0d134cb74e6d40aff9a0c88568857
 class companyUser extends User{
     constructor(firstname, lastname, username, password, company, image){
         super(firstname, lastname, username, password, image)
@@ -89,9 +109,21 @@ users = [];
 
 
 // Fill it up with a few users
+<<<<<<< HEAD
 users.push(new freelancer("Marina", "Mehling", "mame", "1010", "10.10.2010", "./images/Dame.jpg"," "," ","2"));
 users.push(new freelancer("Stinne", "Andersson", "stan", "0909", "09.09.2009", "./images/mark.jpg"," "," ","2"));
 users.push(new companyUser("Antonia", "Kellerwessel", "anke", "0808", "Goodiebox", "./images/Search.png"));
+=======
+<<<<<<< HEAD
+users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/Dame.jpg",));
+users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/mark.jpg"));
+users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","./images/Search.png"));
+=======
+users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/Dame.jpg"," "," "));
+users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/mark.jpg"," "," "));
+users.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","./images/Search.png"));
+>>>>>>> 6e5f9939afb0d134cb74e6d40aff9a0c88568857
+>>>>>>> 1a891a395677503526e6f8cb23e5b8f81e97adb1
 }
 // 
 
@@ -143,6 +175,45 @@ var content = "";
 
 //Display users at HTML - getELementByClassName because we refer to the userprofile which is a class. 
 document.getElementById('userProfile').innerHTML = content;
+
+
+
+
+//Add Qualification tap 
+const form = document.querySelector('form');
+const ul = document.querySelector('ul');
+const button = document.querySelector('button');
+const input = document.getElementById('item');
+let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+
+localStorage.setItem('items', JSON.stringify(itemsArray));
+const data = JSON.parse(localStorage.getItem('items'));
+
+const liMaker = (text) => {
+  const li = document.createElement('li');
+  li.textContent = text;
+  ul.appendChild(li);
+}
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  itemsArray.push(input.value);
+  localStorage.setItem('items', JSON.stringify(itemsArray));
+  liMaker(input.value);
+  input.value = "";
+});
+
+data.forEach(item => {
+  liMaker(item);
+});
+
+button.addEventListener('click', function () {
+  localStorage.clear();
+  while (ul.firstChild) {
+    ul.removeChild(ul.firstChild);
+  }
+});
 
 
 
