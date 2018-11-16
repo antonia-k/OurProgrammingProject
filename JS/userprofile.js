@@ -22,112 +22,34 @@
 };
 
 //sub-classes
-class freelancer extends User{
+class Freelancer extends User{
     constructor(firstname, lastname, dateOfBirth, username, password, image){
         super(firstname, lastname, username, password, image);
-    // dateOfBirth is specific for freelancer
+    // dateOfBirth is specific for Freelancer
     this.dateOfBirth = dateOfBirth;
 }};
-class companyUser extends User{
+class CompanyUser extends User{
     constructor(firstname, lastname, company, username, password, image){
         super(firstname, lastname, username, password, image)
     this.company = company;
 }};
 */
-    
 
 
-// Creating a class 
-// We create a user class, so we have an easy way to create users and further implement features at a later stage
-class User {
-    // The constructor for our class, which will allow us to create new objects of our class
-    constructor(firstname, lastname, username, password, image) {
-      this.firstname = firstname;
-      this.lastname = lastname;
-      this.username = username;
-      this.password = password;
-      this.image = image;
-    
-<<<<<<< HEAD
-=======
-
->>>>>>> 1a891a395677503526e6f8cb23e5b8f81e97adb1
-    }
-    //createHTML(){
-       //return "<td> <img height='65px' src='" + this.firstname + "'></td><td>" + this.lastname + "</td><td>" + this.dateOfBirth + "</td><td>" + this.username + "</td><td>" + this.password + "</td><td>" + this.image + "</td>";
-
-}
-
-
-//sub-classes
-class freelancer extends User{
-<<<<<<< HEAD
-    constructor(firstname, lastname, username, password, dateOfBirth, image, qualifications, description){
-=======
-<<<<<<< HEAD
-    constructor(firstname, lastname, username, dateOfBirth, password, image, qualifications, description, item){
-        super(firstname, lastname, username, password, image, item);
-    // dateOfBirth is specific for freelancer
-    this.dateOfBirth = dateOfBirth;
-    this.qualifications = qualifications;
-    this.description = description;
-    this.item = item;
-    
-}};
-=======
-    constructor(firstname, lastname, username, dateOfBirth, password, image, qualifications, description){
->>>>>>> 1a891a395677503526e6f8cb23e5b8f81e97adb1
+/*    constructor(firstname, lastname, username, dateOfBirth, password, image, qualifications, description){
         super(firstname, lastname, username, password, image);
-        // dateOfBirth is specific for freelancer
+        // dateOfBirth is specific for Freelancer
         this.dateOfBirth = dateOfBirth,
         this.qualifications = qualifications,
         this.description = description,
-        this.objectType = "freelancer",
+        this.objectType = "Freelancer",
         this.favourites = []
     }
-}
-
->>>>>>> 6e5f9939afb0d134cb74e6d40aff9a0c88568857
-class companyUser extends User{
-    constructor(firstname, lastname, username, password, company, image){
-        super(firstname, lastname, username, password, image)
-        this.company = company,
-        this.objectType = "companyUser"
-    }
-}
-
-
+*/
 
 var users = JSON.parse(localStorage.getItem("users"));
 
 var favourites = [];
-
-if(users === null){
-    
-// Initialize an empty array***
-users = [];
-
-
-// Fill it up with a few users
-<<<<<<< HEAD
-users.push(new freelancer("Marina", "Mehling", "mame", "1010", "10.10.2010", "./images/Dame.jpg"," "," ","2"));
-users.push(new freelancer("Stinne", "Andersson", "stan", "0909", "09.09.2009", "./images/mark.jpg"," "," ","2"));
-users.push(new companyUser("Antonia", "Kellerwessel", "anke", "0808", "Goodiebox", "./images/Search.png"));
-=======
-<<<<<<< HEAD
-users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/Dame.jpg",));
-users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/mark.jpg"));
-users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","./images/Search.png"));
-=======
-users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/Dame.jpg"," "," "));
-users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/mark.jpg"," "," "));
-users.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","./images/Search.png"));
->>>>>>> 6e5f9939afb0d134cb74e6d40aff9a0c88568857
->>>>>>> 1a891a395677503526e6f8cb23e5b8f81e97adb1
-}
-// 
-
-
 
 //Get username from loggedInUser out of the index.js file (in the logIn Loop)
 var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
@@ -177,7 +99,7 @@ var content = "";
 document.getElementById('userProfile').innerHTML = content;
 
 
-
+/*
 
 //Add Qualification tap 
 const form = document.querySelector('form');
@@ -216,7 +138,7 @@ button.addEventListener('click', function () {
 });
 
 
-
+*/
 
 /*
 

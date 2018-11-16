@@ -1,18 +1,7 @@
 //localStorage.clear;
 
 //var jobs = JSON.parse(localStorage.getItem("jobs"));
-class JobPosting{
-    constructor(title,description,qualifications,jobLocation,profileImage,linkToWebsite,linkToContact){
-        this.jobTitle = title;
-        this.jobDescription = description;
-        this.qualifications = qualifications;
-        this.jobLocation = jobLocation; 
-        this.profileImage = profileImage;
-        this.linkToWebsite = linkToWebsite;
-        this.linkToContact = linkToContact;
-    }
-  } 
-  
+
   var jobs = JSON.parse(localStorage.getItem("jobs"));
   
   if(jobs === null){

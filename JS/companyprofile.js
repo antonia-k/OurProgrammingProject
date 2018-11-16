@@ -1,44 +1,4 @@
-// Creating a class 
-// We create a user class, so we have an easy way to create users and further implement features at a later stage
-class User {
-    // The constructor for our class, which will allow us to create new objects of our class
-    constructor(firstname, lastname, dateOfBirth, username, password, image) {
-      this.firstname = firstname;
-      this.lastname = lastname;
-      this.dateOfBirth = dateOfBirth;
-      this.username = username;
-      this.password = password;
-      this.image = image;
-    }
-
-};
-
-//sub-classes
-class freelancer extends User{
-    constructor(firstname, lastname, dateOfBirth, username, password, image){
-        super(firstname, lastname, dateOfBirth, username, password, image);
-
-}};
-class companyUser extends User{
-    constructor(firstname, lastname, dateOfBirth, company, username, password, image){
-        super(firstname, lastname, dateOfBirth, username, password, image)
-    this.company = company;
-}};
-
 var users = JSON.parse(localStorage.getItem("users"));
-
-if(users === null){
-    
-// Initialize an empty array***
-users = [];
-
-
-// Fill it up with a few users
-users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"));
-users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"));
-users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "Goodiebox", "anke", "0808","./images/Search.png"));
-} 
-
 //Get username from loggedInUser out of the index.js file (in the logIn Loop)
 var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
 

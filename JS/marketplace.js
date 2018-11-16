@@ -1,29 +1,6 @@
-
-
-
-
 //var jobs = JSON.parse(localStorage.getItem("jobs"));
-class JobPosting{
-  constructor(title,description,qualifications,jobLocation,linkToWebsite,linkToContact){
-      this.jobTitle = title;
-      this.jobDescription = description;
-      this.qualifications = qualifications;
-      this.jobLocation = jobLocation; 
-      //this.image = image;
-      this.linkToWebsite = linkToWebsite;
-      this.linkToContact = linkToContact;
-  }
-} 
 
 var jobs = JSON.parse(localStorage.getItem("jobs"));
-
-if(jobs === null){
-  jobs = [];
-  jobs.push(new JobPosting("Front-End Developer at Orsted", "Designing a Website for the sale of energy", "CSS, HTML, JavaScript", "Copenhagen", "https://orsted.com/en/About-us", "https://orsted.com/en/About-us"));
-  jobs.push(new JobPosting("Back-End Developer at E.ON", "Developing Database for Energy sources", "Java, Ruby, Python", "Aarhus", "https://www.eon.dk/privat.html", "https://www.eon.dk/privat.html"));
-  jobs.push(new JobPosting("Web Designer for IBM", "Designing a Pretty Website for IBM", "Photoshop", "Odense", "https://www.ibm.com/dk-da/", "https://www.ibm.com/dk-da/"));
-  jobs.push(new JobPosting("Back-End Developer at REWE", "Developing Database for Food Shopping", "Java, Ruby, Python", "Copenhagen", "https://www.rewe.de/", "https://www.rewe.de/"));
-}
 
 // Define the buttons for submitting the Jobs 
 var submit = document.getElementById('registerJobPost');
@@ -237,19 +214,7 @@ function jobPost(){
 
 
 
-var users = JSON.parse(localStorage.getItem("UserInfo"));
-
-if(users === null || users === undefined){
-    
-// Initialize an empty array***
-users = [];
-
-
-// Fill it up with a few users
-users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"," "," "));
-users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"," "," "));
-users.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","./images/Search.png"));
-}
+var users = JSON.parse(localStorage.getItem("users"));
 
 var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
 
@@ -266,51 +231,46 @@ function addToFavourites(button){
             loggedInUser.favourites.push(button.getAttribute("data-id-type"));
             alert("The job has been added to your Favourites");
             users[i].favourites = loggedInUser.favourites;
-            return false}
-            else{
-          loggedInUser.favourites = users[i].favourites
-          //loopen durch einen for loop for(i=0;i<users[i].favourites.length;i++) --> mit gelöschtem User auf null, ist nichts hinterlegt, daher ist .length gleich 0 unde er looped nocht, think about how to solve this!
-          for(i=0;i<loggedInUser.favourites.length;i++){
-            if(loggedInUser.favourites.includes(button.getAttribute("data-id-type"))){
-            alert('Job already in Favourites')
-            return false
-          //users[i].favourites.push(button.getAttribute("data-id-type"));
+            return false;
+          }else{
+            loggedInUser.favourites = users[i].favourites
+            //loopen durch einen for loop for(i=0;i<users[i].favourites.length;i++) --> mit gelöschtem User auf null, ist nichts hinterlegt, daher ist .length gleich 0 unde er looped nocht, think about how to solve this!
+            for(i=0;i<loggedInUser.favourites.length;i++){
+              if(loggedInUser.favourites.includes(button.getAttribute("data-id-type"))){
+                alert('Job already in Favourites')
+                return false;
+                //users[i].favourites.push(button.getAttribute("data-id-type"));
+              }
+              //favouriteJobs.push(button.getAttribute("data-id-type"));
+              //das erste mal clicken läuft er durch, ohne etwas zu pushen irgendiwe, mit dem ersten click wird irgendwie wieder auf null zurückgesetzt, danach wird hinzugefügt
+              //hier muss ich vom local storage holen und zu der Liste hinzufügen, weil der sonst jedes Mal wieder bei null anfängt und die überschreibt
+              //schauen, ob ich favourites als this.favourites = favourites definiere und dann sage: var favourites = [] und dann this.favourites = favourites, also das array pushen und dann das array rausziehenimmer wieder, adaptieren und wieder reinpushen
+              else{
+                loggedInUser.favourites.push(button.getAttribute("data-id-type"));
+                alert("The job has been added to your Favourites");
+                localStorage.setItem("users", JSON.stringify(users));
+                localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+                return false;
+              }
             }
-          //favouriteJobs.push(button.getAttribute("data-id-type"));
-          //das erste mal clicken läuft er durch, ohne etwas zu pushen irgendiwe, mit dem ersten click wird irgendwie wieder auf null zurückgesetzt, danach wird hinzugefügt
-          //hier muss ich vom local storage holen und zu der Liste hinzufügen, weil der sonst jedes Mal wieder bei null anfängt und die überschreibt
-          //schauen, ob ich favourites als this.favourites = favourites definiere und dann sage: var favourites = [] und dann this.favourites = favourites, also das array pushen und dann das array rausziehenimmer wieder, adaptieren und wieder reinpushen
-          else{
-            loggedInUser.favourites.push(button.getAttribute("data-id-type"));
-            alert("The job has been added to your Favourites");
-            localStorage.setItem("UserInfo", JSON.stringify(users));
-            localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
-            return false
+            //die sachen speichern, werden aber auf der login seite und dem profil nicht angezeigt, wenn man versucht, sie zu ziehen.. wieso?
+            //users[i].favourites.push(favouriteJobs); 
+            //we must prevent the thing from being pushed into the list of favourites more than once, make an alert or sth, "this job is already in your favourites"
+            //try with a for loop that goes through the favourites array and checks if it is already in, if yes, then alert 'already saved to your favourites', otherwise push to the favourites list
+            /*
+            //now we must also push it into local storage
+                    }
+                }
+                for(var i = 0; i < users.length; i++){
+                  if(loggedInUser.username === users[i].username){
+                      users[i] = loggedInUser;
+                  }
+              } 
+            */
+            //the local storage pushing does not work yet!!! check why!  
+          }     
         }
       }
-          //die sachen speichern, werden aber auf der login seite und dem profil nicht angezeigt, wenn man versucht, sie zu ziehen.. wieso?
-          //users[i].favourites.push(favouriteJobs); 
-//we must prevent the thing from being pushed into the list of favourites more than once, make an alert or sth, "this job is already in your favourites"
-//try with a for loop that goes through the favourites array and checks if it is already in, if yes, then alert 'already saved to your favourites', otherwise push to the favourites list
-
-
-/*
-//now we must also push it into local storage
-        }
-    }
-    for(var i = 0; i < users.length; i++){
-      if(loggedInUser.username === users[i].username){
-          users[i] = loggedInUser;
-      }
-  } 
-*/
-//the local storage pushing does not work yet!!! check why!
-  
-
-    
-}
-    }
-  }
 }
 
 //speichert er nicht oder wird es immer wieder überschrieben??? --> wahrscheinlich wird es immer durch das var users = null überschrieben

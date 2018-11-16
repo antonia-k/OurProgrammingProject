@@ -1,4 +1,4 @@
-/*var users = JSON.parse(localStorage.getItem("UserInfo"));
+/*var users = JSON.parse(localStorage.getItem("users"));
 
 if(users === null || users === undefined){
     
@@ -7,9 +7,9 @@ users = [];
 
 
 // Fill it up with a few users
-users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"," "," "));
-users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"," "," "));
-users.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","./images/Search.png"));
+users.push(new Freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"," "," "));
+users.push(new Freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"," "," "));
+users.push(new CompanyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","./images/Search.png"));
 }
 
 var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
