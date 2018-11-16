@@ -89,7 +89,7 @@ function createHTML(job){
               // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
                "<p><button onclick='window.location.href=`" + job.linkToWebsite + "`'>Company Website</button></p>"+
                 "<p><button onclick='window.location.href=`" + job.linkToContact + "`'>Contact</button></p>"+
-                "<p><button onclick='addToFavourites()'>Add to Favourites</button></p>"
+                "<p><button type='button' onclick='addToFavourites(this)' data-id-type='"+job.jobTitle+"'>Add to Favourites</button></p>"+
               "</div>";
 }
 //here is the error: cannot set.innerHTML property of null, make some form of if function to fix it, s.o., do we need to fix it at all??
@@ -234,3 +234,195 @@ function jobPost(){
 
 }
 */
+
+
+
+var users = JSON.parse(localStorage.getItem("UserInfo"));
+
+if(users === null || users === undefined){
+    
+// Initialize an empty array***
+users = [];
+
+
+// Fill it up with a few users
+users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"," "," "));
+users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"," "," "));
+users.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","./images/Search.png"));
+}
+
+var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
+
+//var favouriteJobs = [];
+
+
+//find out why the local storage does not work for login page and profile page, and see if we get it to work in the create HTML either way
+function addToFavourites(button){
+    console.log('works');
+
+    for(var i=0;i<users.length;i++){
+        if (loggedInUser.username === users[i].username){
+          if (loggedInUser.favourites.length == 0){
+            loggedInUser.favourites.push(button.getAttribute("data-id-type"));
+            alert("The job has been added to your Favourites");
+            users[i].favourites = loggedInUser.favourites;
+            return false}
+            else{
+          loggedInUser.favourites = users[i].favourites
+          //loopen durch einen for loop for(i=0;i<users[i].favourites.length;i++) --> mit gelöschtem User auf null, ist nichts hinterlegt, daher ist .length gleich 0 unde er looped nocht, think about how to solve this!
+          for(i=0;i<loggedInUser.favourites.length;i++){
+            if(loggedInUser.favourites.includes(button.getAttribute("data-id-type"))){
+            alert('Job already in Favourites')
+            return false
+          //users[i].favourites.push(button.getAttribute("data-id-type"));
+            }
+          //favouriteJobs.push(button.getAttribute("data-id-type"));
+          //das erste mal clicken läuft er durch, ohne etwas zu pushen irgendiwe, mit dem ersten click wird irgendwie wieder auf null zurückgesetzt, danach wird hinzugefügt
+          //hier muss ich vom local storage holen und zu der Liste hinzufügen, weil der sonst jedes Mal wieder bei null anfängt und die überschreibt
+          //schauen, ob ich favourites als this.favourites = favourites definiere und dann sage: var favourites = [] und dann this.favourites = favourites, also das array pushen und dann das array rausziehenimmer wieder, adaptieren und wieder reinpushen
+          else{
+            loggedInUser.favourites.push(button.getAttribute("data-id-type"));
+            alert("The job has been added to your Favourites");
+            localStorage.setItem("UserInfo", JSON.stringify(users));
+            localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+            return false
+        }
+      }
+          //die sachen speichern, werden aber auf der login seite und dem profil nicht angezeigt, wenn man versucht, sie zu ziehen.. wieso?
+          //users[i].favourites.push(favouriteJobs); 
+//we must prevent the thing from being pushed into the list of favourites more than once, make an alert or sth, "this job is already in your favourites"
+//try with a for loop that goes through the favourites array and checks if it is already in, if yes, then alert 'already saved to your favourites', otherwise push to the favourites list
+
+
+/*
+//now we must also push it into local storage
+        }
+    }
+    for(var i = 0; i < users.length; i++){
+      if(loggedInUser.username === users[i].username){
+          users[i] = loggedInUser;
+      }
+  } 
+*/
+//the local storage pushing does not work yet!!! check why!
+  
+
+    
+}
+    }
+  }
+}
+
+//speichert er nicht oder wird es immer wieder überschrieben??? --> wahrscheinlich wird es immer durch das var users = null überschrieben
+//problem im UserProfile und im Login, überall anders sind die sachen gespeichert, wenn ich nicht den local storage cleare
+
+
+
+
+/*I need to extract the users
+I need to extract the loggedInUser
+i have to access the favourites array of the loggedInUser
+I have to push the title of the JobPosting Object into the favourites array
+I have to save the loggedInUser as a user of users and stringify to save into local storage
+
+then I need a new website, in which I need to parse the users and loggedInUsers again
+I have to then access the array, if element i of the array equals the title of the jobPosting objects, then I have to display it with the create Html, now I need a delete button however, not an add to favourites button 
+
+when I click the delete button, I need to get the users and loggedInUser from local storage
+I have to delete the jobPosting title from the favourites array, then I have to save the array back to loggedInUser and to users, then the page must refresh to no longer portray the array, which might be done by a normal redirect at the end of the function to the same website, i.e. the favourites list html
+
+
+function addToWishlist(item(in our case jobPosting)){
+    
+    var loggedInUser = localStorage.getItem('loggedInUser') --> assumes that there is a key and value pair that matches loggedInUser otherwise there will be an error, we could tell it to redirect to login or sth if there is an error
+    console.log(loggedInUser)
+
+    for(i=0;i<users.length;i++){
+        if (loggedInUser.firstName = users[i].firstName){
+            users[i].wishlist.push(postCard--> this is our jobPosting)
+        }
+        
+        Alternatively: 
+        var postcard{
+            title: postCard.title
+            body: postCard.body
+            id: users[i].firstName
+            }--> fill this with the info of the postcard and the info relevant to add it to the user, i.e. a form of ID, then display like with our createHTML
+            wishlist.push(postcard)
+        }
+    }
+    
+}
+
+addToWishlist(postCards[0])
+
+console.log(users)
+
+Alternatively:
+we could create an array with an ID and a postcard to the wishlist, and then loop over the wishlist and then take the id of the logged in user and display that
+
+
+
+
+
+
+
+
+
+
+class User {
+    constructor(firstName, lastName){
+        this.firstName = firstName,
+        this.lastName = lastName,
+        this.wishList = []
+    }
+}
+
+class PostCard{
+    constructor(title, body){
+        this.title,
+        this.body
+    }
+}
+
+var me = new User('Marten','Sievers')
+var you = new User('Henrik','Thorn')
+
+var users = [me, you]
+
+consle.log(users)
+
+var post1 = new PostCard('Greeting from Copenhagen','bla')
+var post2 = new PostCard('Greeting from Lisbon','bla')
+
+var postCards = [post1,post2]
+
+console.log(postCards)
+
+
+
+function addToWishlist(item)){
+    
+    var loggedInUser = localStorage.getItem('loggedInUser') --> assumes that there is a key and value pair that matches loggedInUser otherwise there will be an error, we could tell it to redirect to login or sth if there is an error
+    console.log(loggedInUser)
+
+    for(i=0;i<users.length;i++){
+        if (loggedInUser.firstName = users[i].firstName){
+            users[i].wishlist.push(postCard--> this is our jobPosting)
+        }
+        
+        Alternatively: 
+        var postcard{
+            title: postCard.title
+            body: postCard.body
+            id: users[i].firstName
+            }--> fill this with the info of the postcard and the info relevant to add it to the user, i.e. a form of ID, then display like with our createHTML
+            wishlist.push(postcard)
+        }
+    }
+    
+}
+
+addToWIshlist(postCards[0])
+
+console.log(users) */
