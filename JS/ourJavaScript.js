@@ -9,17 +9,34 @@ function getUsers(list){
     var retList = [];
     for(var i=0; i<list.length; i++){
         if(list[i].objectType === "Freelancer"){
-            retList.push(new Freelancer(list[i].firstname, list[i].lastname, list[i].username, list[i].password, list[i].dateOfBirth, list[i].image, list[i].qualifications, list[i].description, list[i].favourites));
+            console.log(list[i].favourites)
+            retList.push(new Freelancer(list[i].firstname, list[i].lastname, list[i].username, list[i].password, list[i].dateOfBirth, list[i].image, list[i].qualifications, list[i].description));
+            console.log(list[i].favourites)
         }
         else{
             retList.push(new CompanyUser(list[i].firstname, list[i].lastname, list[i].company, list[i].username, list[i].password, list[i].image));
         }
     }
+    console.log(retList)
     return retList;
 }
 
 users = getUsers(JSON.parse(localStorage.getItem("users")));
 
+function updateFavourites(){
+    var updateFavourites = JSON.parse(localStorage.getItem("users"))
+    for (var i=0; i<updateFavourites.length; i++){
+        console.log(updateFavourites[i])
+        console.log(users[i])
+
+        users[i].favourites = updateFavourites[i].favourites
+
+        console.log(updateFavourites[i].favourites)
+        console.log(users[i].favourites)    
+        }
+}
+
+updateFavourites.call(0)
 
 // das wieder rausholen mit dem parse und dann das mit dem typeof definieren
 
@@ -66,6 +83,7 @@ function validate(){
 
 //Save the information for the user logged in. 
 //Push username from logged in User in the local storage 
+console.log(users[tempPos])
 localStorage.setItem("loggedInUser", JSON.stringify(users[tempPos]));
 
 }
