@@ -21,11 +21,14 @@ function getUsers(list){
     return retList;
 }
 
+//hier muss ich nochmal gucken, weswegen der companyuser überschrieben wird, evtl durch eine if-funktion, nur für freelancer
+
 users = getUsers(JSON.parse(localStorage.getItem("users")));
 
 function updateFavourites(){
     var updateFavourites = JSON.parse(localStorage.getItem("users"))
     for (var i=0; i<updateFavourites.length; i++){
+        if(updateFavourites[i].objectType == "Freelancer"){
         console.log(updateFavourites[i])
         console.log(users[i])
 
@@ -34,9 +37,11 @@ function updateFavourites(){
         console.log(updateFavourites[i].favourites)
         console.log(users[i].favourites)    
         }
+    }
 }
 
-updateFavourites.call(0)
+
+updateFavourites.call()
 
 // das wieder rausholen mit dem parse und dann das mit dem typeof definieren
 
