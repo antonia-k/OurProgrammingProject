@@ -16,7 +16,7 @@ function emptyJobPosting (){
   var emptyQualifications = document.getElementById("qualifications").value;
   var emptyLocation = document.getElementById("jobLocation").value;
   var emptyWebsite = document.getElementById("linkToWebsite").value;
-  var emptyContact = document.getElementById("linkToContact").value;
+  var emptyContact = document.getElementById("contact").value;
  
   //if not everything is filled out it should not redirect and not save local storage 
   if (emptyJobTitle == "" || emptyJobDescription == ""|| emptyQualifications == ""|| emptyLocation == ""|| emptyWebsite == ""|| emptyContact == ""){
@@ -29,9 +29,20 @@ function emptyJobPosting (){
     var qualifications = document.getElementById("qualifications").value;
     var jobLocation = document.getElementById("jobLocation").value;
     var linkToWebsite = document.getElementById("linkToWebsite").value;
-    var linkToContact = document.getElementById("linkToContact").value;
+    var contact = document.getElementById("contact").value;
+
+    if (jobLocation !== "Copenhagen"){
+      console.log("location not Copenhagen")
+      if (jobLocation !== "Aarhus"){
+        console.log("location not Aarhus")
+        if (jobLocation !== "Odense"){
+          console.log("location not Odense")
+          jobLocation = "Other"
+        }
+      }
+    }
   
-    jobs.push(new JobPosting(jobTitle, jobDescription, qualifications, jobLocation, linkToWebsite, linkToContact));
+    jobs.push(new JobPosting(jobTitle, jobDescription, qualifications, jobLocation, linkToWebsite, contact));
     console.log(jobs);
     localStorage.setItem('jobs',JSON.stringify(jobs));
   
@@ -47,9 +58,9 @@ function emptyJobPosting (){
   var qualifications = document.getElementById("qualifications").value;
   var jobLocation = document.getElementById("jobLocation").value;
   var linkToWebsite = document.getElementById("linkToWebsite").value;
-  var linkToContact = document.getElementById("linkToContact").value;
+  var contact = document.getElementById("contact").value;
 
-  jobs.push(new JobPosting(jobTitle, jobDescription, qualifications, jobLocation, linkToWebsite, linkToContact));
+  jobs.push(new JobPosting(jobTitle, jobDescription, qualifications, jobLocation, linkToWebsite, contact));
   console.log(jobs);
   localStorage.setItem('jobs',JSON.stringify(jobs));
     }
@@ -65,7 +76,7 @@ function createHTML(job){
                 "<p class='qualifications'>" + job.qualifications + "</p>"+
               // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
                "<p><button onclick='window.location.href=`" + job.linkToWebsite + "`'>Company Website</button></p>"+
-                "<p><button onclick='window.location.href=`" + job.linkToContact + "`'>Contact</button></p>"+
+                "<p><button onclick='window.location.href=`./HTML/contactPage.html`'>Contact</button></p>"+
                 "<p><button type='button' onclick='addToFavourites(this)' data-id-type='"+job.jobTitle+"'>Add to Favourites</button></p>"+
               "</div>";
 }
@@ -175,7 +186,7 @@ function filterFunction(checkbox){
 //creating an HTML from the JS objects
     function createHTML(){
 
-        var html = "<div class='card'><h1 class='jobtitle'>" + this.title + "</h1><p class='jobDescription'>" + this.jobDescription + "</p><p class='qualifications'>" + this.qualifications + "</p><p class='location' data-location-type=" + this.location + "></p><p><button onclick='window.location.href=`" + this.linkToWebsite + "`>Company Website</button></p><p><button onclick='window.location.href=`" + this.linkToContact + "`>Contact</button></p></div>";
+        var html = "<div class='card'><h1 class='jobtitle'>" + this.title + "</h1><p class='jobDescription'>" + this.jobDescription + "</p><p class='qualifications'>" + this.qualifications + "</p><p class='location' data-location-type=" + this.location + "></p><p><button onclick='window.location.href=`" + this.linkToWebsite + "`>Company Website</button></p><p><button onclick='window.location.href=`" + this.contact + "`>Contact</button></p></div>";
 
         return html;
     }

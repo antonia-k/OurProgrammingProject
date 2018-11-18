@@ -17,6 +17,13 @@
         </div>
 <!-- if we want to change our search we have to change from onkeyup to onchange-->
 
+<div>
+    <input type="checkbox" onclick="filterFunction(this)" checked=true data-location-type="Aarhus">Aarhus
+    <input type="checkbox" onclick="filterFunction(this)" checked=true data-location-type="Copenhagen">Copenhagen
+    <input type="checkbox" onclick="filterFunction(this)" checked=true data-location-type="Odense">Odense
+    <input type="checkbox" onclick="filterFunction(this)" checked=true data-location-type="Other">Other
+</div>
+
 <!--Divs for the different Job Profile Cards-->
 <div id="searchDivs" class="searchDivs">
    <!-- <div class="card">
@@ -67,11 +74,7 @@
 
 
 <!--filtering the cities by data-location-type-->
-<div>
-    <input type="checkbox" onclick="filterFunction(this)" checked=true data-location-type="Aarhus">Aarhus
-    <input type="checkbox" onclick="filterFunction(this)" checked=true data-location-type="Copenhagen">Copenhagen
-    <input type="checkbox" onclick="filterFunction(this)" checked=true data-location-type="Odense">Odense
-</div>
+
 
 <script src="./JS/classes.js"></script>
 <script src="./JS/data.js"></script>
