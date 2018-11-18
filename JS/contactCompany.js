@@ -1,15 +1,10 @@
-function setCompany(this){
-    localStorage.setItem("contactCompany", JSON.stringify(jobs[this]));
+var contactedCompany = JSON.parse(localStorage.getItem("contactedCompany"));
 
-}
-
-var jobs = JSON.parse(localStorage.getItem("jobs"));
-
-function createHTML(job){
+function createHTML(contactedCompany){
     return "<h1>Please send your request message</h1>"+
             "<ul>"+
                 "<li>"+
-                  "<label for='jobTitle'>Company Email Address:"+job.contact+"</label>"+
+                  "<label for='jobTitle'>Company Email Address:"+contactedCompany.contact+"</label>"+
                 "</li>"+
                 "<li>"+
                  "<label for='jobDescription'>Your Email Address:</label>"+
@@ -25,9 +20,8 @@ function createHTML(job){
 }
 
 var content = "";
-for(var i =0; i<jobs.length; i++){
-    content += createHTML(jobs[i]);
-}
+    content += createHTML(contactedCompany);
+
 
 document.getElementById('contactCompanyBox').innerHTML = content;
 
