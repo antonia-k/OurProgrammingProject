@@ -5,39 +5,31 @@ var jobs = JSON.parse(localStorage.getItem("jobs"));
 // Define the buttons for submitting the Jobs 
 var submit = document.getElementById('registerJobPost');
 
+
+var form = document.getElementById('jobPosting');                          //#
+if(form){
+form.addEventListener('submit', emptyJobPosting); 
+}
 // On "Click" validate input and push new user into array users
 if (submit == null){
   console.log('no submit button on page')
 }
 
 function emptyJobPosting (){
-  var emptyJobTitle = document.getElementById("jobTitle").value;
-  var emptyJobDescription = document.getElementById("jobDescription").value;
-  var emptyQualifications = document.getElementById("qualifications").value;
-  var emptyLocation = document.getElementById("jobLocation").value;
-  var emptyWebsite = document.getElementById("linkToWebsite").value;
-  var emptyContact = document.getElementById("linkToContact").value;
- 
-  //if not everything is filled out it should not redirect and not save local storage 
-  if (emptyJobTitle == "" || emptyJobDescription == ""|| emptyQualifications == ""|| emptyLocation == ""|| emptyWebsite == ""|| emptyContact == ""){
-      alert("Please fill out all fields");
-
-  }
-  else {
-    var jobTitle = document.getElementById("jobTitle").value;
-    var jobDescription = document.getElementById("jobDescription").value;
-    var qualifications = document.getElementById("qualifications").value;
-    var jobLocation = document.getElementById("jobLocation").value;
-    var linkToWebsite = document.getElementById("linkToWebsite").value;
-    var linkToContact = document.getElementById("linkToContact").value;
+  var jobTitle = document.getElementById("jobTitle").value;
+  var jobDescription = document.getElementById("jobDescription").value;
+  var qualifications = document.getElementById("qualifications").value;
+  var jobLocation = document.getElementById("jobLocation").value;
+  var linkToWebsite = document.getElementById("linkToWebsite").value;
+  var linkToContact = document.getElementById("linkToContact").value;
   
     jobs.push(new JobPosting(jobTitle, jobDescription, qualifications, jobLocation, linkToWebsite, linkToContact));
     console.log(jobs);
     localStorage.setItem('jobs',JSON.stringify(jobs));
   
-  window.location.href="./marketplace.html";
+  ;
 };
-}
+  
 //we must check if the pushing still works
 /*else {
   submit.addEventListener("click", function() {
@@ -56,7 +48,6 @@ function emptyJobPosting (){
   )
 }
 */
-
 //creating an HTML from the JS objects
 function createHTML(job){
   return "<div class='card' data-location-type=" + job.jobLocation + ">"+
