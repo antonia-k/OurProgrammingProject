@@ -35,14 +35,14 @@ class CompanyUser extends User{
 }
 
 class JobPosting{
-    constructor(title,description,qualifications,jobLocation,linkToWebsite,linkToContact){
+    constructor(title,description,qualifications,jobLocation,linkToWebsite,contact){
         this.jobTitle = title;
         this.jobDescription = description;
         this.qualifications = qualifications;
         this.jobLocation = jobLocation; 
         //this.image = image;
         this.linkToWebsite = linkToWebsite;
-        this.linkToContact = linkToContact;
+        this.contact = contact;
     }
   } 
 
