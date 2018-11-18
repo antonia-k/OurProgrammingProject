@@ -227,10 +227,13 @@ function addToFavourites(button){
 
     for(var i=0;i<users.length;i++){
         if (loggedInUser.username === users[i].username){
+          //ich glaube das hatte ich eingefügt, für wenn man am anfang anfängt und keine favourites hat, dann wird das hinzugefügt, die späteren sind für wenn schon etwas in den favourites vorhanden ist
           if (loggedInUser.favourites.length == 0){
             loggedInUser.favourites.push(button.getAttribute("data-id-type"));
             alert("The job has been added to your Favourites");
             users[i].favourites = loggedInUser.favourites;
+            localStorage.setItem("users", JSON.stringify(users));
+            localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
             return false;
           }else{
             loggedInUser.favourites = users[i].favourites
