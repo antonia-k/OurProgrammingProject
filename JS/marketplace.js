@@ -76,7 +76,7 @@ function createHTML(job){
                 "<p class='qualifications'>" + job.qualifications + "</p>"+
               // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
                "<p><button onclick='window.location.href=`" + job.linkToWebsite + "`'>Company Website</button></p>"+
-                "<p><button onclick='window.location.href=`./HTML/contactPage.html`'>Contact</button></p>"+
+                "<p><button onclick='setCompany(this)`'>Contact</button></p>"+
                 "<p><button type='button' onclick='addToFavourites(this)' data-id-type='"+job.jobTitle+"'>Add to Favourites</button></p>"+
               "</div>";
 }

@@ -1,18 +1,27 @@
-function contactCompany(){
-    console.log("works");
-    alert("Your message has been sent");
-    window.location.href="../marketplace.html";
+function setCompany(this){
+    localStorage.setItem("contactCompany", JSON.stringify(jobs[this]));
+
 }
 
+var jobs = JSON.parse(localStorage.getItem("jobs"));
+
 function createHTML(job){
-    return "<div class='card' data-location-type=" + job.jobLocation + ">"+
-                "<h1 class='jobtitle'>" + job.jobTitle + "</h1>"+
-                "<p class='jobDescription'>" + job.jobDescription + "</p>"+
-                "<p class='qualifications'>" + job.qualifications + "</p>"+
-               "<p><button onclick='window.location.href=`" + job.linkToWebsite + "`'>Company Website</button></p>"+
-                "<p><button onclick='window.location.href=`./HTML/contactPage.html`'>Contact</button></p>"+
-                "<p><button type='button' onclick='addToFavourites(this)' data-id-type='"+job.jobTitle+"'>Add to Favourites</button></p>"+
-              "</div>";
+    return "<h1>Please send your request message</h1>"+
+            "<ul>"+
+                "<li>"+
+                  "<label for='jobTitle'>Company Email Address:"+job.contact+"</label>"+
+                "</li>"+
+                "<li>"+
+                 "<label for='jobDescription'>Your Email Address:</label>"+
+                   "<input type='text' name='jobDescription' id='jobDescription' size='12'/>"+
+                "</li>"+
+                "<li>"+
+                "<label for='qualifications'>Write your Message:</label>"+
+                "<input type='text' name='qualifications' id='qualifications' size='50'/>"+
+                "</li>"+
+            "</ul>"+
+        "<input type='submit' value='Send message' id='contactCompany' button onclick='contactCompany()'>";
+
 }
 
 var content = "";
@@ -20,6 +29,10 @@ for(var i =0; i<jobs.length; i++){
     content += createHTML(jobs[i]);
 }
 
-document.getElementById('searchDivs').innerHTML = content;
+document.getElementById('contactCompanyBox').innerHTML = content;
 
+function contactCompany(){
+    console.log("works");
+    alert("Your message has been sent");
+    window.location.href="../marketplace.html";
 }
