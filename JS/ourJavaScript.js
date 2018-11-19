@@ -14,7 +14,7 @@ function getUsers(list){
             console.log(list[i].favourites)
         }
         else{
-            retList.push(new CompanyUser(list[i].firstname, list[i].lastname, list[i].username, list[i].password, list[i].company, list[i].image));
+            retList.push(new CompanyUser(list[i].firstname, list[i].lastname, list[i].username, list[i].password, list[i].company, list[i].image, list[i].description));
         }
     }
     console.log(retList)

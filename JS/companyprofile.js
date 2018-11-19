@@ -11,7 +11,7 @@ function createHTML(loggedInUser){
     "<p id='lastname'> Last name: " + loggedInUser.lastname + "</p>"+
     "<p id='company'> Company: " + loggedInUser.company + "</p>"+
     "<p id='image'> " + "<img src=" + loggedInUser.image + "/>" + "</p>"+
-
+    "<p id='description'> Description: " + loggedInUser.description + "</p>"+
 
   // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
   "</div>";
@@ -24,4 +24,6 @@ var content = "";
 
 
 //Display users at HTML - getELementByClassName because we refer to the userprofile which is a class. 
-document.getElementById('userProfile').innerHTML = content;
+document.getElementById('companyProfile').innerHTML = content;
+
+

@@ -27,10 +27,12 @@ class Freelancer extends User{
 };
 
 class CompanyUser extends User{
-    constructor(firstname, lastname, username, password, company, image){
+    constructor(firstname, lastname, username, password, company, image, description){
         super(firstname, lastname, username, password, image)
         this.company = company;
+        this.description = description;
         this.objectType = "CompanyUser";
+        
     }
 }
 
