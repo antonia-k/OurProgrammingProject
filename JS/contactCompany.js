@@ -1,6 +1,6 @@
 var contactedCompany = JSON.parse(localStorage.getItem("contactedCompany"));
 
-function createHTML(contactedCompany){
+function createHTML2(contactedCompany){
     return "<h1>Please send your request message</h1>"+
             "<ul>"+
                 "<li>"+
@@ -20,7 +20,7 @@ function createHTML(contactedCompany){
 }
 
 var content = "";
-    content += createHTML(contactedCompany);
+    content += createHTML2(contactedCompany);
 
 
 document.getElementById('contactCompanyBox').innerHTML = content;

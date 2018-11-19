@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+        <script>
+        //preveting page from loading if user not logged in
+        if (sessionStorage.getItem('username') ===null) {
+            window.location.href="./ourProject.htm"
+         }</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +18,7 @@
 <!--Header and Search Bar floating left-->
     <div class="float-left" style="width:49%; float: left;">
         <h1>Marketplace</h1>
-        <input type="text" id="jobInput" onkeyup="searchFunction()" placeholder="Search for jobs..">
+        <input type="text" id="jobInput" onchange="searchFunction()" placeholder="Search for jobs..">
         </div>
 <!-- if we want to change our search we have to change from onkeyup to onchange-->
 

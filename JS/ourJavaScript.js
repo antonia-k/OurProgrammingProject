@@ -21,7 +21,6 @@ function getUsers(list){
     return retList;
 }
 
-//hier muss ich nochmal gucken, weswegen der companyuser überschrieben wird, evtl durch eine if-funktion, nur für freelancer
 
 users = getUsers(JSON.parse(localStorage.getItem("users")));
 
@@ -61,10 +60,9 @@ function validate(){
             }
             alert("Login was successful");
             //redirects to Userprofile by checking subclasses 
-            // is no longer instanceof sondern type, weil wir das sonst mit dem ändern nicht machen können, es ist jetzt statisch abgespeichert was der type ist, weil der type sonst überschrieben wird, deshaöb können wir keine instanceof macehn
             if (users[i] instanceof Freelancer) {
                 window.location.href="./UserProfile.html";
-            }else if (users[i] instanceof CompanyUser) { //@Marina, will you take a look here, Anke 0808 can't log in :-) 
+            }else if (users[i] instanceof CompanyUser) { 
                 window.location.href="./companyProfile.html";
             };
             tempPos = i;
