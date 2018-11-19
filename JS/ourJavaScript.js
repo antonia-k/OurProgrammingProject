@@ -2,77 +2,46 @@
 //var login = document.getElementById('login');
 var attempt = 3;
 
-// Creating a class 
-// We create a user class, so we have an easy way to create users and further implement features at a later stage
-class User {
-    // The constructor for our class, which will allow us to create new objects of our class
-    constructor(firstname, lastname, username, password, image) {
-      this.firstname = firstname;
-      this.lastname = lastname;
-      this.username = username;
-      this.password = password;
-      this.image = image;
-    
-    }
-}
-
-//sub-classes - need to be specific, vary from superclass
-class freelancer extends User{
-    constructor(firstname, lastname, dateOfBirth, username, password, image, qualifications, description, favourites){
-        super(firstname, lastname, username, password, image);
-        // dateOfBirth is specific for freelancer
-        this.dateOfBirth = dateOfBirth;
-        this.qualifications = qualifications;
-        this.description = description;
-        // we must "hardcode" freelancer and company type, otherwise the extracting from local storage will overwrite the objecttype with the default value "object"
-        this.objectType = "freelancer";
-        this.favourites = favourites;
-    }
-}
-
-class companyUser extends User{
-    constructor(firstname, lastname, company, username, password, image){
-        super(firstname, lastname, username, password, image)
-        this.company = company;
-        this.objectType = "companyUser";
-    }
-}
-
-
-
 var users = null;
 
 function getUsers(list){
     // hier habe ich das, was ich aus dem local Storage hole als "list" definiert, "list" ist mein Array an Objekten, das ich aus dem localStorage geholt habe
     var retList = [];
     for(var i=0; i<list.length; i++){
-        if(list[i].objectType === "freelancer"){
-            retList.push(new freelancer(list[i].firstname, list[i].lastname, list[i].dateOfBirth, list[i].username, list[i].password, list[i].image, list[i].qualifications, list[i].description, list[i].favourites));
+        if(list[i].objectType === "Freelancer"){
+            console.log(list[i].favourites)
+            retList.push(new Freelancer(list[i].firstname, list[i].lastname, list[i].username, list[i].password, list[i].dateOfBirth, list[i].image, list[i].qualifications, list[i].description));
+            console.log(list[i].favourites)
         }
         else{
-            retList.push(new companyUser(list[i].firstname, list[i].lastname, list[i].company, list[i].username, list[i].password, list[i].image));
+            retList.push(new CompanyUser(list[i].firstname, list[i].lastname, list[i].username, list[i].password, list[i].company, list[i].image, list[i].description));
         }
     }
+    console.log(retList)
     return retList;
 }
 
+//hier muss ich nochmal gucken, weswegen der companyuser überschrieben wird, evtl durch eine if-funktion, nur für freelancer
 
-if(localStorage.getItem("UserInfo") === null){    
-    // Initialize an empty array
-    users = [];
+users = getUsers(JSON.parse(localStorage.getItem("users")));
 
-    // Fill it up with a few users
-    users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/mark.jpg"," "," ", ["banana","unicorn"]));
-    users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/dog.png"," "," ",["banana","unicorn"]));
-    users.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","./images/Search.png"));
+function updateFavourites(){
+    var updateFavourites = JSON.parse(localStorage.getItem("users"))
+    for (var i=0; i<updateFavourites.length; i++){
+        if(updateFavourites[i].objectType == "Freelancer"){
+        console.log(updateFavourites[i])
+        console.log(users[i])
 
-    //store user information 
-    let users_serialized = JSON.stringify(users);
-    localStorage.setItem("UserInfo", users_serialized);
-}else{
-    users = getUsers(JSON.parse(localStorage.getItem("UserInfo")));
+        users[i].favourites = updateFavourites[i].favourites
+
+        console.log(updateFavourites[i].favourites)
+        console.log(users[i].favourites)    
+        }
+    }
 }
 
+
+updateFavourites.call()
 
 // das wieder rausholen mit dem parse und dann das mit dem typeof definieren
 
@@ -93,9 +62,9 @@ function validate(){
             alert("Login was successful");
             //redirects to Userprofile by checking subclasses 
             // is no longer instanceof sondern type, weil wir das sonst mit dem ändern nicht machen können, es ist jetzt statisch abgespeichert was der type ist, weil der type sonst überschrieben wird, deshaöb können wir keine instanceof macehn
-            if (users[i] instanceof freelancer) {
+            if (users[i] instanceof Freelancer) {
                 window.location.href="./UserProfile.html";
-            }else if (users[i] instanceof companyUser) { //@Marina, will you take a look here, Anke 0808 can't log in :-) 
+            }else if (users[i] instanceof CompanyUser) { //@Marina, will you take a look here, Anke 0808 can't log in :-) 
                 window.location.href="./companyProfile.html";
             };
             tempPos = i;
@@ -119,6 +88,7 @@ function validate(){
 
 //Save the information for the user logged in. 
 //Push username from logged in User in the local storage 
+console.log(users[tempPos])
 localStorage.setItem("loggedInUser", JSON.stringify(users[tempPos]));
 
 }
@@ -170,7 +140,7 @@ function reset(){
     }
 }
 
-console.log(JSON.parse(localStorage.getItem("UserInfo")));
+console.log(JSON.parse(localStorage.getItem("users")));
 
 
 

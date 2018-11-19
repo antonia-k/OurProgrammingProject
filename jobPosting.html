@@ -8,36 +8,39 @@
     </head>
     <body>
         <h1>Job posting</h1>
+        <form id="jobPosting" action="./marketplace.html">
         <ul>
             <li>
                 <label for="jobTitle">Job Title:</label>
-                <input type="text" name="jobTitle" id="jobTitle" size="12"/>
+                <input type="text" name="jobTitle" id="jobTitle" size="12" required/>
             </li>
             <li>
                 <label for="jobDescription">Job Description:</label>
-                <input type="text" name="jobDescription" id="jobDescription" size="12"/>
+                <input type="text" name="jobDescription" id="jobDescription" size="12" required/>
             </li>
             <li>
                 <label for="qualifications">Qualifications:</label>
-                <input type="text" name="qualifications" id="qualifications"size="50" />
+                <input type="text" name="qualifications" id="qualifications"size="50" required/>
             </li>
             <li>
                 <label for="jobLocation">Location:</label>
-                <input type="text" name="jobLocation" id="jobLocation"size="50" />
+                <input type="text" name="jobLocation" id="jobLocation"size="50" required/>
             </li>
             <li>
                 <label for="linkToWebsite">Link to Website:</label>
-                <input type="text" name="linkToWebsite" id="linkToWebsite" size="50" />
+                <input type="url" name="linkToWebsite" id="linkToWebsite" placeholder="Company Website" pattern="https://.*" size="50" required/>
             </li>
             <li>
                 <label for="linkToContact">Link to Contact:</label>
-                <input type="text" name="linkToContact" id="linkToContact" size="50" />
+                <input type="email" name="linkToContact" id="contact" placeholder="Contact Email" size="50" required/>
             </li>
         </ul>
-        <input type="submit" value="Post job" id="registerJobPost" button onclick="emptyJobPosting()"/>
-        
+        <input type="submit" value="Post job" id="registerJobPost" button />
+        </form>
 <!--button onclick="window.location.href='./marketplace.html'"-->
 
+        <script src="./JS/classes.js"></script>
+        <script src="./JS/data.js"></script>
         <script src="./JS/marketplace.js"></script>
        <!-- <script src="./JS/Noempty.js"></script> -->
     </body>

@@ -22,81 +22,34 @@
 };
 
 //sub-classes
-class freelancer extends User{
+class Freelancer extends User{
     constructor(firstname, lastname, dateOfBirth, username, password, image){
         super(firstname, lastname, username, password, image);
-    // dateOfBirth is specific for freelancer
+    // dateOfBirth is specific for Freelancer
     this.dateOfBirth = dateOfBirth;
 }};
-class companyUser extends User{
+class CompanyUser extends User{
     constructor(firstname, lastname, company, username, password, image){
         super(firstname, lastname, username, password, image)
     this.company = company;
 }};
 */
-    
 
 
-// Creating a class 
-// We create a user class, so we have an easy way to create users and further implement features at a later stage
-class User {
-    // The constructor for our class, which will allow us to create new objects of our class
-    constructor(firstname, lastname, username, password, image) {
-      this.firstname = firstname;
-      this.lastname = lastname;
-      this.username = username;
-      this.password = password;
-      this.image = image;
-    
-
-    }
-
-   //createHTML(){
-       //return "<td> <img height='65px' src='" + this.firstname + "'></td><td>" + this.lastname + "</td><td>" + this.dateOfBirth + "</td><td>" + this.username + "</td><td>" + this.password + "</td><td>" + this.image + "</td>";
-
-};
-
-//sub-classes
-class freelancer extends User{
-    constructor(firstname, lastname, username, dateOfBirth, password, image, qualifications, description){
+/*    constructor(firstname, lastname, username, dateOfBirth, password, image, qualifications, description){
         super(firstname, lastname, username, password, image);
-        // dateOfBirth is specific for freelancer
-        this.dateOfBirth = dateOfBirth;
-        this.qualifications = qualifications;
-        this.description = description;
-        this.objectType = "freelancer";
-        
+        // dateOfBirth is specific for Freelancer
+        this.dateOfBirth = dateOfBirth,
+        this.qualifications = qualifications,
+        this.description = description,
+        this.objectType = "Freelancer",
+        this.favourites = []
     }
-}
-
-class companyUser extends User{
-    constructor(firstname, lastname, company, username, password, image){
-        super(firstname, lastname, username, password, image)
-        this.company = company;
-        this.objectType = "companyUser";
-    }
-}
-
-
+*/
 
 var users = JSON.parse(localStorage.getItem("users"));
 
 var favourites = [];
-
-if(users === null){ 
-    
-// Initialize an empty array***
-users = [];
-
-
-// Fill it up with a few users
-users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/Dame.jpg"," "," "));
-users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/mark.jpg"," "," "));
-users.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","./images/Maine_photo.png"));
-}
-// 
-
-
 
 //Get username from loggedInUser out of the index.js file (in the logIn Loop)
 var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
@@ -146,7 +99,46 @@ var content = "";
 document.getElementById('userProfile').innerHTML = content;
 
 
+/*
 
+//Add Qualification tap 
+const form = document.querySelector('form');
+const ul = document.querySelector('ul');
+const button = document.querySelector('button');
+const input = document.getElementById('item');
+let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+
+localStorage.setItem('items', JSON.stringify(itemsArray));
+const data = JSON.parse(localStorage.getItem('items'));
+
+const liMaker = (text) => {
+  const li = document.createElement('li');
+  li.textContent = text;
+  ul.appendChild(li);
+}
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  itemsArray.push(input.value);
+  localStorage.setItem('items', JSON.stringify(itemsArray));
+  liMaker(input.value);
+  input.value = "";
+});
+
+data.forEach(item => {
+  liMaker(item);
+});
+
+button.addEventListener('click', function () {
+  localStorage.clear();
+  while (ul.firstChild) {
+    ul.removeChild(ul.firstChild);
+  }
+});
+
+
+*/
 
 /*
 

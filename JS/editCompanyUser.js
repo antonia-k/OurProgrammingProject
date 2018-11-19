@@ -8,16 +8,8 @@ function saveChanges() {
     if (document.getElementById("lastName").value == ""){
         console.log("no input")
     }else{
-    loggedInUser.lastname = document.getElementById("lastName").value;}
-    if (document.getElementById("dateOfBirth").value == ""){
-        console.log("no input")
-    }else{
-    loggedInUser.dateOfBirth = document.getElementById("dateOfBirth").value;}
-    if (document.getElementById("qualifications").value == ""){
-        console.log("no input")
-    }else{
-    loggedInUser.qualifications = document.getElementById("qualifications").value;}
-    if (document.getElementById("description").value == ""){
+    loggedInUser.company = document.getElementById("company").value;}
+    if (document.getElementById("company").value == ""){
         console.log("no input")
     }else{
     loggedInUser.description = document.getElementById("description").value;}
@@ -44,7 +36,7 @@ function saveChanges() {
     //Return true to jump out of the function, since we now have all we need.
     //return true;
 
-    window.location.href="./UserProfile.html";
+    window.location.href='./companyProfile.html';
 
 }
 
