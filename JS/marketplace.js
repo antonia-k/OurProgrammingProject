@@ -48,7 +48,7 @@ return "<div class='card' data-location-type=" + job.jobLocation + ">"+
             "<p class='qualifications'>" + job.qualifications + "</p>"+
           // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
            "<p><button onclick='window.location.href=`" + job.linkToWebsite + "`'>Company Website</button></p>"+
-            "<p><button type='button' onclick='setCompany("+job.jobTitle+")' data-name-type='"+job.jobTitle+"'>Contact</button></p>"+
+            "<p><button type='button' onclick='setCompany("+job.jobTitle+")'>Contact</button></p>"+
             "<p><button type='button' onclick='addToFavourites(this)' data-id-type='"+job.jobTitle+"'>Add to Favourites</button></p>"+
           "</div>";
 }

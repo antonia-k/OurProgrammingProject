@@ -4,7 +4,7 @@
 
 var users = [
     new Freelancer("Marina", "Mehling", "mame", "1010", "10.10.2010", "./images/marina2.jpg"," "," ",""),
-    new Freelancer("Stinne", "Andersson", "stan", "0909", "09.09.2009", "./images/dog.png"," "," ",""),
+    new Freelancer("Stinne", "Andersson", "stan", "0909", "09.09.2009", "./images/stinne.jpg"," "," ",""),
     new CompanyUser("Antonia", "Kellerwessel", "anke", "0808", "Goodiebox", "./images/logo-fb.jpg", " ")
 ];
 
