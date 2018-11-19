@@ -58,17 +58,6 @@ class User {
 
 //sub-classes
 class freelancer extends User{
-<<<<<<< HEAD
-    constructor(firstname, lastname, username, dateOfBirth, password, image, qualifications, description, item){
-        super(firstname, lastname, username, password, image, item);
-    // dateOfBirth is specific for freelancer
-    this.dateOfBirth = dateOfBirth;
-    this.qualifications = qualifications;
-    this.description = description;
-    this.item = item;
-    
-}};
-=======
     constructor(firstname, lastname, username, dateOfBirth, password, image, qualifications, description){
         super(firstname, lastname, username, password, image);
         // dateOfBirth is specific for freelancer
@@ -80,7 +69,6 @@ class freelancer extends User{
     }
 }
 
->>>>>>> 6e5f9939afb0d134cb74e6d40aff9a0c88568857
 class companyUser extends User{
     constructor(firstname, lastname, company, username, password, image){
         super(firstname, lastname, username, password, image)
@@ -95,22 +83,16 @@ var users = JSON.parse(localStorage.getItem("users"));
 
 var favourites = [];
 
-if(users === null){
+if(users === null){ 
     
 // Initialize an empty array***
 users = [];
 
 
 // Fill it up with a few users
-<<<<<<< HEAD
-users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/Dame.jpg",));
-users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/mark.jpg"));
-users.push(new companyUser("Antonia", "Kellerwessel", "08.08.2008", "anke", "0808","./images/Search.png"));
-=======
 users.push(new freelancer("Marina", "Mehling", "10.10.2010", "mame", "1010","./images/Dame.jpg"," "," "));
 users.push(new freelancer("Stinne", "Andersson", "09.09.2009", "stan", "0909","./images/mark.jpg"," "," "));
-users.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","./images/Search.png"));
->>>>>>> 6e5f9939afb0d134cb74e6d40aff9a0c88568857
+users.push(new companyUser("Antonia", "Kellerwessel", "Goodiebox", "anke", "0808","./images/Maine_photo.png"));
 }
 // 
 
@@ -162,45 +144,6 @@ var content = "";
 
 //Display users at HTML - getELementByClassName because we refer to the userprofile which is a class. 
 document.getElementById('userProfile').innerHTML = content;
-
-
-
-
-//Add Qualification tap 
-const form = document.querySelector('form');
-const ul = document.querySelector('ul');
-const button = document.querySelector('button');
-const input = document.getElementById('item');
-let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
-
-localStorage.setItem('items', JSON.stringify(itemsArray));
-const data = JSON.parse(localStorage.getItem('items'));
-
-const liMaker = (text) => {
-  const li = document.createElement('li');
-  li.textContent = text;
-  ul.appendChild(li);
-}
-
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  itemsArray.push(input.value);
-  localStorage.setItem('items', JSON.stringify(itemsArray));
-  liMaker(input.value);
-  input.value = "";
-});
-
-data.forEach(item => {
-  liMaker(item);
-});
-
-button.addEventListener('click', function () {
-  localStorage.clear();
-  while (ul.firstChild) {
-    ul.removeChild(ul.firstChild);
-  }
-});
 
 
 
