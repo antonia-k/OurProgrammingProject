@@ -10,9 +10,9 @@ function createHTML(loggedInUser){
     "<p id='firstname'> First name: " + loggedInUser.firstname + "<p>"+
     "<p id='lastname'> Last name: " + loggedInUser.lastname + "</p>"+
     "<p id='company'> Company: " + loggedInUser.company + "</p>"+
-    "<p id='image'> " + "<img src=" + loggedInUser.image + "/>" + "</p>"+
     "<p id='description'> Description: " + loggedInUser.description + "</p>"+
-
+    "<p id='image'> " + "<img src=" + loggedInUser.image + " />" + "</p>"+
+    
   // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
   "</div>";
 }
