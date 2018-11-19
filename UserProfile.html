@@ -27,11 +27,6 @@
 
     <input type="submit" value="Edit profile" id="editProfile" button onclick="window.location.href='./editProfile.html'"/>
 
-
-    <p>
-     <div class="tags-input" data-name="tags-input"> </div>    
-        
-     </p></center>
      
     <button type="button" onclick="window.location.href='./favouritesList.html'">See your Favourites</button><br>
     <button type="button" onclick="logout()">Logout</button> 
@@ -48,6 +43,7 @@
                 //preveting page from loading if user not logged in
                 function logout() {
                 sessionStorage.removeItem('username');
+                localStorage.clear("loggedInUser");
                 window.location.href='./ourProject.htm'
                                         }</script>
 <script src="./JS/classes.js"></script>

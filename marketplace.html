@@ -18,7 +18,7 @@
 <!--Header and Search Bar floating left-->
     <div class="float-left" style="width:49%; float: left;">
         <h1>Marketplace</h1>
-        <input type="text" id="jobInput" onchange="searchFunction()" placeholder="Search for jobs..">
+        <input type="text" id="jobInput" onkeyup="searchFunction()" placeholder="Search for jobs..">
         </div>
 <!-- if we want to change our search we have to change from onkeyup to onchange-->
 
@@ -31,55 +31,7 @@
 
 <!--Divs for the different Job Profile Cards-->
 <div id="searchDivs" class="searchDivs">
-   <!-- <div class="card">
-        <h1 class="jobTitle">Front-End Developer at Orsted</h1>
-             <p class="jobDescription">Designing a Website for the sale of energy</p>
-             <p class="qualifications">CSS, HTML, JavaScript</p>
-             <p class="location" data-location-type="Copenhagen"></p>
-             <img src="https://upload.wikimedia.org/wikipedia/en/f/fe/%C3%98rsted_logo.svg" alt="orstedLogo" style="width:10%">
-
-            <p><button onclick="window.location.href='https://orsted.com/en/About-us'">Company Website</button></p>
-            <p><button onclick="window.location.href='https://orsted.com/en/About-us'">Contact</button></p>
-    </div>
-
-    <div class="card">
-        <h1 class="jobTitle">Back-End Developer at E.ON</h1>
-            <p class="jobDescription">Developing Database for Energy sources</p>
-            <p class="qualifications">Java, Ruby, Python</p>
-            <p class="location" data-location-type="Aarhus"></p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/EON_Logo.svg" alt="eonLogo" style="width:10%">
-
-            <p><button onclick="window.location.href='https://www.eon.dk/privat.html'">Company Website</button></p>
-            <p><button onclick="window.location.href='https://www.eon.dk/privat.html'">Contact</button></p>
-    </div>
-
-    <div class="card">
-        <h1 class="jobTitle">Web Designer for IBM</h1>
-            <p class="jobDescription">Designing a Pretty Website for IBM</p>
-            <p class="qualifications">Photoshop</p>
-            <p class="location" data-location-type="Odense"></p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="orstedLogo" style="width:10%">
-
-            <p><button onclick="window.location.href='https://www.ibm.com/dk-da/'">Company Website</button></p>
-            <p><button onclick="window.location.href='https://www.ibm.com/dk-da/'">Contact</button></p>
-    </div>
-
-    <div class="card">
-        <h1 class="jobTitle">Back-End Developer at REWE</h1>
-            <p class="jobDescription">Developing Database for Food Shopping</p>
-            <p class="qualifications">Java, Ruby, Python</p>
-            <p class="location" data-location-type="Copenhagen"></p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Logo_REWE.svg" alt="reweLogo" style="width:10%">
-
-            <p><button onclick="window.location.href='https://www.rewe.de/'">Company Website</button></p>
-            <p><button onclick="window.location.href='https://www.rewe.de/'">Contact</button></p>
-    </div>
-    -->
 </div>
-
-
-<!--filtering the cities by data-location-type-->
-
 
 <script src="./JS/classes.js"></script>
 <script src="./JS/data.js"></script>
