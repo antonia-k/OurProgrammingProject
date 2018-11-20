@@ -8,9 +8,14 @@ function saveChanges() {
     if (document.getElementById("lastName").value == ""){
         console.log("no input")
     }else{
+        loggedInUser.lastname = document.getElementById("lastName").value;}
+        if (document.getElementById("company").value == ""){
+            console.log("no input")
+    }else{
     loggedInUser.company = document.getElementById("company").value;}
-    if (document.getElementById("company").value == ""){
+    if (document.getElementById("description").value == ""){
         console.log("no input")
+    
     }else{
     loggedInUser.description = document.getElementById("description").value;}
 
@@ -36,7 +41,7 @@ function saveChanges() {
     //Return true to jump out of the function, since we now have all we need.
     //return true;
 
-    window.location.href='./companyProfile.html';
+    window.location.href="../companyProfile.html";
 
 }
 
