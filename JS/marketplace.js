@@ -49,8 +49,6 @@ return "<div class='card' data-location-type=" + job.jobLocation + ">"+
            "<p><button onclick='window.location.href=`" + job.linkToWebsite + "`'>Company Website</button></p>"+
            "<p><button type='button' onclick='setCompany(`"+job.jobTitle+"`)'>Contact</button></p>"+
            "<p><button type='button' onclick='addToFavourites(`"+job.jobTitle+"`)'>Add to Favourites</button></p>"+
-            "<p><button type='button' onclick='setCompany("+job.jobTitle+")'>Contact</button></p>"+
-            "<p><button type='button' onclick='addToFavourites(this)' data-id-type='"+job.jobTitle+"'>Add to Favourites</button></p>"+
           "</div>";
 }
 //here is the error: cannot set.innerHTML property of null, make some form of if function to fix it, s.o., do we need to fix it at all??
