@@ -14,13 +14,17 @@
     
 </head>
 <body>
-        
+<!--redirects back to profile -->    
+<button type="button" onclick="logout()">Logout</button>    
+<button type="button" onclick="backToProfile()">Back to Profile</button> 
+   
 <!--Header and Search Bar floating left-->
     <div class="float-left" style="width:49%; float: left;">
         <h1>Marketplace</h1>
         <input type="text" id="jobInput" onkeyup="searchFunction()" placeholder="Search for jobs..">
         </div>
 <!-- if we want to change our search we have to change from onkeyup to onchange-->
+<br>
 
 <div>
     <input type="checkbox" onclick="filterFunction(this)" checked=true data-location-type="Aarhus">Aarhus

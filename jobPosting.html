@@ -2,7 +2,7 @@
 <script>
         //preveting page from loading if user not logged in
         if (sessionStorage.getItem('username') ===null) {
-                window.location.href="./ourProject.htm"
+                window.location.href="../ourProject.htm"
         }</script>
 <html lang="en">
     <head>
@@ -41,7 +41,12 @@
             </li>
         </ul>
         <input type="submit" value="Post job" id="registerJobPost" button />
+        <br>
+        <button type="button" onclick="backToProfile()">Back to Profile</button> 
+        <br>
+        <button type="button" onclick="logout()">Logout</button>
         </form>
+        
 <!--button onclick="window.location.href='./marketplace.html'"-->
 
         <script src="./JS/classes.js"></script>

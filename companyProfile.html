@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<script>
+        //preveting page from loading if user not logged in
+        if (sessionStorage.getItem('username') ===null) {
+            window.location.href="./ourProject.htm"
+        }</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,12 +30,13 @@
 
          <a href="./jobPosting.html" target="_blank"><img src="./images/Search.png"></a>
         
-
-        
         </div>
 
  <input type="submit" value="Edit profile" id="editProfile" button onclick="window.location.href='./HTML/editCompanyUser.html'"/>
-<script src="./JS/classes.js"></script>
+ <button type="button" onclick="window.location.href='./marketplace.html'">Marketplace</button> 
+ <br>
+ <button type="button" onclick="logout()">Logout</button>
+ <script src="./JS/classes.js"></script>
 <script src="./JS/data.js"></script>
 <script src="./JS/companyprofile.js"></script>
     

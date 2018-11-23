@@ -29,6 +29,7 @@
 
      
     <button type="button" onclick="window.location.href='./favouritesList.html'">See your Favourites</button><br>
+    
     <button type="button" onclick="logout()">Logout</button> 
     <br>
      <br></br>
@@ -39,13 +40,7 @@
          <a href="./marketplace.html" target="_blank"><img src="./images/Search.png"></a>
         
         </div>
-        <script>
-                //preveting page from loading if user not logged in
-                function logout() {
-                sessionStorage.removeItem('username');
-                localStorage.clear("loggedInUser");
-                window.location.href='./ourProject.htm'
-                                        }</script>
+        
 <script src="./JS/classes.js"></script>
 <script src="./JS/data.js"></script>
 <script src="./JS/userprofile.js"></script>

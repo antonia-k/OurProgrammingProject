@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<script>
+    //preveting page from loading if user not logged in
+    if (sessionStorage.getItem('username') ===null) {
+            window.location.href="./ourProject.htm"
+    }</script>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,14 +32,13 @@
             </li>
         </ul>
         <input type="submit" value="Save changes" id="saveChanges" button onclick="saveChanges()"/>
-        
+        <button type="button" onclick="logout()">Logout</button>
         <!--button onclick="window.location.href='./marketplace.html'"-->
         
                 <script src="../JS/classes.js"></script>
                 <script src="../JS/data.js"></script>
                 <script src="../JS/ourJavaScript.js"></script>
                 <script src="../JS/editCompanyUser.js"></script>
-       <!-- <script src="./JS/Noempty.js"></script> -->
     </body>
 </html>
 
