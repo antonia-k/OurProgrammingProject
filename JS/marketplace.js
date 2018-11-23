@@ -29,7 +29,7 @@ function emptyJobPosting (){
       console.log("location not Aarhus")
       if (jobLocation !== "Odense"){
         console.log("location not Odense")
-        jobLocation = "Other"
+        jobLocation = "Other";
       }
     }
   };
@@ -46,10 +46,9 @@ return "<div class='card' data-location-type=" + job.jobLocation + ">"+
             "<h1 class='jobtitle'>" + job.jobTitle + "</h1>"+
             "<p class='jobDescription'>" + job.jobDescription + "</p>"+
             "<p class='qualifications'>" + job.qualifications + "</p>"+
-          // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
            "<p><button onclick='window.location.href=`" + job.linkToWebsite + "`'>Company Website</button></p>"+
-            "<p><button type='button' onclick='setCompany("+job.jobTitle+")'>Contact</button></p>"+
-            "<p><button type='button' onclick='addToFavourites(this)' data-id-type='"+job.jobTitle+"'>Add to Favourites</button></p>"+
+           "<p><button type='button' onclick='setCompany(`"+job.jobTitle+"`)'>Contact</button></p>"+
+           "<p><button type='button' onclick='addToFavourites(`"+job.jobTitle+"`)'>Add to Favourites</button></p>"+
           "</div>";
 }
 //here is the error: cannot set.innerHTML property of null, make some form of if function to fix it, s.o., do we need to fix it at all??
@@ -107,14 +106,14 @@ var users = JSON.parse(localStorage.getItem("users"));
 
 var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-function addToFavourites(button){
+function addToFavourites(jobTitle){
 console.log('works');
 
 for(var i=0;i<users.length;i++){
     if (loggedInUser.username === users[i].username){
       //ich glaube das hatte ich eingefügt, für wenn man am anfang anfängt und keine favourites hat, dann wird das hinzugefügt, die späteren sind für wenn schon etwas in den favourites vorhanden ist
       if (loggedInUser.favourites.length == 0){
-        loggedInUser.favourites.push(button.getAttribute("data-id-type"));
+        loggedInUser.favourites.push(jobTitle);
         alert("The job has been added to your Favourites");
         users[i].favourites = loggedInUser.favourites;
         localStorage.setItem("users", JSON.stringify(users));
@@ -124,7 +123,7 @@ for(var i=0;i<users.length;i++){
         loggedInUser.favourites = users[i].favourites
         //loopen durch einen for loop for(i=0;i<users[i].favourites.length;i++) --> mit gelöschtem User auf null, ist nichts hinterlegt, daher ist .length gleich 0 unde er looped nocht, think about how to solve this!, s.o.
         for(i=0;i<loggedInUser.favourites.length;i++){
-          if(loggedInUser.favourites.includes(button.getAttribute("data-id-type"))){
+          if(loggedInUser.favourites.includes(jobTitle)){
             alert('Job already in Favourites')
             return false;
           }
@@ -132,7 +131,7 @@ for(var i=0;i<users.length;i++){
           //hier muss ich vom local storage holen und zu der Liste hinzufügen, weil der sonst jedes Mal wieder bei null anfängt und die überschreibt
           //schauen, ob ich favourites als this.favourites = favourites definiere und dann sage: var favourites = [] und dann this.favourites = favourites, also das array pushen und dann das array rausziehenimmer wieder, adaptieren und wieder reinpushen
           else{
-            loggedInUser.favourites.push(button.getAttribute("data-id-type"));
+            loggedInUser.favourites.push(jobTitle);
             alert("The job has been added to your Favourites");
             localStorage.setItem("users", JSON.stringify(users));
             localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
@@ -158,8 +157,8 @@ if (jobs[i].jobTitle == jobTitle){
 localStorage.setItem("contactedCompany", JSON.stringify(jobs[i]));
 console.log('works');
 var contactedCompany = JSON.parse(localStorage.getItem("contactedCompany"));
-console.log(contactedCompany)
+console.log(contactedCompany);
 window.location.href="./HTML/contactPage.html";
+    }
   }
 }
-};
