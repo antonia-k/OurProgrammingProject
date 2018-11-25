@@ -1,4 +1,4 @@
-var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
+var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) //if we would have structured this differently so editing would be at the userprofile - would we then need this here 
 
 function saveChanges() {
     if (document.getElementById("firstName").value == ""){
@@ -20,7 +20,7 @@ function saveChanges() {
     loggedInUser.description = document.getElementById("description").value;}
 
  //update changes of user in users array
-    // Loop over jobs array to find the object with the same username and set it to loggedInUser
+    // Loop over user array to find the object with the same username and set it to loggedInUser
     for(var i = 0; i < users.length; i++){
         if(loggedInUser.username === users[i].username){
             users[i] = loggedInUser;

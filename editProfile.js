@@ -48,3 +48,6 @@ function saveChanges() {
 
 }
 
+function newElement()
+
+document.createElement
