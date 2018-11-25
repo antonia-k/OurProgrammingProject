@@ -27,19 +27,16 @@ if(localStorage.getItem('jobs') === null){
 //preveting page from loading if user not logged in
 function logout() {
     sessionStorage.removeItem('username');
-    localStorage.clear("loggedInUser");
+    //localStorage.clear("loggedInUser");
     window.location.href='./ourProject.htm';
 };
 
 //button for redirection from marketplace to profile
 function backToProfile(){
-    var actUser = sessionStorage.getItem('username');
-    for (i = 0; i > users.length; i++ ) {
-        if (users[i].username == actUser) {
-            if(users[i].objectType == Freelancer)
+        if (loggedInUser.objectType == "Freelancer") {
             window.location.href="./UserProfile.html";
         }else { 
             window.location.href="./companyProfile.html";
         };
-  }}
+  }
 
