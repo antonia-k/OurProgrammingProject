@@ -1,5 +1,7 @@
-var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) //if we would have structured this differently so editing would be at the userprofile - would we then need this here 
+//the loggedInUser is extracted from localStorage
+var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) 
 
+//function to save the changes to the loggedInUser and the users in localStorage, but does not overwrite previous contents if there are no input values in the input fields
 function saveChanges() {
     if (document.getElementById("firstName").value == ""){
         console.log("no input")
@@ -27,19 +29,14 @@ function saveChanges() {
         }
     } 
 
-//store updated users array in local storage, make sure keyName is always String!
-    //keyName --> you need it to recall it later!
+//store updated users array in local storage
     localStorage.setItem("users", JSON.stringify(users));
 
-    //store updated loggedInUser object in local storage, make sure keyName is always String! 
-    //keyName --> you need it to recall it later!
+//store updated loggedInUser object in local storage
     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
 
-    //Show message in result Span, to user can see that changes are saved.
+//Show alertso the user can see that changes are saved.
     alert("Your changes have been saved!");
-
-    //Return true to jump out of the function, since we now have all we need.
-    //return true;
 
     window.location.href="../companyProfile.html";
 

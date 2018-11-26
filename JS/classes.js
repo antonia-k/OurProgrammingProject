@@ -42,7 +42,6 @@ class JobPosting{
         this.jobDescription = description;
         this.qualifications = qualifications;
         this.jobLocation = jobLocation; 
-        //this.image = image;
         this.linkToWebsite = linkToWebsite;
         this.contact = contact;
     }

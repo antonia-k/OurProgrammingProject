@@ -3,9 +3,9 @@
 //loggedInUser
 
 var users = [
-    new Freelancer("Marina", "Mehling", "mame", "1010", "10.10.2010", "./images/marina2.jpg"," "," ",""),
-    new Freelancer("Stinne", "Andersson", "stan", "0909", "09.09.2009", "./images/stinne.jpg"," "," ",""),
-    new CompanyUser("Antonia", "Kellerwessel", "anke", "0808", "Goodiebox", "./images/logo-fb.jpg", " ")
+    new Freelancer("Marina", "Mehling", "mame", "1010", "10.10.2010", "./images/marina.jpeg"," "," ",""),
+    new Freelancer("Stinne", "Andersson", "stan", "0909", "09.09.2009", "./images/stinne.jpeg"," "," ",""),
+    new CompanyUser("Antonia", "Kellerwessel", "anke", "0808", "Goodiebox", "./images/antonia.jpeg", " ")
 ];
 
 var jobs = [
@@ -24,7 +24,7 @@ if(localStorage.getItem('jobs') === null){
 }
 
 
-//preveting page from loading if user not logged in
+//preveting page from loading if user is not logged in
 function logout() {
     sessionStorage.removeItem('username');
     //localStorage.clear("loggedInUser");

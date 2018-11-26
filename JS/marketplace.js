@@ -1,10 +1,8 @@
-//var jobs = JSON.parse(localStorage.getItem("jobs"));
-
+//extract jobs from localStorage
 var jobs = JSON.parse(localStorage.getItem("jobs"));
 
 // Define the buttons for submitting the Jobs 
 var submit = document.getElementById('registerJobPost');
-
 
 var form = document.getElementById('jobPosting');                     
 if(form){
@@ -15,6 +13,7 @@ if (submit == null){
   console.log('no submit button on page');
 }
 
+//prevent empty jobs from being posted
 function emptyJobPosting (){
   var jobTitle = document.getElementById("jobTitle").value;
   var jobDescription = document.getElementById("jobDescription").value;
@@ -40,7 +39,7 @@ localStorage.setItem('jobs',JSON.stringify(jobs));
 }
 
 
-//creating an HTML from the JS objects
+//creating an HTML from the jobs JS objects
 function createHTML(job){
 return "<div class='card' data-location-type=" + job.jobLocation + ">"+
             "<h1 class='jobtitle'>" + job.jobTitle + "</h1>"+
@@ -51,8 +50,6 @@ return "<div class='card' data-location-type=" + job.jobLocation + ">"+
            "<p><button type='button' onclick='addToFavourites(`"+job.jobTitle+"`)'>Add to Favourites</button></p>"+
           "</div>";
 }
-//here is the error: cannot set.innerHTML property of null, make some form of if function to fix it, s.o., do we need to fix it at all??
-// liegt daran, dass dieses ELement auf der JobPosting seite nicht aufgerufen wird.. wie mach ich das so, dass es geht??
 
 var content = "";
 for(var i =0; i<jobs.length; i++){
@@ -61,16 +58,13 @@ content += createHTML(jobs[i]);
 
 document.getElementById('searchDivs').innerHTML = content;
 
-//local storage holen. das mit dem create html definieren mit loop und dann wird durch createHTML die funktion "gerufen"
-
 //Search function for the Job Cards
 function searchFunction(){
 //Declare variables - getting values from the search box
 var input = document.getElementById("jobInput").value.toUpperCase();
 //der input funktioniert, wenn ich etwas eingebe, wird es als capital letter extrahiert
 content = "";
-//loop through the jobs array and the different elements within 
-//i have an array of objects and not an array of arrays
+//loop through the jobs array and the different objects within 
 for (var i=0; i<jobs.length; i++){
   if(jobs[i].jobTitle.toUpperCase().includes(input) || jobs[i].qualifications.toUpperCase().includes(input)){
     content += createHTML(jobs[i]);
@@ -80,7 +74,6 @@ for (var i=0; i<jobs.length; i++){
 
 }
 
-
 // filter function by location
 function filterFunction(checkbox){
 console.log(checkbox);
@@ -88,7 +81,7 @@ var jobAds = document.getElementById("searchDivs");
 var divElements = jobAds.getElementsByClassName("card");
 //loop through the divs
 for(var i=0; i<divElements.length; i++){
-  //wir haben index 0 bei der divElements und der location, weil wir dadurch eine Liste wiederbekommen, und das an erster Stelle steht, weil es nur ein Element hat
+  //we have index 0 for divElements and location, because we get an array and because it contains only one value, we look for the element at index 0
   if (divElements[i].getAttribute("data-location-type") == checkbox.getAttribute("data-location-type")){
     //if all boxes unchecked, this is easier because then all are not displayed
     if (checkbox.checked == false){
@@ -101,17 +94,17 @@ for(var i=0; i<divElements.length; i++){
 }
 }
 
-
 var users = JSON.parse(localStorage.getItem("users"));
 
 var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
+//function that adds the selected job to the favourites property of the user and loggedInUser
 function addToFavourites(jobTitle){
 console.log('works');
 
 for(var i=0;i<users.length;i++){
     if (loggedInUser.username === users[i].username){
-      //ich glaube das hatte ich eingefügt, für wenn man am anfang anfängt und keine favourites hat, dann wird das hinzugefügt, die späteren sind für wenn schon etwas in den favourites vorhanden ist
+      //This part is relevant if the user does not have any favourites at all, because then there cannot be a loop, it goes into the other conditions, if the user does already have favourites saved
       if (loggedInUser.favourites.length == 0){
         loggedInUser.favourites.push(jobTitle);
         alert("The job has been added to your Favourites");
@@ -121,15 +114,11 @@ for(var i=0;i<users.length;i++){
         return false;
       }else{
         loggedInUser.favourites = users[i].favourites
-        //loopen durch einen for loop for(i=0;i<users[i].favourites.length;i++) --> mit gelöschtem User auf null, ist nichts hinterlegt, daher ist .length gleich 0 unde er looped nocht, think about how to solve this!, s.o.
         for(i=0;i<loggedInUser.favourites.length;i++){
           if(loggedInUser.favourites.includes(jobTitle)){
             alert('Job already in Favourites')
             return false;
           }
-          //das erste mal clicken läuft er durch, ohne etwas zu pushen irgendiwe, mit dem ersten click wird irgendwie wieder auf null zurückgesetzt, danach wird hinzugefügt
-          //hier muss ich vom local storage holen und zu der Liste hinzufügen, weil der sonst jedes Mal wieder bei null anfängt und die überschreibt
-          //schauen, ob ich favourites als this.favourites = favourites definiere und dann sage: var favourites = [] und dann this.favourites = favourites, also das array pushen und dann das array rausziehenimmer wieder, adaptieren und wieder reinpushen
           else{
             loggedInUser.favourites.push(jobTitle);
             alert("The job has been added to your Favourites");
@@ -150,9 +139,9 @@ for(var i=0;i<users.length;i++){
     };
 
 
+//function that sets the company upon the push of the button similarly to the loggedInUser, for the contactCompnay form
 function setCompany(jobTitle){
 for(i=0;i<jobs.length;i++){
-//button is not defined right now, everything else should be working
 if (jobs[i].jobTitle == jobTitle){
 localStorage.setItem("contactedCompany", JSON.stringify(jobs[i]));
 console.log('works');

@@ -2,7 +2,7 @@ var users = JSON.parse(localStorage.getItem("users"));
 
 var favourites = [];
 
-//Get username from loggedInUser out of the index.js file (in the logIn Loop)
+//Get username from loggedInUser out of the localStorage
 var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
 
 
@@ -16,15 +16,12 @@ function createHTML(loggedInUser){
     "<p id='image'> " + "<img src=" + loggedInUser.image + " />" + "</p>" +
     "<p id='qualifications'> Qualifications: " + loggedInUser.qualifications + "</p>"+
     "<p id='description'> Description: " + loggedInUser.description + "</p>"+
-  // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
   "</div>";
 }
 
-//Call the createHTML function by a loop looking through the users added 
+//Call the createHTML function for the loggedInUser
 var content = "";
-//for (var i=0; i <loggedInUser.length; i++) {
     content += createHTML(loggedInUser);
 
-
-//Display users at HTML - getELementByClassName because we refer to the userprofile which is a class. 
+//Display user info at HTML - getELementById because we refer to the userProfile
 document.getElementById('userProfile').innerHTML = content;

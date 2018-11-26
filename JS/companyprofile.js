@@ -1,7 +1,6 @@
+//Getting users and loggedInUser from localStorage
 var users = JSON.parse(localStorage.getItem("users"));
-//Get username from loggedInUser out of the index.js file (in the logIn Loop)
 var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
-
 
 // Creating the html input 
 function createHTML(loggedInUser){
@@ -12,18 +11,14 @@ function createHTML(loggedInUser){
     "<p id='company'> Company: " + loggedInUser.company + "</p>"+
     "<p id='description'> Description: " + loggedInUser.description + "</p>"+
     "<p id='image'> " + "<img src=" + loggedInUser.image + " />" + "</p>"+
-    
-  // "<p><input type='button' onclick='console.log(job.linkToWebsite)'>Company Website</button></p>"+
-  "</div>";
+    "</div>";
 }
 
-//Call the createHTML function by a loop looking through the users added 
+//Call the createHTML function for the loggedInUser 
 var content = "";
-//for (var i=0; i <loggedInUser.length; i++) {
     content += createHTML(loggedInUser);
 
-
-//Display users at HTML - getELementByClassName because we refer to the userprofile which is a class. 
+//Display users at HTML - getELementById 
 document.getElementById('companyProfile').innerHTML = content;
 
 

@@ -1,5 +1,7 @@
+//extract the previously saved and assigned to the jobPosting button from localStorage
 var contactedCompany = JSON.parse(localStorage.getItem("contactedCompany"));
 
+//create the HTML for the contactedCompany, so that the contact form works
 function createHTML2(contactedCompany){
     return "<h1>Please send your request message</h1>"+
             "<ul>"+

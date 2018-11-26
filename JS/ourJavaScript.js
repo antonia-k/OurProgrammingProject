@@ -4,8 +4,9 @@ var attempt = 3;
 
 var users = null;
 
+//function to reassign the objectTypes to the users after being deleted through storing it in localStorage
 function getUsers(list){
-    // hier habe ich das, was ich aus dem local Storage hole als "list" definiert, "list" ist mein Array an Objekten, das ich aus dem localStorage geholt habe
+    // I define what I get from localStorage as "list" here, "list" is my array of objects that I got from localStorage
     var retList = [];
     for(var i=0; i<list.length; i++){
         if(list[i].objectType === "Freelancer"){
@@ -24,6 +25,7 @@ function getUsers(list){
 
 users = getUsers(JSON.parse(localStorage.getItem("users")));
 
+// function that reassigns the favourittes to the users
 function updateFavourites(){
     var updateFavourites = JSON.parse(localStorage.getItem("users"))
     for (var i=0; i<updateFavourites.length; i++){
@@ -39,11 +41,7 @@ function updateFavourites(){
     }
 }
 
-
 updateFavourites.call()
-
-// das wieder rausholen mit dem parse und dann das mit dem typeof definieren
-
 
 //Validation 
 function validate(){    
@@ -88,9 +86,7 @@ function validate(){
 //Push username from logged in User in the local storage 
 console.log(users[tempPos])
 localStorage.setItem("loggedInUser", JSON.stringify(users[tempPos]));
-
 }
-
 
 //Detect Caps Lock in Password Input
 window.onload=function(){
