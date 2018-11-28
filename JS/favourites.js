@@ -24,6 +24,7 @@ var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   
   document.getElementById('favouritesList').innerHTML = content;
 
+var users = JSON.parse(localStorage.getItem("users"));
 
 //deleting the Job from the Favourites List
   function DeleteFromFavourites(button){
@@ -37,7 +38,6 @@ var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
             if (index > -1) {
             loggedInUser.favourites.splice(index, 1);
             } 
-            //loggedInUser.favourites.splice(button.getAttribute("data-id-type"));
             console.log(loggedInUser.favourites)
             alert("The job has been deleted from your Favourites");
             users[i].favourites = loggedInUser.favourites;
