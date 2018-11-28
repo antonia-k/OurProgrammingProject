@@ -129,10 +129,11 @@ for(var i=0;i<users.length;i++){
         }
         //now we must also push it into local storage
                 }
+                for(var i = 0; i < users.length; i++){
+                  if(loggedInUser.username === users[i].username){
+                      users[i] = loggedInUser;
             }
-            for(var i = 0; i < users.length; i++){
-              if(loggedInUser.username === users[i].username){
-                  users[i] = loggedInUser;
+            
               }
           } 
         }     
