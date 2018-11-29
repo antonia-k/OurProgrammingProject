@@ -13,34 +13,36 @@
 
 
 <title>Input Tags</title>
+
 <link rel="stylesheet" href="./CSS/userprofile.css">
 
 </head>
 <body>
-        Welcome!
-        
-        <!-- New Tap app  --> 
-        <div id="userProfile" class="userProfile"></div>
-        
 
-    </p>
-
+    Welcome!
+    
+    <!-- Referencing to id and class, so that data from localStorage is shown -->
+     <div id="userProfile" class="userProfile"></div> 
+    
+    <!-- Edit profile button + redirection -->
     <input type="submit" value="Edit profile" id="editProfile" button onclick="window.location.href='./editProfile.html'"/>
 
-     
+    <!-- Edit favorite button + redirection -->
     <button type="button" onclick="window.location.href='./favouritesList.html'">See your Favourites</button><br>
     
+    <!-- logout the profile -->
     <button type="button" onclick="logout()">Logout</button> 
     <br>
      <br></br>
     
+     <!-- redirection to marketplace -->
      <p><i>Search for your new job</i></p>
      <div>
-
          <a href="./marketplace.html" target="_blank"><img src="./images/Search.png"></a>
         
-        </div>
+     </div>
         
+
 <script src="./JS/classes.js"></script>
 <script src="./JS/data.js"></script>
 <script src="./JS/userprofile.js"></script>
